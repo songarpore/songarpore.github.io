@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="ros教程,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="创建工作空间 工作空间类似于我们的工程文件夹。  创建一个空的catkin工作空间$ mkdir -p ~/catkin_ws/src $ cd ~/catkin_ws/src $ catkin_init_workspace 编译该工作空间$ cd ~/catkin_ws/ $ catkin_make 设置工作空间 环境变量$ cd ~/catkin_ws/ $ source devel/setu">
+<meta name="keywords" content="ros教程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ROS开发基础-1.ROS功能包">
+<meta property="og:url" content="https://songjiapo.com/2018/03/24/ros_tutorial/2018-03-24-ROS开发基础-1.ROS功能包(packages)/index.html">
+<meta property="og:site_name" content="songjiapo&#39;s blog">
+<meta property="og:description" content="创建工作空间 工作空间类似于我们的工程文件夹。  创建一个空的catkin工作空间$ mkdir -p ~/catkin_ws/src $ cd ~/catkin_ws/src $ catkin_init_workspace 编译该工作空间$ cd ~/catkin_ws/ $ catkin_make 设置工作空间 环境变量$ cd ~/catkin_ws/ $ source devel/setu">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-01-08T11:48:55.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ROS开发基础-1.ROS功能包">
+<meta name="twitter:description" content="创建工作空间 工作空间类似于我们的工程文件夹。  创建一个空的catkin工作空间$ mkdir -p ~/catkin_ws/src $ cd ~/catkin_ws/src $ catkin_init_workspace 编译该工作空间$ cd ~/catkin_ws/ $ catkin_make 设置工作空间 环境变量$ cd ~/catkin_ws/ $ source devel/setu">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://songjiapo.com/2018/03/24/ros_tutorial/2018-03-24-ROS开发基础-1.ROS功能包(packages)/">
+
+
+
+
+
+  <title>ROS开发基础-1.ROS功能包 | songjiapo's blog</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?e07193cab6deb965ead8e1aed3d4744f";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">songjiapo's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://songjiapo.com/2018/03/24/ros_tutorial/2018-03-24-ROS开发基础-1.ROS功能包(packages)/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="song jiapo">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="songjiapo's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">ROS开发基础-1.ROS功能包</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-24T20:28:29+08:00">
+                2018-03-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/ros教程/" itemprop="url" rel="index">
+                    <span itemprop="name">ros教程</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/03/24/ros_tutorial/2018-03-24-ROS开发基础-1.ROS功能包(packages)/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/03/24/ros_tutorial/2018-03-24-ROS开发基础-1.ROS功能包(packages)/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="创建工作空间"><a href="#创建工作空间" class="headerlink" title="创建工作空间"></a>创建工作空间</h1><ul>
+<li>工作空间类似于我们的工程文件夹。</li>
+</ul>
+<h2 id="创建一个空的catkin工作空间"><a href="#创建一个空的catkin工作空间" class="headerlink" title="创建一个空的catkin工作空间"></a>创建一个空的catkin工作空间</h2><p><code>$ mkdir -p ~/catkin_ws/src</code></p>
+<p><code>$ cd ~/catkin_ws/src</code></p>
+<p><code>$ catkin_init_workspace</code></p>
+<h2 id="编译该工作空间"><a href="#编译该工作空间" class="headerlink" title="编译该工作空间"></a>编译该工作空间</h2><p><code>$ cd ~/catkin_ws/</code></p>
+<p><code>$ catkin_make</code></p>
+<h2 id="设置工作空间-环境变量"><a href="#设置工作空间-环境变量" class="headerlink" title="设置工作空间 环境变量"></a>设置工作空间 环境变量</h2><p><code>$ cd ~/catkin_ws/</code></p>
+<p><code>$ source devel/setup.bash</code></p>
+<p>输入<code>echo $ROS_PACKAGE_PATH</code>，就可以看到添加的 环境变量了</p>
+<h1 id="创建功能包"><a href="#创建功能包" class="headerlink" title="创建功能包"></a>创建功能包</h1><h2 id="先将ROS的当前工作空间设为-catkin-ws"><a href="#先将ROS的当前工作空间设为-catkin-ws" class="headerlink" title="先将ROS的当前工作空间设为 catkin_ws"></a>先将ROS的当前工作空间设为 catkin_ws</h2><p><code>$ cd ~/catkin_ws/</code></p>
+<p><code>$ source devel/setup.bash</code></p>
+<h2 id="然后在-catkin-ws-src目录下创建-功能包"><a href="#然后在-catkin-ws-src目录下创建-功能包" class="headerlink" title="然后在 ~/catkin_ws/src目录下创建 功能包"></a>然后在 <code>~/catkin_ws/src</code>目录下创建 功能包</h2><p><code>$ cd ~/catkin_ws/src</code></p>
+<p><code>$ catkin_create_pkg my_pkg std_msgs rospy roscpp</code></p>
+<ul>
+<li>在工作空间的src文件夹下创建 my_pkg 功能包</li>
+<li>功能包目录下有 package.xml , CMakeLists.txt 文件,及 src,include 子文件夹。</li>
+<li>所有的 executable files 位于  <code>~/catkin_ws/devel/lib</code></li>
+<li>所有的 include files 位于   <code>~/catkin_ws/devel/include</code></li>
+</ul>
+<h2 id="编译-所有功能包"><a href="#编译-所有功能包" class="headerlink" title="编译 所有功能包"></a>编译 所有功能包</h2><p><code>$ cd ~/catkin_ws/</code></p>
+<p><code>$ catkin_make</code></p>
+<h2 id="编译-单个功能包"><a href="#编译-单个功能包" class="headerlink" title="编译 单个功能包"></a>编译 单个功能包</h2><p><code>$ cd ~/catkin_ws/</code></p>
+<p><code>$ catkin_make --pkg package_name</code></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ros教程/" rel="tag"># ros教程</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/23/ros_tutorial/2018-03-23-ROS开发基础-0.ROS基本命令/" rel="next" title="ROS开发基础-0.ROS基本命令">
+                <i class="fa fa-chevron-left"></i> ROS开发基础-0.ROS基本命令
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/03/25/ros_tutorial/2018-03-25-ROS开发基础-2.ROS节点(nodes)/" rel="prev" title="ROS开发基础-2.ROS节点">
+                ROS开发基础-2.ROS节点 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      
+        <div id="gitment-container"></div>
+      
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">song jiapo</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">49</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/songapore" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:291946540@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#创建工作空间"><span class="nav-number">1.</span> <span class="nav-text">创建工作空间</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#创建一个空的catkin工作空间"><span class="nav-number">1.1.</span> <span class="nav-text">创建一个空的catkin工作空间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#编译该工作空间"><span class="nav-number">1.2.</span> <span class="nav-text">编译该工作空间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设置工作空间-环境变量"><span class="nav-number">1.3.</span> <span class="nav-text">设置工作空间 环境变量</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#创建功能包"><span class="nav-number">2.</span> <span class="nav-text">创建功能包</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#先将ROS的当前工作空间设为-catkin-ws"><span class="nav-number">2.1.</span> <span class="nav-text">先将ROS的当前工作空间设为 catkin_ws</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#然后在-catkin-ws-src目录下创建-功能包"><span class="nav-number">2.2.</span> <span class="nav-text">然后在 ~/catkin_ws/src目录下创建 功能包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#编译-所有功能包"><span class="nav-number">2.3.</span> <span class="nav-text">编译 所有功能包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#编译-单个功能包"><span class="nav-number">2.4.</span> <span class="nav-text">编译 单个功能包</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">song jiapo</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+
+    
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitmint({
+            id: window.location.pathname, 
+            owner: 'songapore',
+            repo: 'songapore.github.io',
+            
+            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+            
+            oauth: {
+            
+            
+                client_secret: '72099ae3da7237c29689f70655f0da4c6cf9968d',
+            
+                client_id: 'cf52a979586732369b2d'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      renderGitment();
+      
+      </script>
+    
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>

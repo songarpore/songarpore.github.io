@@ -1,0 +1,2297 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="songjiapo, ros , self driving ,car ,can bus ">
+
+
+
+
+
+
+
+
+
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="songjiapo&#39;s blog">
+<meta property="og:url" content="https://songjiapo.com/page/4/index.html">
+<meta property="og:site_name" content="songjiapo&#39;s blog">
+<meta property="og:locale" content="zh-Hans">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="songjiapo&#39;s blog">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://songjiapo.com/page/4/">
+
+
+
+
+
+  <title>songjiapo's blog</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?e07193cab6deb965ead8e1aed3d4744f";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left 
+  page-home">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">songjiapo's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+  <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://songjiapo.com/2018/04/16/algorithm/2018-04-16-算法培训视频分享/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="song jiapo">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="songjiapo's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/04/16/algorithm/2018-04-16-算法培训视频分享/" itemprop="url">算法培训视频分享</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-16T11:08:12+08:00">
+                2018-04-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/algorithm/" itemprop="url" rel="index">
+                    <span itemprop="name">algorithm</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ul>
+<li>2018牛客网 算法初级班 算法进阶班 视频 java数据结构算法 BAT算法</li>
+</ul>
+<p>链接：<a href="https://pan.baidu.com/s/15eUjRuxGFwlqPiLny6_FYw" target="_blank" rel="noopener">https://pan.baidu.com/s/15eUjRuxGFwlqPiLny6_FYw</a> 密码：ftd8</p>
+<ul>
+<li>LeetCode面试算法刷题 视频/课件/代码 数据结构与算法/视频教程。</li>
+</ul>
+<p>链接：<a href="https://pan.baidu.com/s/1x-CkJDc_gKdckNW14zgDlQ" target="_blank" rel="noopener">https://pan.baidu.com/s/1x-CkJDc_gKdckNW14zgDlQ</a> 密码：rhrt</p>
+<p>需要系统的刷算法题的拿走不谢！</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://songjiapo.com/2018/04/15/self-driving/2018-04-15-self-driving-company-Ranking-4/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="song jiapo">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="songjiapo's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/04/15/self-driving/2018-04-15-self-driving-company-Ranking-4/" itemprop="url">无人驾驶供应商竞争力排行榜</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-15T18:05:15+08:00">
+                2018-04-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/self-driving/" itemprop="url" rel="index">
+                    <span itemprop="name">self-driving</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>这些企业将通过四个维度进行分类和排名，分别是：</p>
+<ul>
+<li><a href="https://songapore.github.io/2018/04/15/self-driving-company-Ranking-1/" target="_blank" rel="noopener">综合竞争力排行榜</a></li>
+<li><a href="https://songapore.github.io/2018/04/15/self-driving-company-Ranking-2/" target="_blank" rel="noopener">整车制造企业竞争力排行榜</a></li>
+<li><a href="https://songapore.github.io/2018/04/15/self-driving-company-Ranking-3/" target="_blank" rel="noopener">初创企业竞争力排行榜</a></li>
+<li><p><a href="https://songapore.github.io/2018/04/15/self-driving-company-Ranking-4/" target="_blank" rel="noopener">供应商竞争力排行榜</a></p>
+<h2 id="科技公司和供应商排行榜"><a href="#科技公司和供应商排行榜" class="headerlink" title="科技公司和供应商排行榜"></a>科技公司和供应商排行榜</h2></li>
+<li><p>事实上，这波无人驾驶浪潮的源动力是科技公司，汽车企业还是被动跟随者。汽车行业的优势在于硬件有着极高的门槛，同时有着强劲的财务平衡表。然而车企必须颠覆自己，否则恐怕会被别人颠覆。</p>
+</li>
+<li><p>幸运的是，中国有着越来越多卓越的科技公司，这些企业的领导者有着成为全球领袖的雄心壮志。无人驾驶产业的竞争是各个国家之间：企业家、人才、科技、教育、资金以及政府执行力的全方位竞争。</p>
+</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/songapore/For-PicGo/master/img/%E6%97%A0%E4%BA%BA%E9%A9%BE%E9%A9%B6%E7%A7%91%E6%8A%80%E5%85%AC%E5%8F%B8%E5%92%8C%E4%BE%9B%E5%BA%94%E5%95%86%E6%8E%92%E8%A1%8C%E6%A6%9C.jpeg" alt="科技公司和供应商排行榜"><br><img src="https://raw.githubusercontent.com/songapore/For-PicGo/master/img/%E6%97%A0%E4%BA%BA%E9%A9%BE%E9%A9%B6%E7%A7%91%E6%8A%80%E5%85%AC%E5%8F%B8%E5%92%8C%E4%BE%9B%E5%BA%94%E5%95%86%E6%8E%92%E8%A1%8C%E6%A6%9C2.jpeg" alt="科技公司和供应商排行榜"><br><img src="https://raw.githubusercontent.com/songapore/For-PicGo/master/img/%E6%97%A0%E4%BA%BA%E9%A9%BE%E9%A9%B6%E7%A7%91%E6%8A%80%E5%85%AC%E5%8F%B8%E5%92%8C%E4%BE%9B%E5%BA%94%E5%95%86%E6%8E%92%E8%A1%8C%E6%A6%9C3.jpeg" alt="科技公司和供应商排行榜"></p>
+<h2 id="无人驾驶核心供应商"><a href="#无人驾驶核心供应商" class="headerlink" title="无人驾驶核心供应商"></a>无人驾驶核心供应商</h2><ul>
+<li><p>无人驾驶产业会诞生具有很强竞争力的供应商，尤其是芯片和激光雷达领域，车评君简要加以梳理。值得引起关注的是，这些核心供应商全部都在美国。<br>-<br><img src="https://raw.githubusercontent.com/songapore/For-PicGo/master/img/%E6%97%A0%E4%BA%BA%E9%A9%BE%E9%A9%B6%E6%A0%B8%E5%BF%83%E4%BE%9B%E5%BA%94%E5%95%86.jpeg" alt="无人驾驶核心供应商"></p>
+</li>
+<li><p>芯片领域进入门槛非常高，初创公司在里面几乎不会有机会。但是，谷歌也推出了自己专门支持人工智能运算的芯片TPU，声称性能比英伟达的GPU能力更强，引发英伟达CEO黄仁勋的震怒。</p>
+</li>
+<li><p>另外，苹果iphone的芯片均自己设计，更可怕的是，该公司也推出了自己的GPU，导致其GPU供应商股价腰斩。芯片行业还有一个巨头，是TI，这家公司拟以164亿美元收购AMD，AMD的GPU可与英伟达一拼。</p>
+</li>
+<li><p>Lidar看起来威力登的领先优势不会持续太久，一方面谷歌已经将Lidar的成本大幅度降低了90%。同时，德系零部件三强几乎已全部进入Lidar制造领域，这看起来开始变成了红海。</p>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://songjiapo.com/2018/04/15/self-driving/2018-04-15-self-driving-company-Ranking-3/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="song jiapo">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="songjiapo's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/04/15/self-driving/2018-04-15-self-driving-company-Ranking-3/" itemprop="url">无人驾驶初创企业竞争力排行排行榜</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-15T18:04:15+08:00">
+                2018-04-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/self-driving/" itemprop="url" rel="index">
+                    <span itemprop="name">self-driving</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>这些企业将通过四个维度进行分类和排名，分别是：</p>
+<ul>
+<li><a href="https://songapore.github.io/2018/04/15/self-driving-company-Ranking-1/" target="_blank" rel="noopener">综合竞争力排行榜</a></li>
+<li><a href="https://songapore.github.io/2018/04/15/self-driving-company-Ranking-2/" target="_blank" rel="noopener">整车制造企业竞争力排行榜</a></li>
+<li><a href="https://songapore.github.io/2018/04/15/self-driving-company-Ranking-3/" target="_blank" rel="noopener">初创企业竞争力排行榜</a></li>
+<li><a href="https://songapore.github.io/2018/04/15/self-driving-company-Ranking-4/" target="_blank" rel="noopener">供应商竞争力排行榜</a><h2 id="初创企业竞争力排行"><a href="#初创企业竞争力排行" class="headerlink" title="初创企业竞争力排行"></a>初创企业竞争力排行</h2></li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/songapore/For-PicGo/master/img/%E5%88%9D%E5%88%9B%E4%BC%81%E4%B8%9A%E7%AB%9E%E4%BA%89%E5%8A%9B%E6%8E%92%E8%A1%8C.jpeg" alt="初创企业竞争力排行"><br><img src="https://raw.githubusercontent.com/songapore/For-PicGo/master/img/%E5%88%9D%E5%88%9B%E4%BC%81%E4%B8%9A%E7%AB%9E%E4%BA%89%E5%8A%9B%E6%8E%92%E8%A1%8C2.jpeg" alt="初创企业竞争力排行"><br><img src="https://raw.githubusercontent.com/songapore/For-PicGo/master/img/%E5%88%9D%E5%88%9B%E4%BC%81%E4%B8%9A%E7%AB%9E%E4%BA%89%E5%8A%9B%E6%8E%92%E8%A1%8C3.jpeg" alt="初创企业竞争力排行"></p>
+<ul>
+<li><p>中国有着世界上最好的创业环境，涌现出了大量的无人驾驶初创公司，百度系是最大的主力，微软亚洲研究院也有所贡献。</p>
+</li>
+<li><p>从无人驾驶技术的发展来看，依托知名高校是其发展的必要条件。在全世界范围内，为无人驾驶贡献做大的高校为MIT，卡耐基梅隆大学，斯坦福大学，密歇根大学，清华大学和牛津大学。</p>
+</li>
+<li><p>无人驾驶的技术大战表明，未来世界的竞争，科学技术将变得日趋重要。具备全球范围内领先的研究型大学的建设将变得极其关键。一方面，能够在基础技术研究方面处于领先，同时提供源源不断的人才保障。中国人一定要大力投资教育。</p>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://songjiapo.com/2018/04/15/self-driving/2018-04-15-self-driving-company-Ranking-2/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="song jiapo">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="songjiapo's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/04/15/self-driving/2018-04-15-self-driving-company-Ranking-2/" itemprop="url">无人驾驶整车制造商竞争力排行榜</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-15T18:03:15+08:00">
+                2018-04-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/self-driving/" itemprop="url" rel="index">
+                    <span itemprop="name">self-driving</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>这些企业将通过四个维度进行分类和排名，分别是：</p>
+<ul>
+<li><a href="https://songapore.github.io/2018/04/15/self-driving-company-Ranking-1/" target="_blank" rel="noopener">综合竞争力排行榜</a></li>
+<li><a href="https://songapore.github.io/2018/04/15/self-driving-company-Ranking-2/" target="_blank" rel="noopener">整车制造企业竞争力排行榜</a></li>
+<li><a href="https://songapore.github.io/2018/04/15/self-driving-company-Ranking-3/" target="_blank" rel="noopener">初创企业竞争力排行榜</a></li>
+<li><a href="https://songapore.github.io/2018/04/15/self-driving-company-Ranking-4/" target="_blank" rel="noopener">供应商竞争力排行榜</a></li>
+</ul>
+<h2 id="整车制造商竞争力排行榜"><a href="#整车制造商竞争力排行榜" class="headerlink" title="整车制造商竞争力排行榜"></a>整车制造商竞争力排行榜</h2><ul>
+<li><p>无人驾驶技术的决定力量还是整车制造商，车评君选了全球范围内23家制造商进入榜单，目前看来这些车企在无人驾驶上具备不错的竞争力，并是这个市场强有力的竞争者。</p>
+</li>
+<li><p>从竞争力的角度而言，美系车企实力非常强劲，他们的每一家制造商都能够进入综合榜的top10。中国有大量的整车制造商在做无人驾驶，但在研发费用上的真金白银的投入并不多，更多的时候是噱头。<br><img src="https://raw.githubusercontent.com/songapore/For-PicGo/master/img/%E6%97%A0%E4%BA%BA%E9%A9%BE%E9%A9%B6%E6%95%B4%E8%BD%A6%E5%88%B6%E9%80%A0%E5%95%86%E7%AB%9E%E4%BA%89%E5%8A%9B%E6%8E%92%E8%A1%8C%E6%A6%9C.jpeg" alt="无人驾驶整车制造商竞争力排行榜"></p>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://songjiapo.com/2018/04/15/self-driving/2018-04-15-self-driving-company-Ranking/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="song jiapo">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="songjiapo's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/04/15/self-driving/2018-04-15-self-driving-company-Ranking/" itemprop="url">无人驾驶竞争力排行榜 目录</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-15T18:01:15+08:00">
+                2018-04-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/self-driving/" itemprop="url" rel="index">
+                    <span itemprop="name">self-driving</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>这些企业将通过四个维度进行分类和排名，分别是：</p>
+<ul>
+<li><a href="https://songapore.github.io/2018/04/15/self-driving-company-Ranking-1/" target="_blank" rel="noopener">综合竞争力排行榜</a></li>
+<li><a href="https://songapore.github.io/2018/04/15/self-driving-company-Ranking-2/" target="_blank" rel="noopener">整车制造企业竞争力排行榜</a></li>
+<li><a href="https://songapore.github.io/2018/04/15/self-driving-company-Ranking-3/" target="_blank" rel="noopener">初创企业竞争力排行榜</a></li>
+<li><a href="https://songapore.github.io/2018/04/15/self-driving-company-Ranking-4/" target="_blank" rel="noopener">供应商竞争力排行榜</a></li>
+<li>总表</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/songapore/For-PicGo/master/img/%E6%97%A0%E4%BA%BA%E9%A9%BE%E9%A9%B6%E6%A0%B8%E5%BF%83%E4%BC%81%E4%B8%9A.jpeg" alt="无人驾驶核心企业"></p>
+<ul>
+<li>文章来源：<a href="https://www.d1ev.com/kol/50962" target="_blank" rel="noopener">https://www.d1ev.com/kol/50962</a></li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://songjiapo.com/2018/04/15/self-driving/2018-04-15-self-driving-company-Ranking-1/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="song jiapo">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="songjiapo's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/04/15/self-driving/2018-04-15-self-driving-company-Ranking-1/" itemprop="url">无人驾驶综合竞争力排名</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-15T16:02:15+08:00">
+                2018-04-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/self-driving/" itemprop="url" rel="index">
+                    <span itemprop="name">self-driving</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>这些企业将通过四个维度进行分类和排名，分别是：</p>
+<ul>
+<li><a href="https://songapore.github.io/2018/04/15/self-driving-company-Ranking-1/" target="_blank" rel="noopener">综合竞争力排行榜</a></li>
+<li><a href="https://songapore.github.io/2018/04/15/self-driving-company-Ranking-2/" target="_blank" rel="noopener">整车制造企业竞争力排行榜</a></li>
+<li><a href="https://songapore.github.io/2018/04/15/self-driving-company-Ranking-3/" target="_blank" rel="noopener">初创企业竞争力排行榜</a></li>
+<li><a href="https://songapore.github.io/2018/04/15/self-driving-company-Ranking-4/" target="_blank" rel="noopener">供应商竞争力排行榜</a><h2 id="综合竞争力排行榜"><a href="#综合竞争力排行榜" class="headerlink" title="综合竞争力排行榜"></a>综合竞争力排行榜</h2></li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/songapore/For-PicGo/master/img/%E6%97%A0%E4%BA%BA%E9%A9%BE%E9%A9%B6%E7%BB%BC%E5%90%88%E7%AB%9E%E4%BA%89%E5%8A%9B%E6%8E%92%E5%90%8D.jpeg" alt="无人驾驶综合竞争力排名"></p>
+<ul>
+<li><p>从整体竞争力而言，谷歌和百度两家依然实力最强。同时，这两家也是被挖人最多、员工离职创业最多的企业。目前的无人驾驶初创公司美国以谷歌系为主，中国以百度系为主。</p>
+</li>
+<li><p>通用进度很快，最新的消息是在下个月将会投放全世界规模最庞大的无人驾驶测试车队，数量达到300辆，是其他所有29家在硅谷参与测试的车队数量之和。苹果也取得无人驾驶的测试牌照，这些改装过的雷克萨斯SUV将持续出行的硅谷的马路上。</p>
+</li>
+<li><p>丰田汽车有着很好的技术研发领军人物，然而日本车企的保守会限制他们的进步。英特尔对Mobileye的收购是成功的，这极大地提升了这家公司在无人驾驶竞赛中的竞争力。</p>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://songjiapo.com/2018/04/13/ros_tutorial/2018-04-13-ROS一键安装脚本及使用教程/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="song jiapo">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="songjiapo's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/04/13/ros_tutorial/2018-04-13-ROS一键安装脚本及使用教程/" itemprop="url">ROS一键安装脚本及使用教程-《用ROS学习机器人编程的系统方法》</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-13T16:20:15+08:00">
+                2018-04-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/ros教程/" itemprop="url" rel="index">
+                    <span itemprop="name">ros教程</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>对新手来说，ROS配置环境步骤太过繁琐，打击了新手的学习兴趣。本教程采用国外大牛写的一键安装脚本，<br>方便大家配置ROS开发环境.</p>
+<p>首先需要注意的是：ubuntu14.04下请安装ROS indigo,而 ubuntu 16.04下安装ROS kinetic版本 .</p>
+<h2 id="git安装"><a href="#git安装" class="headerlink" title="git安装"></a>git安装</h2><p>你需要在你的机器上安装“git”来使用这些脚本。如果“git”还没有安装在您的机器上，用下面命令安装：</p>
+<p><code>sudo apt-get --yes --force-yes install git</code></p>
+<hr>
+<h2 id="下载脚本并修改脚本权限"><a href="#下载脚本并修改脚本权限" class="headerlink" title="下载脚本并修改脚本权限"></a>下载脚本并修改脚本权限</h2><ul>
+<li>将<code>learning_ros_setup_scripts</code>克隆到计算机上的任意位置：</li>
+</ul>
+<p><code>git clone https://github.com/wsnewman/learning_ros_setup_scripts.git</code></p>
+<ul>
+<li>下载完脚本后，通过输入以下命令将目录更改为<code>learning_ros_setup_scripts</code>：</li>
+</ul>
+<p><code>cd learning_ros_setup_scripts</code></p>
+<ul>
+<li>键入以下命令添加脚本的执行权限：</li>
+</ul>
+<p><code>chmod +x *.sh</code></p>
+<h2 id="ROS-indigo-安装"><a href="#ROS-indigo-安装" class="headerlink" title="ROS indigo 安装"></a>ROS indigo 安装</h2><ul>
+<li>请键入以下命令运行脚本<code>install_ros_and_tools.sh</code>：</li>
+</ul>
+<p><code>./install_ros_and_tools.sh</code></p>
+<p>(或者 <code>bash install_ros_and_tools.sh</code>)</p>
+<ul>
+<li>执行完之后，ROS即安装完成。同时，《用ROS学习机器人编程的系统方法》教程对应的相关程序也安装成功。</li>
+</ul>
+<h2 id="工作空间-设定"><a href="#工作空间-设定" class="headerlink" title="工作空间 设定"></a>工作空间 设定</h2><p>配置《用ROS学习机器人编程的系统方法》教程对应的ROS工作空间（workspace），请使用<code>setup_workspace_learning_ros.sh</code>脚本。这需要使用你的<br>github<strong>用户名</strong>和<strong>电子邮件</strong>作为脚本的参数：</p>
+<p><code>./setup_workspace_learning_ros.sh github_username github@email.com</code></p>
+<p>(或者 <code>bash setup_workspace_learning_ros.sh github_username github@email.com</code>)</p>
+<p>其中github_username是您在github上的用户名，而<a href="mailto:github@email.com" target="_blank" rel="noopener">github@email.com</a>是您的电子邮件地址，即您的<br>github帐户。</p>
+<h2 id="ROS-kinetic-安装"><a href="#ROS-kinetic-安装" class="headerlink" title="ROS kinetic 安装"></a>ROS kinetic 安装</h2><ul>
+<li>安装了indigo版本的请跳过此部分。</li>
+<li>如果您需要安装ROS kinetic。只需将安装indigo过程的脚本对应换成 <code>install_ros_and_tools_kinetic.sh</code>及 <code>setup_workspace_learning_ros_kinetic.sh</code>，</li>
+</ul>
+<h2 id="其它"><a href="#其它" class="headerlink" title="其它"></a>其它</h2><p>另外<a href="http://wiki.ros.org/ROS/Installation/TwoLineInstall" target="_blank" rel="noopener">ROS 维基官网</a>   也提供了两行安装脚本 可以用来在PC上(ubuntu 13.10 和14.04 LTS)安装ROS Indigo的脚本文件。代码如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">wget https://raw.githubusercontent.com/oroca/oroca-ros-pkg/master/ros_install.sh &amp;&amp; ./ros_install.sh %NAME_CATKIN_WS% %NAME_ROS_DISTRO_LOWERCASE%</span><br><span class="line"></span><br><span class="line">(或者)</span><br><span class="line"></span><br><span class="line">wget https://raw.githubusercontent.com/oroca/oroca-ros-pkg/master/ros_install.sh &amp;&amp; chmod 755 ./ros_install.sh &amp;&amp; ./ros_install.sh catkin_ws_oroca indigo</span><br></pre></td></tr></table></figure>
+<h2 id="参考网站："><a href="#参考网站：" class="headerlink" title="参考网站："></a>参考网站：</h2><ul>
+<li>原作者：<a href="https://github.com/wsnewman/learning_ros_setup_scripts" target="_blank" rel="noopener">https://github.com/wsnewman/learning_ros_setup_scripts</a></li>
+<li>中文教程： <a href="https://github.com/songapore/learning_ros_setup_scripts" target="_blank" rel="noopener">https://github.com/songapore/learning_ros_setup_scripts</a></li>
+<li>wiki两行安装脚本 : <a href="http://wiki.ros.org/ROS/Installation/TwoLineInstall" target="_blank" rel="noopener">http://wiki.ros.org/ROS/Installation/TwoLineInstall</a></li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://songjiapo.com/2018/03/28/ros_tutorial/2018-03-28-ROS环境变量/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="song jiapo">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="songjiapo's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/03/28/ros_tutorial/2018-03-28-ROS环境变量/" itemprop="url">ROS环境变量</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-28T21:15:25+08:00">
+                2018-03-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/ros教程/" itemprop="url" rel="index">
+                    <span itemprop="name">ros教程</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>本文翻译<br><a href="http://wiki.ros.org/ROS/EnvironmentVariables" target="_blank" rel="noopener">http://wiki.ros.org/ROS/EnvironmentVariables</a></p>
+<p>在ROS中，可以设置很多环境变量。最需要理解的是<code>ROS_MASTER_URI</code>, <code>ROS_ROOT</code>和 <code>ROS_PACKAGE_PATH</code>，因为他们频繁的在系统和文件中被用到。</p>
+<h1 id="环境变量在ROS中有多重角色："><a href="#环境变量在ROS中有多重角色：" class="headerlink" title="环境变量在ROS中有多重角色："></a>环境变量在ROS中有多重角色：</h1><h2 id="寻找packages-Finding-packages-："><a href="#寻找packages-Finding-packages-：" class="headerlink" title="寻找packages(Finding packages )："></a>寻找packages(Finding packages )：</h2><p>首先，<code>ROS_ROOT</code>和 <code>ROS_PACKAGE_PATH</code> 使ROS在系统文件(filesystem)中能够定位packages和stacks。同样必须设置PYTHONPATH，这样python解释器才能找到ROS库。</p>
+<h2 id="影响一个节点运行时间-Effecting-a-Node-runtime"><a href="#影响一个节点运行时间-Effecting-a-Node-runtime" class="headerlink" title="影响一个节点运行时间(Effecting a Node runtime ):"></a>影响一个节点运行时间(Effecting a Node runtime ):</h2><p>有几个环境变量会影响节点的运行`。</p>
+<p>-<code>ROS_MASTER_URI</code>是一个重要的环境变量来告诉节点Master（主机）在哪里。</p>
+<ul>
+<li><code>ROS_IP</code>和<code>ROS_HOSTNAME</code>影响一个节点的网络地址，</li>
+<li><code>ROS_NAMESPACE</code>能够让你改变命名空间。</li>
+<li><code>ROS_LOG_DIR</code>可以让你设置日志文件写入的目录。这些也可以被映射参数覆盖，映射参数优先于环境变量。</li>
+</ul>
+<h2 id="修改构建系统-Modifying-the-build-system"><a href="#修改构建系统-Modifying-the-build-system" class="headerlink" title="修改构建系统(Modifying the build system):"></a>修改构建系统(Modifying the build system):</h2><ul>
+<li><code>ROS_BINDEPS_PATH</code>,<code>ROS_BOOST_ROOT</code>，<code>ROS_PARALLEL_JOBS</code>和<code>ROS_LANG_DISABLE</code>影响在哪里寻找库，怎样构建他们，构建哪一个。</li>
+</ul>
+<h1 id="必需的ROS环境变量"><a href="#必需的ROS环境变量" class="headerlink" title="必需的ROS环境变量"></a>必需的ROS环境变量</h1><ul>
+<li>大部分系统都要设置<code>ROS_PACKGE_PATH</code>，</li>
+<li>ROS只需要环境变量<code>ROS_ROOT</code>,<code>ROS_MASTER_URI</code>和<code>PYTHONPATH</code>。</li>
+<li>默认通过<code>sourcing /opt/ros/fuerte/setup.bash</code>来自动设置他们。</li>
+</ul>
+<h2 id="ROS-ROOT"><a href="#ROS-ROOT" class="headerlink" title="ROS_ROOT"></a>ROS_ROOT</h2><p>ROS_ROOT设置<code>ROS core</code>包安装的位置。</p>
+<pre><code>export ROS_ROOT=/home/user/ros/ros  
+export PATH=$ROS_ROOT/bin:$PATH  
+</code></pre><h2 id="ROS-MASTER-URI"><a href="#ROS-MASTER-URI" class="headerlink" title="ROS_MASTER_URI"></a>ROS_MASTER_URI</h2><p>ROS_MASTER_URI是一个必需的设置来告诉节点在哪里定位master。应该设置master的<code>XML-RPC URI</code>。使用<code>localhost</code>时需要格外小心，因为远程启动节点可能会导致意想不到的结果。</p>
+<pre><code>export ROS_MASTER_URI=http://mia:11311/  
+</code></pre><h2 id="PYTHONPATH"><a href="#PYTHONPATH" class="headerlink" title="PYTHONPATH"></a>PYTHONPATH</h2><p>   ROS需要<code>PYTHONPATH</code>更新，尽管你可能不用Python编程！很多ROS基础工具都依靠Python，需要连接到roslib包来bootstrapping。</p>
+<p><code>export PYTHONPATH=$PYTHONPATH:$ROS_ROOT/core/roslib/src</code></p>
+<h1 id="其他的-PATH环境变量"><a href="#其他的-PATH环境变量" class="headerlink" title="其他的 PATH环境变量"></a>其他的 PATH环境变量</h1><h2 id="ROS-PACKAGE-PATH"><a href="#ROS-PACKAGE-PATH" class="headerlink" title="ROS_PACKAGE_PATH"></a>ROS_PACKAGE_PATH</h2><p><code>ROS_PACKAGE_PATH</code>是一个可选，但很常用的环境变量，能够让你从源添加更多的ROS包到当前环境。ROS_PACKAGE_PATH可以由一个或多个路径组成，路径之间由标准操作系统路径间隔符(在Unix类的系统中，用’:’)分隔。这些有序的路径告诉ROS系统到哪里搜索更多的ROS包。如果多个包有相同的名字，ROS会首先选择出现在ROS_PACKAGE_PATH的那个。</p>
+<p><code>export ROS_PACKAGE_PATH=/home/user/ros/ros-pkg:/another/path</code></p>
+<p>注意ROS_PACKAGE_PATH的每个条目都被重复查找-路径中提到的包都会被找到。</p>
+<p>引入catkin后，ROS_PACKAGE_PATH过时了，只是用来与rosbuild包保持向后兼容。</p>
+<h1 id="系统数据-环境变量"><a href="#系统数据-环境变量" class="headerlink" title="系统数据 环境变量"></a>系统数据 环境变量</h1><h2 id="ROS-HOME"><a href="#ROS-HOME" class="headerlink" title="ROS_HOME"></a>ROS_HOME</h2><p>默认，ROS写数据到~/.ros。可以通过设置ROS_HOME来改变这个位置。也可以在~/.ros中更改某个目录的位置(例如，ROS_TEST_RESULTS_DIR,ROS_LOG_DIR)。</p>
+<h2 id="ROS-LOG-DIR"><a href="#ROS-LOG-DIR" class="headerlink" title="ROS_LOG_DIR"></a>ROS_LOG_DIR</h2><p>   默认，ROS写内部日志文件到ROS_HOME/log。如果这个位置对ROS不可写，或者希望日志文件写到别的地方，设置ROS_LOG_DIR到其他路径。</p>
+<h2 id="ROS-TEST-RESULTS-DIR"><a href="#ROS-TEST-RESULTS-DIR" class="headerlink" title="ROS_TEST_RESULTS_DIR"></a>ROS_TEST_RESULTS_DIR</h2><p>  测试结果要写到的目录。</p>
+<h1 id="其他的-Bash环境变量"><a href="#其他的-Bash环境变量" class="headerlink" title="其他的 Bash环境变量"></a>其他的 Bash环境变量</h1><h2 id="ROS-LOCATIONS"><a href="#ROS-LOCATIONS" class="headerlink" title="ROS_LOCATIONS"></a>ROS_LOCATIONS</h2><p>ROS_LOCATIONS是一个可选的环境变量，为有用的位置提供键名。它是key-location对的分隔列表。每个key-location对用一个=分隔。例如:</p>
+<p><code>export ROS_LOCATIONS=&quot;rospkg=/path/to/rospkg:stairpkg=/path/to/stairpkg&quot;</code></p>
+<p>   然后这些键就可以用一些工具了，如roscd。</p>
+<h2 id="ROS-WORKSPACE"><a href="#ROS-WORKSPACE" class="headerlink" title="ROS_WORKSPACE"></a>ROS_WORKSPACE</h2><p>ROS_WORKSPACE由工具rosinstall/rosws引进的，当创建一个workspace时，通过这些工具生成的setup.sh设置。它指向workspace的文件夹，通过使用rosws命令使用，作为命令的默认目标。</p>
+<p>不带参数的调用时，fuerte中的roscd工具也改用这个变量。此前，它默认改变ROS_ROOT.</p>
+<h1 id="节点-环境变量"><a href="#节点-环境变量" class="headerlink" title="节点 环境变量"></a>节点 环境变量</h1><h2 id="ROS-IP-ROS-HOSTNAME"><a href="#ROS-IP-ROS-HOSTNAME" class="headerlink" title="ROS_IP/ROS_HOSTNAME"></a>ROS_IP/ROS_HOSTNAME</h2><p><code>ROS_IP</code>和<code>ROS_HOSTNAME</code>是可选的环境变量，用来设置ROS节点或工具的公开网地址。这两个选项是互斥的，如果两者都设置优先使用ROS_HOSTNAME。</p>
+<p>如果你指定一个IP地址，使用ROS_IP；如果制定一个主机名(a host name)，使用ROS_HOSTNAME。当一个ROS成员报告URI给master或者其他成员，这个值就会被用到。这个设置只用在一台计算机有多个地址，需要强制ROS到特定的一个的情况。</p>
+<p>除了’localhost’(本地主机),ROS成员绑定到所有可用的网络接口，他不影响实际绑定地址。如果这个值设定为本地主机，ROS成员只绑定在环回接口。这将会阻止远程成员与本地成员交流。</p>
+<h2 id="ROS-NAMESPACE"><a href="#ROS-NAMESPACE" class="headerlink" title="ROS_NAMESPACE"></a>ROS_NAMESPACE</h2><p><code>ROS_NAMESPACE</code>可以让你推一个节点到一个命名空间。节点中的所有名字都会相对于这个值解析，包括映射名称。</p>
+<h2 id="ROSCONSOLE-CONFIG-FIE"><a href="#ROSCONSOLE-CONFIG-FIE" class="headerlink" title="ROSCONSOLE_CONFIG_FIE"></a>ROSCONSOLE_CONFIG_FIE</h2><p>这是一个roscpp指定环境变量。Rosconsole让你定义用在log4cxx的配置文件，通过环境变量ROSCONSOLE_CONFIG_FILE定义。在这个配置文件中有任何定义都会覆盖默认的配置文件。</p>
+<h2 id="Console-Output-Formatting-控制台输出格式"><a href="#Console-Output-Formatting-控制台输出格式" class="headerlink" title="Console Output Formatting 控制台输出格式"></a>Console Output Formatting 控制台输出格式</h2><p>Rosconsole允许指定怎样通过环境变量ROSCONSOLE_FORMAT在控制台输出。默认等效于：</p>
+<p><code>export ROSCONSOLE_FORMAT=&#39;[${severity}] [${time}]: ${message}&#39;</code>  </p>
+<h2 id="ROS-PYTHON-LOG-CONFIG-FILE"><a href="#ROS-PYTHON-LOG-CONFIG-FILE" class="headerlink" title="ROS_PYTHON_LOG_CONFIG_FILE"></a>ROS_PYTHON_LOG_CONFIG_FILE</h2><p>   特定 rospy, rosmaster, roslaunch, and rostest.对于这些工具，可以指定使用自己的Python logging配置文件来代替默认配置文件，它保存在$ROS_ROOT/config/python_logging.conf.</p>
+<h1 id="构建系统环境变量"><a href="#构建系统环境变量" class="headerlink" title="构建系统环境变量"></a>构建系统环境变量</h1><p>   为了更好的了解这些环境变量，请看<a href="http://wiki.ros.org/action/show/rosbuild?action=show&amp;redirect=ROS%2FBuildSystem" target="_blank" rel="noopener">ROS Build System</a>部分。</p>
+<h2 id="ROS-BOOST-ROOT"><a href="#ROS-BOOST-ROOT" class="headerlink" title="ROS_BOOST_ROOT"></a>ROS_BOOST_ROOT</h2><p><code>ROS_BOOST_ROOT</code>是一个可选的环境变量，能让你覆盖哪里去寻找激励。如果ROS_BOOST_ROOT不设置，默认使用ROS_BINDEPS_PATH。</p>
+<h2 id="ROS-PARALLEL-JOBS"><a href="#ROS-PARALLEL-JOBS" class="headerlink" title="ROS_PARALLEL_JOBS"></a>ROS_PARALLEL_JOBS</h2><p>这个变量的值，如果设置，构建包的时候会传递给make。目的是充分使用多处理器机器。例如，如果有8处理器/核，想尽可能多的运行并行任务，只要系统负荷小于8，通过限制任务为8，可以在启动时阻止过冲：</p>
+<pre><code>export ROS_PARALLEL_JOBS=&apos;-j8 -l8&apos;  
+</code></pre><p>  或者，可以使用-j标识带一个参数来并行运行最多8个任务，系统负载独立：</p>
+<p><code>export ROS_PARALLEL_JOBS=-j8</code>  </p>
+<p>强烈建议使用-l标识来设置并行系统相关限制。在一个大的构建中并行过多可能会耗尽系统内存。</p>
+<p>  可以接受多少系统负载取决于有多少内核。</p>
+<h2 id="ROS-LANG-DISABLE"><a href="#ROS-LANG-DISABLE" class="headerlink" title="ROS_LANG_DISABLE"></a>ROS_LANG_DISABLE</h2><p>消息生成器/客户端库包名称应禁用一个冒号分隔的列表。Message-generation will not happen for languages in this list.</p>
+<p>用catkin构建的包需要需要列出应当被忽视的消息生成器的名字，例如：</p>
+<pre><code>export ROS_LANG_DISABLE=genlisp
+</code></pre><p>   用rosbuild构建的包需要列出应当被忽视的消息生成器及客户端库的名字，例如：</p>
+<pre><code>export ROS_LANG_DISABLE=genlisp:roslisp  
+</code></pre><p>当忽视掉消息生成器的rosbuild和CMake配置步骤，将会显示一个警告，客户端库(例如，roslisp)不是一个已知的消息生成器。这个警告可以安全的忽略掉。</p>
+<p>注意，禁用语言之前，首先必须确定你使用的代码没有与这个语言绑定。</p>
+<h2 id="ROS-OS-OVERRIDE"><a href="#ROS-OS-OVERRIDE" class="headerlink" title="ROS_OS_OVERRIDE"></a>ROS_OS_OVERRIDE</h2><p>格式：”OS_NAME:OS_VERSION_STRING”，这将会强制检测Ubuntu Lucid:</p>
+<pre><code>export ROS_OS_OVERRIDE=ubuntu:10.04  
+</code></pre><p>如果定义，这将覆盖系统的自动检测。在外来平台上调试rosdep依赖性时，当平台很相似可能需要强制，或自动检测失败时，很有用。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://songjiapo.com/2018/03/27/ros_tutorial/2018-03-27-ROS开发基础-4.ROS服务消息(.srv)/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="song jiapo">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="songjiapo's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/03/27/ros_tutorial/2018-03-27-ROS开发基础-4.ROS服务消息(.srv)/" itemprop="url">ROS开发基础-4.ROS服务消息(.srv)</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-27T18:01:15+08:00">
+                2018-03-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/ros教程/" itemprop="url" rel="index">
+                    <span itemprop="name">ros教程</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ul>
+<li>服务描述的内容保存在 .srv 文件中</li>
+<li>.srv 文件包括 request 和response 两部分，两者之间用 ‘—‘</li>
+<li>例子如下<br>  #request constants<h2 id="string-str"><a href="#string-str" class="headerlink" title="  string str"></a>  string str</h2>  #response constants<br>  string str</li>
+</ul>
+<h1 id="创建srv"><a href="#创建srv" class="headerlink" title="创建srv"></a>创建srv</h1><h2 id="设置工作空间"><a href="#设置工作空间" class="headerlink" title="设置工作空间"></a>设置工作空间</h2><p><code>$ source ~/catkin_ws/devel/setup.bash</code></p>
+<h2 id="添加-srv-文件"><a href="#添加-srv-文件" class="headerlink" title="添加 .srv 文件"></a>添加 .srv 文件</h2><p>在src/my_msgs功能包 目录下 新建 .srv 文件 ，并添加 内容</p>
+<h2 id="更新-package-xml-文件"><a href="#更新-package-xml-文件" class="headerlink" title="更新 package.xml 文件"></a>更新 package.xml 文件</h2><p>打开my_msgs功能包的package.xml文件，确保如下两行 命令没有被注释掉.</p>
+<pre><code>&lt;build_depend&gt; message_generation &lt;/build_depend&gt;
+&lt;run_depend&gt; message_runtime &lt;/run_depend&gt;
+</code></pre><p>编译时需要 message_generation，运行时需要 message_runtime</p>
+<h2 id="更新CMakeList-txt文件"><a href="#更新CMakeList-txt文件" class="headerlink" title="更新CMakeList.txt文件"></a>更新CMakeList.txt文件</h2><ul>
+<li>打开CMakeList.txt文件，在 find_package(…)中添加 message_generation，<br>这样在编译之后就可以生成服务了。</li>
+</ul>
+<p>find_package(catkin REQUIRED COMPONENTS<br>    roscpp<br>    rospy<br>    std_msgs<br>    message_generation<br>    )</p>
+<ul>
+<li>在CMakeList.txt文件中 找到 catkin_package(…) 并添加 <code>CATKIN_DEPENDS roscpp rospy std_msgs message_runtime</code></li>
+<li><p>在CMakeList.txt文件中 找到如下代码</p>
+<p>  #add_service_files(<br>  #FILES<br>  #Service1.srv<br>  #Service2.srv<br>  #)</p>
+</li>
+</ul>
+<p>去掉前面的注释#，并添加新建的.srv文件，如下</p>
+<pre><code>add_service_files(
+FILES
+#Service1.srv
+#Service2.srv
+my_srv.srv
+)
+</code></pre><ul>
+<li><p>在CMakeList.txt文件中 找到如下代码</p>
+<p>  #generate_messages(<br>  #DEPENDENCIES<br>  #std_msgs<br>  #)</p>
+</li>
+</ul>
+<p>去掉前面的注释#</p>
+<h2 id="重新-编译-功能包"><a href="#重新-编译-功能包" class="headerlink" title="重新 编译 功能包"></a>重新 编译 功能包</h2><p>$ cd ~/catkin_ws<br>$ catkin_make</p>
+<h2 id="使用rossrv命令"><a href="#使用rossrv命令" class="headerlink" title="使用rossrv命令"></a>使用rossrv命令</h2><pre><code>$ rossrv show my_msgs/My_srv
+</code></pre><p>结果应为</p>
+<h2 id="int64-req"><a href="#int64-req" class="headerlink" title="int64 req"></a>int64 req</h2><p>int64 res</p>
+<p>这说明.srv消息已经可以使用了。由上面的介绍可知，.srv 与 .msg 的创建过程类似。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://songjiapo.com/2018/03/26/ros_tutorial/2018-03-26-ROS开发基础-3.ROS消息(messages)/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="song jiapo">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="songjiapo's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/03/26/ros_tutorial/2018-03-26-ROS开发基础-3.ROS消息(messages)/" itemprop="url">ROS开发基础-3.ROS消息</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-26T16:45:52+08:00">
+                2018-03-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/ros教程/" itemprop="url" rel="index">
+                    <span itemprop="name">ros教程</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ul>
+<li>消息是节点之间 主题通信 的数据结构，相当于C语言中的结构体，它支持标准的数据类型（如整型、浮点型、布尔型等）。</li>
+<li>消息的变量保存在 .msg 文件中。<h1 id="创建消息的过程如下："><a href="#创建消息的过程如下：" class="headerlink" title="创建消息的过程如下："></a>创建消息的过程如下：</h1><h2 id="创建功能包"><a href="#创建功能包" class="headerlink" title="创建功能包"></a>创建功能包</h2></li>
+</ul>
+<p>在工作空间src文件夹下新建my_msgs功能包。</p>
+<pre><code>$ source ~/catkin_ws/devel/setup.bash
+$ cd ~/catkin_ws/src
+$ catkin_create_pkg my_msgs std_msgs rospy roscpp
+</code></pre><h2 id="创建msg文件夹"><a href="#创建msg文件夹" class="headerlink" title="创建msg文件夹"></a>创建msg文件夹</h2><p>在功能包 路径下 新建一个 名为 msg的文件夹，并添加一个名为 MyRobotState.msg的文件，该文件的内容为：</p>
+<pre><code>float32 myrobot_contact
+</code></pre><h2 id="更新package-xml文件"><a href="#更新package-xml文件" class="headerlink" title="更新package.xml文件"></a>更新package.xml文件</h2><p>打开my_msgs功能包的package.xml文件，确保如下两行 命令没有被注释掉.</p>
+<pre><code>&lt;build_depend&gt; message_generation &lt;/build_depend&gt;
+&lt;run_depend&gt; message_runtime &lt;/run_depend&gt;
+</code></pre><p>编译时需要 message_generation，运行时需要 message_runtime</p>
+<h2 id="更新CMakeList-txt文件"><a href="#更新CMakeList-txt文件" class="headerlink" title="更新CMakeList.txt文件"></a>更新CMakeList.txt文件</h2><ul>
+<li>打开CMakeList.txt文件，在 find_package(…)中添加 message_generation，<br>这样在编译之后就可以生成消息了。</li>
+</ul>
+<p>find_package(catkin REQUIRED COMPONENTS<br>    roscpp<br>    rospy<br>    std_msgs<br>    message_generation<br>    )</p>
+<ul>
+<li>在CMakeList.txt文件中 找到 catkin_package(…) 并添加 <code>CATKIN_DEPENDS roscpp rospy std_msgs message_runtime</code></li>
+<li><p>在CMakeList.txt文件中 找到如下代码</p>
+<p>  #add_message_files(<br>  #FILES<br>  #Message1.msg<br>  #Message2.msg<br>  #)</p>
+</li>
+</ul>
+<p>去掉前面的注释#，并添加新建的.msg文件，如下</p>
+<pre><code>add_message_files(
+FILES
+#Message1.msg
+#Message2.msg
+MyRobotState.msg
+)
+</code></pre><ul>
+<li><p>在CMakeList.txt文件中 找到如下代码</p>
+<p>  #generate_messages(<br>  #DEPENDENCIES<br>  #std_msgs<br>  #)</p>
+</li>
+</ul>
+<p>去掉前面的注释#</p>
+<h2 id="重新-编译-功能包"><a href="#重新-编译-功能包" class="headerlink" title="重新 编译 功能包"></a>重新 编译 功能包</h2><p>$ cd ~/catkin_ws<br>$ catkin_make</p>
+<h2 id="执行如下命令"><a href="#执行如下命令" class="headerlink" title="执行如下命令"></a>执行如下命令</h2><pre><code>$ rosmsg show my_msgs/MyRobotState
+</code></pre><p>输出结果：float32 myrobot_contact 。说明已经成功定义了消息</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+  </section>
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+
+          
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">song jiapo</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">49</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/songapore" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:291946540@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">song jiapo</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+
+    
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>
