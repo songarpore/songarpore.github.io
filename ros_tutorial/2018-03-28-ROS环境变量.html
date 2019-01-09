@@ -1,0 +1,1246 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+<meta name="google-site-verification" content="4b5ChOPlfrWPkfJKVSwbnGC4WDT5fyOTDO62HVBosls">
+<meta name="baidu-site-verification" content="iotYLCUzXs">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="ros教程,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="本文翻译http://wiki.ros.org/ROS/EnvironmentVariables 在ROS中，可以设置很多环境变量。最需要理解的是ROS_MASTER_URI, ROS_ROOT和 ROS_PACKAGE_PATH，因为他们频繁的在系统和文件中被用到。 环境变量在ROS中有多重角色：寻找packages(Finding packages )：首先，ROS_ROOT和 ROS_PAC">
+<meta name="keywords" content="ros教程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ROS环境变量">
+<meta property="og:url" content="https://songjiapo.com/ros_tutorial/2018-03-28-ROS环境变量.html">
+<meta property="og:site_name" content="songjiapo">
+<meta property="og:description" content="本文翻译http://wiki.ros.org/ROS/EnvironmentVariables 在ROS中，可以设置很多环境变量。最需要理解的是ROS_MASTER_URI, ROS_ROOT和 ROS_PACKAGE_PATH，因为他们频繁的在系统和文件中被用到。 环境变量在ROS中有多重角色：寻找packages(Finding packages )：首先，ROS_ROOT和 ROS_PAC">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-01-08T11:48:55.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ROS环境变量">
+<meta name="twitter:description" content="本文翻译http://wiki.ros.org/ROS/EnvironmentVariables 在ROS中，可以设置很多环境变量。最需要理解的是ROS_MASTER_URI, ROS_ROOT和 ROS_PACKAGE_PATH，因为他们频繁的在系统和文件中被用到。 环境变量在ROS中有多重角色：寻找packages(Finding packages )：首先，ROS_ROOT和 ROS_PAC">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://songjiapo.com/ros_tutorial/2018-03-28-ROS环境变量.html">
+
+
+
+
+
+  <title>ROS环境变量 | songjiapo</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?e07193cab6deb965ead8e1aed3d4744f";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">songjiapo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://songjiapo.com/ros_tutorial/2018-03-28-ROS环境变量.html">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="song jiapo">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="songjiapo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">ROS环境变量</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-28T21:15:25+08:00">
+                2018-03-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/ros教程/" itemprop="url" rel="index">
+                    <span itemprop="name">ros教程</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/ros_tutorial/2018-03-28-ROS环境变量.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/ros_tutorial/2018-03-28-ROS环境变量.html" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本文翻译<br><a href="http://wiki.ros.org/ROS/EnvironmentVariables" target="_blank" rel="noopener">http://wiki.ros.org/ROS/EnvironmentVariables</a></p>
+<p>在ROS中，可以设置很多环境变量。最需要理解的是<code>ROS_MASTER_URI</code>, <code>ROS_ROOT</code>和 <code>ROS_PACKAGE_PATH</code>，因为他们频繁的在系统和文件中被用到。</p>
+<h1 id="环境变量在ROS中有多重角色："><a href="#环境变量在ROS中有多重角色：" class="headerlink" title="环境变量在ROS中有多重角色："></a>环境变量在ROS中有多重角色：</h1><h2 id="寻找packages-Finding-packages-："><a href="#寻找packages-Finding-packages-：" class="headerlink" title="寻找packages(Finding packages )："></a>寻找packages(Finding packages )：</h2><p>首先，<code>ROS_ROOT</code>和 <code>ROS_PACKAGE_PATH</code> 使ROS在系统文件(filesystem)中能够定位packages和stacks。同样必须设置PYTHONPATH，这样python解释器才能找到ROS库。</p>
+<h2 id="影响一个节点运行时间-Effecting-a-Node-runtime"><a href="#影响一个节点运行时间-Effecting-a-Node-runtime" class="headerlink" title="影响一个节点运行时间(Effecting a Node runtime ):"></a>影响一个节点运行时间(Effecting a Node runtime ):</h2><p>有几个环境变量会影响节点的运行`。</p>
+<p>-<code>ROS_MASTER_URI</code>是一个重要的环境变量来告诉节点Master（主机）在哪里。</p>
+<ul>
+<li><code>ROS_IP</code>和<code>ROS_HOSTNAME</code>影响一个节点的网络地址，</li>
+<li><code>ROS_NAMESPACE</code>能够让你改变命名空间。</li>
+<li><code>ROS_LOG_DIR</code>可以让你设置日志文件写入的目录。这些也可以被映射参数覆盖，映射参数优先于环境变量。</li>
+</ul>
+<h2 id="修改构建系统-Modifying-the-build-system"><a href="#修改构建系统-Modifying-the-build-system" class="headerlink" title="修改构建系统(Modifying the build system):"></a>修改构建系统(Modifying the build system):</h2><ul>
+<li><code>ROS_BINDEPS_PATH</code>,<code>ROS_BOOST_ROOT</code>，<code>ROS_PARALLEL_JOBS</code>和<code>ROS_LANG_DISABLE</code>影响在哪里寻找库，怎样构建他们，构建哪一个。</li>
+</ul>
+<h1 id="必需的ROS环境变量"><a href="#必需的ROS环境变量" class="headerlink" title="必需的ROS环境变量"></a>必需的ROS环境变量</h1><ul>
+<li>大部分系统都要设置<code>ROS_PACKGE_PATH</code>，</li>
+<li>ROS只需要环境变量<code>ROS_ROOT</code>,<code>ROS_MASTER_URI</code>和<code>PYTHONPATH</code>。</li>
+<li>默认通过<code>sourcing /opt/ros/fuerte/setup.bash</code>来自动设置他们。</li>
+</ul>
+<h2 id="ROS-ROOT"><a href="#ROS-ROOT" class="headerlink" title="ROS_ROOT"></a>ROS_ROOT</h2><p>ROS_ROOT设置<code>ROS core</code>包安装的位置。</p>
+<pre><code>export ROS_ROOT=/home/user/ros/ros  
+export PATH=$ROS_ROOT/bin:$PATH  
+</code></pre><h2 id="ROS-MASTER-URI"><a href="#ROS-MASTER-URI" class="headerlink" title="ROS_MASTER_URI"></a>ROS_MASTER_URI</h2><p>ROS_MASTER_URI是一个必需的设置来告诉节点在哪里定位master。应该设置master的<code>XML-RPC URI</code>。使用<code>localhost</code>时需要格外小心，因为远程启动节点可能会导致意想不到的结果。</p>
+<pre><code>export ROS_MASTER_URI=http://mia:11311/  
+</code></pre><h2 id="PYTHONPATH"><a href="#PYTHONPATH" class="headerlink" title="PYTHONPATH"></a>PYTHONPATH</h2><p>   ROS需要<code>PYTHONPATH</code>更新，尽管你可能不用Python编程！很多ROS基础工具都依靠Python，需要连接到roslib包来bootstrapping。</p>
+<p><code>export PYTHONPATH=$PYTHONPATH:$ROS_ROOT/core/roslib/src</code></p>
+<h1 id="其他的-PATH环境变量"><a href="#其他的-PATH环境变量" class="headerlink" title="其他的 PATH环境变量"></a>其他的 PATH环境变量</h1><h2 id="ROS-PACKAGE-PATH"><a href="#ROS-PACKAGE-PATH" class="headerlink" title="ROS_PACKAGE_PATH"></a>ROS_PACKAGE_PATH</h2><p><code>ROS_PACKAGE_PATH</code>是一个可选，但很常用的环境变量，能够让你从源添加更多的ROS包到当前环境。ROS_PACKAGE_PATH可以由一个或多个路径组成，路径之间由标准操作系统路径间隔符(在Unix类的系统中，用’:’)分隔。这些有序的路径告诉ROS系统到哪里搜索更多的ROS包。如果多个包有相同的名字，ROS会首先选择出现在ROS_PACKAGE_PATH的那个。</p>
+<p><code>export ROS_PACKAGE_PATH=/home/user/ros/ros-pkg:/another/path</code></p>
+<p>注意ROS_PACKAGE_PATH的每个条目都被重复查找-路径中提到的包都会被找到。</p>
+<p>引入catkin后，ROS_PACKAGE_PATH过时了，只是用来与rosbuild包保持向后兼容。</p>
+<h1 id="系统数据-环境变量"><a href="#系统数据-环境变量" class="headerlink" title="系统数据 环境变量"></a>系统数据 环境变量</h1><h2 id="ROS-HOME"><a href="#ROS-HOME" class="headerlink" title="ROS_HOME"></a>ROS_HOME</h2><p>默认，ROS写数据到~/.ros。可以通过设置ROS_HOME来改变这个位置。也可以在~/.ros中更改某个目录的位置(例如，ROS_TEST_RESULTS_DIR,ROS_LOG_DIR)。</p>
+<h2 id="ROS-LOG-DIR"><a href="#ROS-LOG-DIR" class="headerlink" title="ROS_LOG_DIR"></a>ROS_LOG_DIR</h2><p>   默认，ROS写内部日志文件到ROS_HOME/log。如果这个位置对ROS不可写，或者希望日志文件写到别的地方，设置ROS_LOG_DIR到其他路径。</p>
+<h2 id="ROS-TEST-RESULTS-DIR"><a href="#ROS-TEST-RESULTS-DIR" class="headerlink" title="ROS_TEST_RESULTS_DIR"></a>ROS_TEST_RESULTS_DIR</h2><p>  测试结果要写到的目录。</p>
+<h1 id="其他的-Bash环境变量"><a href="#其他的-Bash环境变量" class="headerlink" title="其他的 Bash环境变量"></a>其他的 Bash环境变量</h1><h2 id="ROS-LOCATIONS"><a href="#ROS-LOCATIONS" class="headerlink" title="ROS_LOCATIONS"></a>ROS_LOCATIONS</h2><p>ROS_LOCATIONS是一个可选的环境变量，为有用的位置提供键名。它是key-location对的分隔列表。每个key-location对用一个=分隔。例如:</p>
+<p><code>export ROS_LOCATIONS=&quot;rospkg=/path/to/rospkg:stairpkg=/path/to/stairpkg&quot;</code></p>
+<p>   然后这些键就可以用一些工具了，如roscd。</p>
+<h2 id="ROS-WORKSPACE"><a href="#ROS-WORKSPACE" class="headerlink" title="ROS_WORKSPACE"></a>ROS_WORKSPACE</h2><p>ROS_WORKSPACE由工具rosinstall/rosws引进的，当创建一个workspace时，通过这些工具生成的setup.sh设置。它指向workspace的文件夹，通过使用rosws命令使用，作为命令的默认目标。</p>
+<p>不带参数的调用时，fuerte中的roscd工具也改用这个变量。此前，它默认改变ROS_ROOT.</p>
+<h1 id="节点-环境变量"><a href="#节点-环境变量" class="headerlink" title="节点 环境变量"></a>节点 环境变量</h1><h2 id="ROS-IP-ROS-HOSTNAME"><a href="#ROS-IP-ROS-HOSTNAME" class="headerlink" title="ROS_IP/ROS_HOSTNAME"></a>ROS_IP/ROS_HOSTNAME</h2><p><code>ROS_IP</code>和<code>ROS_HOSTNAME</code>是可选的环境变量，用来设置ROS节点或工具的公开网地址。这两个选项是互斥的，如果两者都设置优先使用ROS_HOSTNAME。</p>
+<p>如果你指定一个IP地址，使用ROS_IP；如果制定一个主机名(a host name)，使用ROS_HOSTNAME。当一个ROS成员报告URI给master或者其他成员，这个值就会被用到。这个设置只用在一台计算机有多个地址，需要强制ROS到特定的一个的情况。</p>
+<p>除了’localhost’(本地主机),ROS成员绑定到所有可用的网络接口，他不影响实际绑定地址。如果这个值设定为本地主机，ROS成员只绑定在环回接口。这将会阻止远程成员与本地成员交流。</p>
+<h2 id="ROS-NAMESPACE"><a href="#ROS-NAMESPACE" class="headerlink" title="ROS_NAMESPACE"></a>ROS_NAMESPACE</h2><p><code>ROS_NAMESPACE</code>可以让你推一个节点到一个命名空间。节点中的所有名字都会相对于这个值解析，包括映射名称。</p>
+<h2 id="ROSCONSOLE-CONFIG-FIE"><a href="#ROSCONSOLE-CONFIG-FIE" class="headerlink" title="ROSCONSOLE_CONFIG_FIE"></a>ROSCONSOLE_CONFIG_FIE</h2><p>这是一个roscpp指定环境变量。Rosconsole让你定义用在log4cxx的配置文件，通过环境变量ROSCONSOLE_CONFIG_FILE定义。在这个配置文件中有任何定义都会覆盖默认的配置文件。</p>
+<h2 id="Console-Output-Formatting-控制台输出格式"><a href="#Console-Output-Formatting-控制台输出格式" class="headerlink" title="Console Output Formatting 控制台输出格式"></a>Console Output Formatting 控制台输出格式</h2><p>Rosconsole允许指定怎样通过环境变量ROSCONSOLE_FORMAT在控制台输出。默认等效于：</p>
+<p><code>export ROSCONSOLE_FORMAT=&#39;[${severity}] [${time}]: ${message}&#39;</code>  </p>
+<h2 id="ROS-PYTHON-LOG-CONFIG-FILE"><a href="#ROS-PYTHON-LOG-CONFIG-FILE" class="headerlink" title="ROS_PYTHON_LOG_CONFIG_FILE"></a>ROS_PYTHON_LOG_CONFIG_FILE</h2><p>   特定 rospy, rosmaster, roslaunch, and rostest.对于这些工具，可以指定使用自己的Python logging配置文件来代替默认配置文件，它保存在$ROS_ROOT/config/python_logging.conf.</p>
+<h1 id="构建系统环境变量"><a href="#构建系统环境变量" class="headerlink" title="构建系统环境变量"></a>构建系统环境变量</h1><p>   为了更好的了解这些环境变量，请看<a href="http://wiki.ros.org/action/show/rosbuild?action=show&amp;redirect=ROS%2FBuildSystem" target="_blank" rel="noopener">ROS Build System</a>部分。</p>
+<h2 id="ROS-BOOST-ROOT"><a href="#ROS-BOOST-ROOT" class="headerlink" title="ROS_BOOST_ROOT"></a>ROS_BOOST_ROOT</h2><p><code>ROS_BOOST_ROOT</code>是一个可选的环境变量，能让你覆盖哪里去寻找激励。如果ROS_BOOST_ROOT不设置，默认使用ROS_BINDEPS_PATH。</p>
+<h2 id="ROS-PARALLEL-JOBS"><a href="#ROS-PARALLEL-JOBS" class="headerlink" title="ROS_PARALLEL_JOBS"></a>ROS_PARALLEL_JOBS</h2><p>这个变量的值，如果设置，构建包的时候会传递给make。目的是充分使用多处理器机器。例如，如果有8处理器/核，想尽可能多的运行并行任务，只要系统负荷小于8，通过限制任务为8，可以在启动时阻止过冲：</p>
+<pre><code>export ROS_PARALLEL_JOBS=&apos;-j8 -l8&apos;  
+</code></pre><p>  或者，可以使用-j标识带一个参数来并行运行最多8个任务，系统负载独立：</p>
+<p><code>export ROS_PARALLEL_JOBS=-j8</code>  </p>
+<p>强烈建议使用-l标识来设置并行系统相关限制。在一个大的构建中并行过多可能会耗尽系统内存。</p>
+<p>  可以接受多少系统负载取决于有多少内核。</p>
+<h2 id="ROS-LANG-DISABLE"><a href="#ROS-LANG-DISABLE" class="headerlink" title="ROS_LANG_DISABLE"></a>ROS_LANG_DISABLE</h2><p>消息生成器/客户端库包名称应禁用一个冒号分隔的列表。Message-generation will not happen for languages in this list.</p>
+<p>用catkin构建的包需要需要列出应当被忽视的消息生成器的名字，例如：</p>
+<pre><code>export ROS_LANG_DISABLE=genlisp
+</code></pre><p>   用rosbuild构建的包需要列出应当被忽视的消息生成器及客户端库的名字，例如：</p>
+<pre><code>export ROS_LANG_DISABLE=genlisp:roslisp  
+</code></pre><p>当忽视掉消息生成器的rosbuild和CMake配置步骤，将会显示一个警告，客户端库(例如，roslisp)不是一个已知的消息生成器。这个警告可以安全的忽略掉。</p>
+<p>注意，禁用语言之前，首先必须确定你使用的代码没有与这个语言绑定。</p>
+<h2 id="ROS-OS-OVERRIDE"><a href="#ROS-OS-OVERRIDE" class="headerlink" title="ROS_OS_OVERRIDE"></a>ROS_OS_OVERRIDE</h2><p>格式：”OS_NAME:OS_VERSION_STRING”，这将会强制检测Ubuntu Lucid:</p>
+<pre><code>export ROS_OS_OVERRIDE=ubuntu:10.04  
+</code></pre><p>如果定义，这将覆盖系统的自动检测。在外来平台上调试rosdep依赖性时，当平台很相似可能需要强制，或自动检测失败时，很有用。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ros教程/" rel="tag"># ros教程</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/ros_tutorial/2018-03-27-ROS开发基础-4.ROS服务消息(.srv).html" rel="next" title="ROS开发基础-4.ROS服务消息(.srv)">
+                <i class="fa fa-chevron-left"></i> ROS开发基础-4.ROS服务消息(.srv)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/ros_tutorial/2018-04-13-ROS一键安装脚本及使用教程.html" rel="prev" title="ROS一键安装脚本及使用教程-《用ROS学习机器人编程的系统方法》">
+                ROS一键安装脚本及使用教程-《用ROS学习机器人编程的系统方法》 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      
+        <div id="gitment-container"></div>
+      
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">song jiapo</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">49</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/songapore" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:291946540@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#环境变量在ROS中有多重角色："><span class="nav-number">1.</span> <span class="nav-text">环境变量在ROS中有多重角色：</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#寻找packages-Finding-packages-："><span class="nav-number">1.1.</span> <span class="nav-text">寻找packages(Finding packages )：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#影响一个节点运行时间-Effecting-a-Node-runtime"><span class="nav-number">1.2.</span> <span class="nav-text">影响一个节点运行时间(Effecting a Node runtime ):</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改构建系统-Modifying-the-build-system"><span class="nav-number">1.3.</span> <span class="nav-text">修改构建系统(Modifying the build system):</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#必需的ROS环境变量"><span class="nav-number">2.</span> <span class="nav-text">必需的ROS环境变量</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ROS-ROOT"><span class="nav-number">2.1.</span> <span class="nav-text">ROS_ROOT</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ROS-MASTER-URI"><span class="nav-number">2.2.</span> <span class="nav-text">ROS_MASTER_URI</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PYTHONPATH"><span class="nav-number">2.3.</span> <span class="nav-text">PYTHONPATH</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#其他的-PATH环境变量"><span class="nav-number">3.</span> <span class="nav-text">其他的 PATH环境变量</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ROS-PACKAGE-PATH"><span class="nav-number">3.1.</span> <span class="nav-text">ROS_PACKAGE_PATH</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#系统数据-环境变量"><span class="nav-number">4.</span> <span class="nav-text">系统数据 环境变量</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ROS-HOME"><span class="nav-number">4.1.</span> <span class="nav-text">ROS_HOME</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ROS-LOG-DIR"><span class="nav-number">4.2.</span> <span class="nav-text">ROS_LOG_DIR</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ROS-TEST-RESULTS-DIR"><span class="nav-number">4.3.</span> <span class="nav-text">ROS_TEST_RESULTS_DIR</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#其他的-Bash环境变量"><span class="nav-number">5.</span> <span class="nav-text">其他的 Bash环境变量</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ROS-LOCATIONS"><span class="nav-number">5.1.</span> <span class="nav-text">ROS_LOCATIONS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ROS-WORKSPACE"><span class="nav-number">5.2.</span> <span class="nav-text">ROS_WORKSPACE</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#节点-环境变量"><span class="nav-number">6.</span> <span class="nav-text">节点 环境变量</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ROS-IP-ROS-HOSTNAME"><span class="nav-number">6.1.</span> <span class="nav-text">ROS_IP/ROS_HOSTNAME</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ROS-NAMESPACE"><span class="nav-number">6.2.</span> <span class="nav-text">ROS_NAMESPACE</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ROSCONSOLE-CONFIG-FIE"><span class="nav-number">6.3.</span> <span class="nav-text">ROSCONSOLE_CONFIG_FIE</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Console-Output-Formatting-控制台输出格式"><span class="nav-number">6.4.</span> <span class="nav-text">Console Output Formatting 控制台输出格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ROS-PYTHON-LOG-CONFIG-FILE"><span class="nav-number">6.5.</span> <span class="nav-text">ROS_PYTHON_LOG_CONFIG_FILE</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#构建系统环境变量"><span class="nav-number">7.</span> <span class="nav-text">构建系统环境变量</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ROS-BOOST-ROOT"><span class="nav-number">7.1.</span> <span class="nav-text">ROS_BOOST_ROOT</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ROS-PARALLEL-JOBS"><span class="nav-number">7.2.</span> <span class="nav-text">ROS_PARALLEL_JOBS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ROS-LANG-DISABLE"><span class="nav-number">7.3.</span> <span class="nav-text">ROS_LANG_DISABLE</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ROS-OS-OVERRIDE"><span class="nav-number">7.4.</span> <span class="nav-text">ROS_OS_OVERRIDE</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">song jiapo</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+
+    
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitmint({
+            id: window.location.pathname, 
+            owner: 'songapore',
+            repo: 'songapore.github.io',
+            
+            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+            
+            oauth: {
+            
+            
+                client_secret: '775be92b8460576761683ddae274d680e8ad9a34',
+            
+                client_id: '5644ff641cf1e3d5730a'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      renderGitment();
+      
+      </script>
+    
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>
