@@ -84,7 +84,7 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="其他正则化方法（Other regularization methods）-吴恩达 深度学习 course2 1.8笔记">
 <meta property="og:url" content="https://songjiapo.com/2018/04/17/DeepLearning/2018-04-17-course2-Week1-8-其他正则化方法/index.html">
-<meta property="og:site_name" content="songjiapo&#39;s blog">
+<meta property="og:site_name" content="songjiapo">
 <meta property="og:description" content="除了L2正则化和随机失活（dropout）正则化，还有几种方法可以减少神经网络中的过拟合: 数据扩增（Data Augmentation） 假设你正在拟合猫咪图片分类器，如果你想通过扩增训练数据来解决过拟合，但扩增数据代价高，而且有时候我们无法扩增数据，但我们可以通过添加这类图片来增加训练集。例如，水平翻转图片，并把它添加到训练集。所以现在训练集中有原图，还有翻转后的这张图片，所以通过水平翻转图片">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://raw.githubusercontent.com/songapore/For-PicGo/master/img/%E6%95%B0%E6%8D%AE%E6%89%A9%E5%A2%9E.png">
@@ -112,9 +112,9 @@
       author: '博主'
     },
     algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
+      applicationID: 'OJ712QJ1P7',
+      apiKey: '408f2b9fde00bd48cec59723f0a93f04',
+      indexName: 'songjiapo',
       hits: {"per_page":10},
       labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     }
@@ -129,7 +129,7 @@
 
 
 
-  <title>其他正则化方法（Other regularization methods）-吴恩达 深度学习 course2 1.8笔记 | songjiapo's blog</title>
+  <title>其他正则化方法（Other regularization methods）-吴恩达 深度学习 course2 1.8笔记 | songjiapo</title>
   
 
 
@@ -169,7 +169,7 @@
     <div class="custom-logo-site-title">
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">songjiapo's blog</span>
+        <span class="site-title">songjiapo</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -235,9 +235,47 @@
       
 
       
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
     </ul>
   
 
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
   
 </nav>
 
@@ -275,7 +313,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="songjiapo's blog">
+      <meta itemprop="name" content="songjiapo">
     </span>
 
     
@@ -811,6 +849,19 @@
   
 
 
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.4"></script>
 
 
 

@@ -84,7 +84,7 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="指数加权平均（Exponentially Weight Average）-吴恩达 深度学习 course2 2.3~2.5笔记">
 <meta property="og:url" content="https://songjiapo.com/2018/04/28/DeepLearning/2018-04-28-course2-Week2-3-指数加权平均数（Exponentially weighted averages)/index.html">
-<meta property="og:site_name" content="songjiapo&#39;s blog">
+<meta property="og:site_name" content="songjiapo">
 <meta property="og:description" content="计算公式 指数加权平均（Exponentially Weight Average）是一种常用的序列数据处理方式，计算公式为：  $$S_t =\begin{cases}Y_1, &amp;amp;t = 1 \\beta S_{t-1} + (1-\beta)Y_t, &amp;amp;t &amp;gt; 1\end{cases}$$ 其中 Yt 为 t 下的实际值，St 为 t 下加权平均后的值，β 为权重值。  给">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://raw.githubusercontent.com/songapore/For-PicGo/master/img/Exponentially-weight-average.png">
@@ -111,9 +111,9 @@
       author: '博主'
     },
     algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
+      applicationID: 'OJ712QJ1P7',
+      apiKey: '408f2b9fde00bd48cec59723f0a93f04',
+      indexName: 'songjiapo',
       hits: {"per_page":10},
       labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     }
@@ -128,7 +128,7 @@
 
 
 
-  <title>指数加权平均（Exponentially Weight Average）-吴恩达 深度学习 course2 2.3~2.5笔记 | songjiapo's blog</title>
+  <title>指数加权平均（Exponentially Weight Average）-吴恩达 深度学习 course2 2.3~2.5笔记 | songjiapo</title>
   
 
 
@@ -168,7 +168,7 @@
     <div class="custom-logo-site-title">
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">songjiapo's blog</span>
+        <span class="site-title">songjiapo</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -234,9 +234,47 @@
       
 
       
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
     </ul>
   
 
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
   
 </nav>
 
@@ -274,7 +312,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="songjiapo's blog">
+      <meta itemprop="name" content="songjiapo">
     </span>
 
     
@@ -826,6 +864,19 @@
   
 
 
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.4"></script>
 
 
 

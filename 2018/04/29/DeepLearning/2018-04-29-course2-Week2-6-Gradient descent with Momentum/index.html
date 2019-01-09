@@ -84,7 +84,7 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="动量梯度下降法（Gradient descent with Momentum）-吴恩达 深度学习 course2 2.6笔记">
 <meta property="og:url" content="https://songjiapo.com/2018/04/29/DeepLearning/2018-04-29-course2-Week2-6-Gradient descent with Momentum/index.html">
-<meta property="og:site_name" content="songjiapo&#39;s blog">
+<meta property="og:site_name" content="songjiapo">
 <meta property="og:description" content="定义及实现过程动量梯度下降（Gradient Descent with Momentum）是计算梯度的指数加权平均数，并利用该值来更新参数值。 动量梯度下降法的运行速度几乎总是快于标准的梯度下降算法。具体过程为： for l = 1, .. , L： $$v_{dW^{[l]}} = \beta v_{dW^{[l]}} + (1 - \beta) dW^{[l]}$$ $$v_{db^{[l]}">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://raw.githubusercontent.com/songapore/For-PicGo/master/img/Gradient-Descent-with-Momentum.png">
@@ -111,9 +111,9 @@
       author: '博主'
     },
     algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
+      applicationID: 'OJ712QJ1P7',
+      apiKey: '408f2b9fde00bd48cec59723f0a93f04',
+      indexName: 'songjiapo',
       hits: {"per_page":10},
       labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     }
@@ -128,7 +128,7 @@
 
 
 
-  <title>动量梯度下降法（Gradient descent with Momentum）-吴恩达 深度学习 course2 2.6笔记 | songjiapo's blog</title>
+  <title>动量梯度下降法（Gradient descent with Momentum）-吴恩达 深度学习 course2 2.6笔记 | songjiapo</title>
   
 
 
@@ -168,7 +168,7 @@
     <div class="custom-logo-site-title">
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">songjiapo's blog</span>
+        <span class="site-title">songjiapo</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -234,9 +234,47 @@
       
 
       
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
     </ul>
   
 
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
   
 </nav>
 
@@ -274,7 +312,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="songjiapo's blog">
+      <meta itemprop="name" content="songjiapo">
     </span>
 
     
@@ -813,6 +851,19 @@
   
 
 
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.4"></script>
 
 
 

@@ -84,7 +84,7 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="训练神经网络用到的基本方法-吴恩达 深度学习 course2 1.3笔记">
 <meta property="og:url" content="https://songjiapo.com/2018/04/17/DeepLearning/2018-04-17-course2-Week1-3-训练神经网络用到的基本方法/index.html">
-<meta property="og:site_name" content="songjiapo&#39;s blog">
+<meta property="og:site_name" content="songjiapo">
 <meta property="og:description" content="模型训练的方法 存在高偏差(high bias)： 扩大网络规模，如添加隐藏层或隐藏单元数目； 寻找合适的网络架构，使用更大的 NN 结构； 花费更长时间训练。  初始模型训练完成后，我首先要知道算法的偏差高不高，如果偏差较高，试着评估训练集或训练数据的性能。如果偏差的确很高，甚至无法拟合训练集，那么你要做的就是选择一个新的网络，比如含有更多隐藏层或者隐藏单元的网络，或者花费更多时间来训练网络，或">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://raw.githubusercontent.com/songapore/For-PicGo/master/img/L2_week1_8.png">
@@ -111,9 +111,9 @@
       author: '博主'
     },
     algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
+      applicationID: 'OJ712QJ1P7',
+      apiKey: '408f2b9fde00bd48cec59723f0a93f04',
+      indexName: 'songjiapo',
       hits: {"per_page":10},
       labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     }
@@ -128,7 +128,7 @@
 
 
 
-  <title>训练神经网络用到的基本方法-吴恩达 深度学习 course2 1.3笔记 | songjiapo's blog</title>
+  <title>训练神经网络用到的基本方法-吴恩达 深度学习 course2 1.3笔记 | songjiapo</title>
   
 
 
@@ -168,7 +168,7 @@
     <div class="custom-logo-site-title">
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">songjiapo's blog</span>
+        <span class="site-title">songjiapo</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -234,9 +234,47 @@
       
 
       
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
     </ul>
   
 
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
   
 </nav>
 
@@ -274,7 +312,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="songjiapo's blog">
+      <meta itemprop="name" content="songjiapo">
     </span>
 
     
@@ -811,6 +849,19 @@
   
 
 
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.4"></script>
 
 
 

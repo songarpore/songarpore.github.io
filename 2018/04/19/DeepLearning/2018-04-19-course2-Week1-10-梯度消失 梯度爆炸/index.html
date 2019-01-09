@@ -84,7 +84,7 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="梯度消失 梯度爆炸（Vanishing&#x2F; Exploding gradients）-吴恩达 深度学习 course2 1.10笔记">
 <meta property="og:url" content="https://songjiapo.com/2018/04/19/DeepLearning/2018-04-19-course2-Week1-10-梯度消失 梯度爆炸/index.html">
-<meta property="og:site_name" content="songjiapo&#39;s blog">
+<meta property="og:site_name" content="songjiapo">
 <meta property="og:description" content="定义训练神经网络，尤其是深度神经所面临的一个问题就是梯度消失或梯度爆炸，也就是你训练神经网络的时候，导数或坡度有时会变得非常大，或者非常小，甚至于以指数方式变小，这加大了训练的难度。  在深度神经网络中，激活函数以与L相关的指数级数增长或下降的情况,分别称为梯度爆炸或者梯度消失。与层数L相关的导数或梯度函数，也是呈指数级增长或呈指数递减。 发生梯度消失、梯度爆炸的原因为了简单起见，假设我们使用激活">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://raw.githubusercontent.com/songapore/For-PicGo/master/img/Vanishing%20_Exploding%20gradients.png">
@@ -111,9 +111,9 @@
       author: '博主'
     },
     algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
+      applicationID: 'OJ712QJ1P7',
+      apiKey: '408f2b9fde00bd48cec59723f0a93f04',
+      indexName: 'songjiapo',
       hits: {"per_page":10},
       labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     }
@@ -128,7 +128,7 @@
 
 
 
-  <title>梯度消失 梯度爆炸（Vanishing/ Exploding gradients）-吴恩达 深度学习 course2 1.10笔记 | songjiapo's blog</title>
+  <title>梯度消失 梯度爆炸（Vanishing/ Exploding gradients）-吴恩达 深度学习 course2 1.10笔记 | songjiapo</title>
   
 
 
@@ -168,7 +168,7 @@
     <div class="custom-logo-site-title">
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">songjiapo's blog</span>
+        <span class="site-title">songjiapo</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -234,9 +234,47 @@
       
 
       
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
     </ul>
   
 
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
   
 </nav>
 
@@ -274,7 +312,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="songjiapo's blog">
+      <meta itemprop="name" content="songjiapo">
     </span>
 
     
@@ -808,6 +846,19 @@
   
 
 
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.4"></script>
 
 
 
