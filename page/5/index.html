@@ -11,6 +11,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="theme-color" content="#222">
+<meta name="google-site-verification" content="4b5ChOPlfrWPkfJKVSwbnGC4WDT5fyOTDO62HVBosls">
+
 
 
 
@@ -384,16 +386,22 @@
       
         
           
-            <ul>
-<li>一个节点其实只不过是ROS程序包中的一个可执行文件。</li>
-<li>ROS节点可以使用ROS客户库与其他节点通信。</li>
-<li>节点可以发布或接收一个话题。</li>
-<li>节点也可以提供或使用某种服务。</li>
-</ul>
-<p>（节点是ros中非常重要的一个概念，为了帮助初学者理解这个概念，这里举一个通俗的例子：</p>
-<p>例如，咱们有一个机器人，和一个遥控器，那么这个机器人和遥控器开始工作后，就是两个节点。遥控器起到了下达指 令的作用；机器人负责监听遥控器下达的指令，完成相应动作。从这里我们可以看出，节点是一个能执行特定工作任 务的工作单元，并且能够相互通信，从而实现一个机器人系统整体的功能。在这里我们把遥控器和机器人简单定义为两个节点，实际上在机器人中根据控制器、传感器、执行机构等不同组成模块，还可以将其进一步细分为更多的节点，这个是根据用户编写的程序来定义的。）</p>
-
           
+一个节点其实只不过是ROS程序包中的一个可执行文件。
+ROS节点可以使用ROS客户库与其他节点通信。
+节点可以发布或接收一个话题。
+节点也可以提供或使用某种服务。
+
+（节点是ros中非常重要的一个概念，为了帮助初学者理解这个概念，这里举一个通俗的例子：
+例如，咱们有一个机器人，和一个遥控器，那么这
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/03/25/ros_tutorial/2018-03-25-ROS开发基础-2.ROS节点(nodes)/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -533,33 +541,22 @@
       
         
           
-            <h1 id="创建工作空间"><a href="#创建工作空间" class="headerlink" title="创建工作空间"></a>创建工作空间</h1><ul>
-<li>工作空间类似于我们的工程文件夹。</li>
-</ul>
-<h2 id="创建一个空的catkin工作空间"><a href="#创建一个空的catkin工作空间" class="headerlink" title="创建一个空的catkin工作空间"></a>创建一个空的catkin工作空间</h2><p><code>$ mkdir -p ~/catkin_ws/src</code></p>
-<p><code>$ cd ~/catkin_ws/src</code></p>
-<p><code>$ catkin_init_workspace</code></p>
-<h2 id="编译该工作空间"><a href="#编译该工作空间" class="headerlink" title="编译该工作空间"></a>编译该工作空间</h2><p><code>$ cd ~/catkin_ws/</code></p>
-<p><code>$ catkin_make</code></p>
-<h2 id="设置工作空间-环境变量"><a href="#设置工作空间-环境变量" class="headerlink" title="设置工作空间 环境变量"></a>设置工作空间 环境变量</h2><p><code>$ cd ~/catkin_ws/</code></p>
-<p><code>$ source devel/setup.bash</code></p>
-<p>输入<code>echo $ROS_PACKAGE_PATH</code>，就可以看到添加的 环境变量了</p>
-<h1 id="创建功能包"><a href="#创建功能包" class="headerlink" title="创建功能包"></a>创建功能包</h1><h2 id="先将ROS的当前工作空间设为-catkin-ws"><a href="#先将ROS的当前工作空间设为-catkin-ws" class="headerlink" title="先将ROS的当前工作空间设为 catkin_ws"></a>先将ROS的当前工作空间设为 catkin_ws</h2><p><code>$ cd ~/catkin_ws/</code></p>
-<p><code>$ source devel/setup.bash</code></p>
-<h2 id="然后在-catkin-ws-src目录下创建-功能包"><a href="#然后在-catkin-ws-src目录下创建-功能包" class="headerlink" title="然后在 ~/catkin_ws/src目录下创建 功能包"></a>然后在 <code>~/catkin_ws/src</code>目录下创建 功能包</h2><p><code>$ cd ~/catkin_ws/src</code></p>
-<p><code>$ catkin_create_pkg my_pkg std_msgs rospy roscpp</code></p>
-<ul>
-<li>在工作空间的src文件夹下创建 my_pkg 功能包</li>
-<li>功能包目录下有 package.xml , CMakeLists.txt 文件,及 src,include 子文件夹。</li>
-<li>所有的 executable files 位于  <code>~/catkin_ws/devel/lib</code></li>
-<li>所有的 include files 位于   <code>~/catkin_ws/devel/include</code></li>
-</ul>
-<h2 id="编译-所有功能包"><a href="#编译-所有功能包" class="headerlink" title="编译 所有功能包"></a>编译 所有功能包</h2><p><code>$ cd ~/catkin_ws/</code></p>
-<p><code>$ catkin_make</code></p>
-<h2 id="编译-单个功能包"><a href="#编译-单个功能包" class="headerlink" title="编译 单个功能包"></a>编译 单个功能包</h2><p><code>$ cd ~/catkin_ws/</code></p>
-<p><code>$ catkin_make --pkg package_name</code></p>
+          创建工作空间
+工作空间类似于我们的工程文件夹。
 
-          
+创建一个空的catkin工作空间$ mkdir -p ~/catkin_ws/src
+$ cd ~/catkin_ws/src
+$ catkin_init_workspace
+编译该工作空间$ cd ~/catkin_ws/
+$ catkin_mak
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/03/24/ros_tutorial/2018-03-24-ROS开发基础-1.ROS功能包(packages)/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -699,99 +696,22 @@
       
         
           
-            <h1 id="功能包命令"><a href="#功能包命令" class="headerlink" title="功能包命令"></a>功能包命令</h1><p>功能包类似于 工程项目的 文件夹</p>
-<h2 id="rospack-ros-pack（age）"><a href="#rospack-ros-pack（age）" class="headerlink" title="rospack (ros + pack（age）)"></a>rospack (ros + pack（age）)</h2><p>rospack 用于获取功能包的相关信息，格式为</p>
-<p> <code>rospack &lt;command&gt; [package_name]</code></p>
-<p>例如：</p>
-<ul>
-<li><p><code>rospack help</code>//输出rospack的使用方法</p>
-</li>
-<li><p><code>rospack find [package_name]</code>//查找并返回功能包的绝对路径</p>
-</li>
-<li><code>rospack depends [package_name]</code>//输出功能包的所以依赖项</li>
-</ul>
-<h2 id="roscd-ros-cd"><a href="#roscd-ros-cd" class="headerlink" title="roscd (ros + cd )"></a>roscd (ros + cd )</h2><p>改变当前路径 到指定的 功能包，格式为</p>
-<p><code>roscd [package_name/[subdir]]</code><br>相当于rospack find 加上 cd命令的组合。</p>
-<ul>
-<li>tips：roscd 和其他ROS命令工具一样，只会查找 ROS_PACKAGE_PATH路径下的功能包。</li>
-<li>可使用<code>echo $ ROS_PACKAGE_PATH</code>查看功能包路径信息</li>
-<li><code>roscd log</code> 列出ROS log所在目录</li>
-</ul>
-<h2 id="rosls"><a href="#rosls" class="headerlink" title="rosls"></a>rosls</h2><p>列出功能包下包含的文件/文件夹，格式为</p>
-<pre><code>rosls [package_name/[subdir]]
-</code></pre><h2 id="catkin-create-pkg-创建功能包"><a href="#catkin-create-pkg-创建功能包" class="headerlink" title="catkin_create_pkg 创建功能包"></a>catkin_create_pkg 创建功能包</h2><p>catkin_create_pkg 用来创建catkin 功能包</p>
-<pre><code>catkin_create_pkg [package_name] [depend1] [depend2] [depend3]
-</code></pre><ul>
-<li>后面的depens依赖包 ，相当于程序所包含的头文件</li>
-</ul>
-<p>##catkin_make 编译功能包<br>cd命令切换到需要编译的工作空间下，输入</p>
-<p>  <code>catkin_make</code></p>
-<h1 id="ROS-核心命令"><a href="#ROS-核心命令" class="headerlink" title="ROS 核心命令"></a>ROS 核心命令</h1><h2 id="roscore-ros-core"><a href="#roscore-ros-core" class="headerlink" title="roscore (ros+core)"></a>roscore (ros+core)</h2><p>在运行ros节点之前，必须先执行<code>roscore</code>命令。</p>
-<p>##rosrun(ros+run)<br>rosrun 运行ROS节点，命令格式为：</p>
-<pre><code>`rosrun [pack_name] [node_name]`
-</code></pre><p>##rosnode(ros+node)<br>显示正在运行的节点信息。</p>
-<h3 id="rosnode-list"><a href="#rosnode-list" class="headerlink" title="rosnode list"></a><code>rosnode list</code></h3><p>//列出当前正在运行的节点</p>
-<h3 id="rosnode-info-node-name"><a href="#rosnode-info-node-name" class="headerlink" title="rosnode info [node_name]"></a><code>rosnode info [node_name]</code></h3><p>//输出改节点信息。包括发布者，订阅者，及服务等信息</p>
-<h3 id="rosnode-kill-node-name"><a href="#rosnode-kill-node-name" class="headerlink" title="rosnode kill [node_name]"></a><code>rosnode kill [node_name]</code></h3><p>//结束正在运行的节点</p>
-<h3 id="rosmsg-rossrv"><a href="#rosmsg-rossrv" class="headerlink" title="rosmsg/rossrv"></a><code>rosmsg</code>/<code>rossrv</code></h3><ul>
-<li><p><code>rosmsg</code>显示消息数据 的定义信息。<code>rossrv</code>显示服务数据 的定义信息。</p>
-</li>
-<li><p>运行<code>rosmsg -h</code> 查看rosmsg 命令的使用方法。</p>
-<p>  <code>rosmsg show 显示消息中各个变量的定义</code></p>
-<p>  <code>rosmsg list 列出所有消息</code></p>
-<p>  <code>rosmsg md5 显示消息的MD5值</code></p>
-<p>  <code>rosmsg package 列出功能包中所有的消息</code></p>
-<p>  <code>rosmsg packages 列出某个消息的所以功能包</code></p>
-</li>
-</ul>
-<h3 id="rostopic-ros-topic"><a href="#rostopic-ros-topic" class="headerlink" title="rostopic (ros+topic)"></a>rostopic (ros+topic)</h3><p>查看节点的 主题信息</p>
-<p><code>rostopic -h</code> 查看使用方法</p>
-<pre><code>`rostopic bw //display bandwidth used by topic`
-`rostopic echo //print messages to screen`
-`rostopic find //find topic by type`
-`rostopic hz // dispaly publishing rate of topic`
-`rostopic info //print information about active topic `
-`rostopic list //list active topics`
-`rostopic ;ub // publish data to topic`
-`rostopic type //print topci type`
-</code></pre><h3 id="rosservice"><a href="#rosservice" class="headerlink" title="rosservice"></a>rosservice</h3><p><code>rosservice -h</code> 查看使用方法</p>
-<pre><code>`rosservice list //输出当前活动服务的信息`
-`roservice call //请求服务`
-`rosservice type //输出服务的类型`
-`roservice find //通过类型查找服务`
-`rosservice uri //输出服务ROSRPC uri`
-</code></pre><h3 id="rosparam"><a href="#rosparam" class="headerlink" title="rosparam"></a>rosparam</h3><ul>
-<li>用来保存和设置ROS参数服务器中的数据。</li>
-<li>参数服务器可以储存整形、浮点型、布尔型、字典及列表</li>
-<li>参数服务器 语法格式采用 YAML语言</li>
-<li>YAML语言中：1表示整形，1.0表示浮点型，one表示字符串，true表示布尔型，[1,2,3]表示整形列表，{a:b,c:d}表示字典</li>
-<li><p><code>rosparam</code>用法</p>
-<p>  <code>rosparam set [param_name]</code> //设置参数</p>
-<p>   <code>rosparam get [param_name]</code> //获取参数</p>
-<p>   <code>rosparam load [file_name] [namespace]</code> //从一个文件中加载参数</p>
-<p>   <code>rosparam dump [file_name] [namespace]</code> //写参数到一个文件</p>
-<p>  <code>rosparam delete</code> //删除一个参数</p>
-<p>   <code>rosparam list</code> //列出参数的名称</p>
-</li>
-</ul>
-<h3 id="roslaunch"><a href="#roslaunch" class="headerlink" title="roslaunch"></a>roslaunch</h3><ul>
-<li><code>roslaunch</code>可以按照<code>.launch</code>文件的描述方式 启动节点</li>
-<li><p>使用方法为：</p>
-<p>  <code>roslaunch [package] [filename.launch]</code></p>
-</li>
-</ul>
-<h3 id="rosbag"><a href="#rosbag" class="headerlink" title="rosbag"></a>rosbag</h3><ul>
-<li><code>.bag</code> 是ROS中用来存储消息数据的文件格式</li>
-<li><code>rosbag</code>命令可以用来处理<code>.bag</code>文件</li>
-<li><p>它的功能包括：记录（record）、总结（info）、回放（play）、检查（check）、修复（fix）等</p>
-</li>
-<li><p><code>rosbag record</code> 订阅一个主题，并将消息的内容写入一个bag文件中</p>
-</li>
-<li><code>rosbag info</code> 总结bag文件的内容，包括开始和结束的时间、主题、消息个数、大小写等</li>
-<li><code>rosbag play</code> 读取bag文件的内容，并以时间同步的方式回放。暂停按空格键，逐步查看消息按S键</li>
-</ul>
+          功能包命令功能包类似于 工程项目的 文件夹
+rospack (ros + pack（age）)rospack 用于获取功能包的相关信息，格式为
+ rospack &lt;command&gt; [package_name]
+例如：
 
-          
+rospack help//输出rospack的使用方法
+
+ros
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/03/23/ros_tutorial/2018-03-23-ROS开发基础-0.ROS基本命令/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -931,50 +851,22 @@
       
         
           
-            <h1 id="知识点总结"><a href="#知识点总结" class="headerlink" title="知识点总结"></a>知识点总结</h1><ul>
-<li>节点之间的通信是ROS的核心。</li>
-<li><p>节点之间的通信使用 <code>messages</code>， <code>topics</code>，<code>roscore</code>， <code>publishers</code>,<code>subscribers</code>,<code>services</code>等</p>
-</li>
-<li><p>roscore负责所有node间的交流。</p>
-</li>
-<li>roscore 必须最先启动，才能运行其它node。</li>
-<li>roscore有且只能有一个 在运行。运行roscore的终端（Terminal）不能做其它任务。</li>
-<li><ul>
-<li>节点可通过topic交流。subscriber只需要知道topic的名称而不需要知道哪个节点（或多个节点）发布到该主题。而publisher也不需要知道是否有订阅者或有多少个订阅者。</li>
-</ul>
-</li>
-<li><p>一个node 可以同时是 subscriber或 publisher</p>
-</li>
-<li><p>ros master node通信模型图<br><img src="https://raw.githubusercontent.com/songapore/For-PicGo/master/img/ros_communicate_model.jpg" alt=""></p>
-</li>
-<li>三大通信方式比较表</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">Topics</th>
-<th style="text-align:center">Services</th>
-<th style="text-align:right">Action Libs</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">异步</td>
-<td style="text-align:center">同步</td>
-<td style="text-align:right">长时间任务</td>
-</tr>
-<tr>
-<td style="text-align:left">Many-to-many scheme</td>
-<td style="text-align:center">One-to-many</td>
-<td style="text-align:right">Goal-Status-Feedback-Cancel</td>
-</tr>
-</tbody>
-</table>
-<ul>
-<li>ROS 常见概念图<br><img src="https://raw.githubusercontent.com/songapore/For-PicGo/master/img/ROS_package_nodes.png" alt="image"></li>
-</ul>
+          知识点总结
+节点之间的通信是ROS的核心。
+节点之间的通信使用 messages， topics，roscore， publishers,subscribers,services等
 
-          
+roscore负责所有node间的交流。
+
+roscore 必须最先启动，才能运行其它node。
+roscore有且
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/03/22/ros_tutorial/2018-03-22-ROS教程-1.1 ROS常见概念-《用ROS学习机器人编程的系统方法》/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1114,41 +1006,21 @@
       
         
           
-            <h1 id="Install-Linux-14-04-5"><a href="#Install-Linux-14-04-5" class="headerlink" title="Install Linux 14.04.5"></a>Install Linux 14.04.5</h1><p>##选择一种方式安装 linux</p>
-<ol>
-<li><a href="http://blog.exbot.net/archives/1206" target="_blank" rel="noopener">易科机器人Ubuntu 14.04.1 for ROS(indigo) by ExBot iso 发行版</a></li>
-<li><a href="https://www.linuxidc.com/Linux/2015-01/111725.htm" target="_blank" rel="noopener">安装linux和windows的 双系统</a></li>
-<li><a href="https://itsfoss.com/install-windows-10-virtualbox-linux/" target="_blank" rel="noopener">虚拟机Virtualbox</a></li>
-</ol>
-<h2 id="Linux-常用命令学习"><a href="#Linux-常用命令学习" class="headerlink" title="Linux 常用命令学习"></a>Linux 常用命令学习</h2><p>在安装linux之后，你需要知道如何使用linux</p>
-<ol>
-<li>常用的<a href="https://raw.githubusercontent.com/songapore/For-PicGo/master/img/linux_commands.pdf" target="_blank" rel="noopener">linux命令</a></li>
-<li><a href="https://raw.githubusercontent.com/songapore/For-PicGo/master/img/git_commands.pdf" target="_blank" rel="noopener">git</a> 命令</li>
-<li><a href="https://raw.githubusercontent.com/songapore/For-PicGo/master/img/apt_get_commands.pdf" target="_blank" rel="noopener">apt-get</a>命令</li>
-</ol>
-<h2 id="git-基础-可跳过"><a href="#git-基础-可跳过" class="headerlink" title="git 基础(可跳过)"></a>git 基础(可跳过)</h2><p>常用<a href="https://raw.githubusercontent.com/songapore/For-PicGo/master/img/git_commands.pdf" target="_blank" rel="noopener">git命令手册</a></p>
-<p>可参考<a href="https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000" target="_blank" rel="noopener">廖雪峰git教程</a></p>
-<p>也可参考一下视频</p>
-<ul>
-<li><a href="http://v.youku.com/v_show/id_XMzAwODkzOTc2OA==.html?spm=a2h3j.8428770.3416059.1" target="_blank" rel="noopener">了解 github</a></li>
-<li><a href="https://v.youku.com/v_show/id_XMzAwOTAwMjIyOA==.html?spm=a2h3j.8428770.3416059.1" target="_blank" rel="noopener">git clone</a></li>
-<li><a href="http://v.youku.com/v_show/id_XMzAwOTAzMzQyNA==.html?spm=a2h3j.8428770.3416059.1" target="_blank" rel="noopener">git add &amp; commit</a></li>
-<li><a href="https://v.youku.com/v_show/id_XMzAwOTAwMjg4OA==.html?spm=a2hzp.8244740.0.0" target="_blank" rel="noopener">git push &amp; pull</a></li>
-</ul>
-<p>#安装ROS Indigo<br>ROS我推荐Indigo版本，这个版本目前最成熟。</p>
-<ol>
-<li>安装教程可参考 <a href="http://wiki.ros.org/cn/indigo/Installation/Ubuntu" target="_blank" rel="noopener">ros维基</a></li>
-</ol>
-<p>注：强烈建议使用国内或者新加坡的镜像源，这样能够大大提高安装下载速度。</p>
-<ol>
-<li>推荐使用一键 <a href="https://github.com/songapore/learning_ros_setup_scripts" target="_blank" rel="noopener">脚本自动安装ROS Indigo</a>。</li>
-</ol>
-<p>#配置教程所使用的环境<br>本教程使用教程为：《用ROS学习机器人编程的系统方法》</p>
-<p>一键<a href="https://github.com/songapore/learning_ros_setup_scripts" target="_blank" rel="noopener">ROS环境配置脚本</a>中的工作空间 设定</p>
-<p>恭喜你，完成了ROS环境的配置！</p>
-<p>下面可以跟着教程学习了~</p>
+          Install Linux 14.04.5##选择一种方式安装 linux
 
-          
+易科机器人Ubuntu 14.04.1 for ROS(indigo) by ExBot iso 发行版
+安装linux和windows的 双系统
+虚拟机Virtualbox
+
+Linux 常用命令学习在安装linux之后
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/03/21/ros_tutorial/2018-03-21-ROS教程-0.1 ROS安装-《用ROS学习机器人编程的系统方法》/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1288,33 +1160,22 @@
       
         
           
-            <h1 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h1><ul>
-<li>ROS教程-1 ROS安装-《用ROS学习机器人编程的系统方法》</li>
-<li>ROS教程-2 ROS安装-《用ROS学习机器人编程的系统方法》</li>
-</ul>
-<hr>
-<h1 id="提纲"><a href="#提纲" class="headerlink" title="提纲"></a>提纲</h1><ol>
-<li><strong>Network Basics</strong>:  Nodes, Services, Actions</li>
-<li><strong>Simulation &amp; Visualization</strong>:  Gazebo &amp; RVIZ</li>
-<li><strong>Vision</strong>:     Cameras, Depth, PCL</li>
-<li><strong>Manipulation</strong>: Control, Motion, Grasping</li>
-<li><strong>System Integration</strong>: Mobile manipulation</li>
-</ol>
-<h1 id="书籍推荐"><a href="#书籍推荐" class="headerlink" title="书籍推荐"></a>书籍推荐</h1><ol>
-<li>本教程使用的教材：<code>A Systematic Approach to Learning Robot Programming with ROS</code></li>
-<li>其它推荐书籍 ： <code>ROS入门实例</code>、<code>ROS进阶实例</code></li>
-</ol>
-<h1 id="ROS相关学习网站"><a href="#ROS相关学习网站" class="headerlink" title="ROS相关学习网站"></a>ROS相关学习网站</h1><ul>
-<li><a href="https://www.ros.org" target="_blank" rel="noopener">ROS官网</a></li>
-<li><a href="http://wiki.ros.org/cn" target="_blank" rel="noopener">ROS维基</a></li>
-<li><a href="http://answers.ros.org" target="_blank" rel="noopener">ROS官方 问答社区</a></li>
-<li><a href="http://blog.exbot.net" target="_blank" rel="noopener">易科机器人实验室</a></li>
-<li><a href="http://www.rosclub.cn" target="_blank" rel="noopener">ROS机器人俱乐部</a></li>
-<li><a href="http://sdk.rethinkrobotics.com" target="_blank" rel="noopener">Baxter</a></li>
-<li><a href="https://www.ncnynl.com/" target="_blank" rel="noopener">创客智造</a></li>
-</ul>
+          目录
+ROS教程-1 ROS安装-《用ROS学习机器人编程的系统方法》
+ROS教程-2 ROS安装-《用ROS学习机器人编程的系统方法》
 
-          
+
+提纲
+Network Basics:  Nodes, Services, Actions
+Simulation &amp; Visualization:  G
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/03/20/ros_tutorial/2018-03-20-ROS教程-0 目录-《用ROS学习机器人编程的系统方法》/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1454,89 +1315,17 @@
       
         
           
-            <h1 id="在Windows上安装Git"><a href="#在Windows上安装Git" class="headerlink" title="在Windows上安装Git"></a>在Windows上安装Git</h1><p>在Windows上使用Git，可以从Git官网直接<a href="https://git-scm.com/downloads" target="_blank" rel="noopener">下载安装程序</a>，（<a href="https://pan.baidu.com/s/1kU5OCOB#list/path=%2Fpub%2Fgit" target="_blank" rel="noopener">国内镜像</a>），然后按默认选项安装即可。</p>
-<p>安装完成后，在开始菜单里找到“Git”-&gt;“Git Bash”，蹦出一个类似命令行窗口的东西，就说明Git安装成功！</p>
-<p>安装完成后，还需要最后一步设置，在命令行输入：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git config --global user.name &quot;Your Name&quot;</span><br><span class="line">$ git config --global user.email &quot;email@example.com&quot;</span><br></pre></td></tr></table></figure>
-<h1 id="第一个版本库repository"><a href="#第一个版本库repository" class="headerlink" title="第一个版本库repository"></a>第一个版本库repository</h1><p>什么是版本库呢？版本库又名仓库，英文名repository，你可以简单理解成一个目录，这个目录里面的所有文件都可以被Git管理起来，每个文件的修改、删除，Git都能跟踪，以便任何时刻都可以追踪历史，或者在将来某个时刻可以“还原”。</p>
-<p>所以，创建一个版本库非常简单，首先，选择一个合适的地方，创建一个空目录：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ mkdir learngit</span><br><span class="line">$ cd learngit</span><br><span class="line">$ pwd</span><br><span class="line">/Users/michael/learngit</span><br></pre></td></tr></table></figure>
-<h2 id="初始化一个Git仓库"><a href="#初始化一个Git仓库" class="headerlink" title="初始化一个Git仓库"></a>初始化一个Git仓库</h2><p>通过git init命令把这个目录变成Git可以管理的仓库：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git init</span><br><span class="line">Initialized empty Git repository in /Users/michael/learngit/.git/</span><br></pre></td></tr></table></figure>
-<h2 id="把文件添加到版本库"><a href="#把文件添加到版本库" class="headerlink" title="把文件添加到版本库"></a>把文件添加到版本库</h2><h3 id="git-add添加文件"><a href="#git-add添加文件" class="headerlink" title="git add添加文件"></a>git add添加文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git add readme.txt</span><br></pre></td></tr></table></figure>
-<h3 id="git-commit提交"><a href="#git-commit提交" class="headerlink" title="git commit提交"></a>git commit提交</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ git commit -m &quot;wrote a readme file&quot;</span><br><span class="line">[master (root-commit) cb926e7] wrote a readme file</span><br><span class="line"> 1 file changed, 2 insertions(+)</span><br><span class="line"> create mode 100644 readme.txt</span><br></pre></td></tr></table></figure>
-<p>-m 后面输入的是本次提交的说明，可以输入任意内容</p>
-<h3 id="工作流程图"><a href="#工作流程图" class="headerlink" title="工作流程图"></a>工作流程图</h3><p>整个上述过程可以被这张 git 官网上的流程图直观地表现:<br><img src="https://raw.githubusercontent.com/songapore/For-PicGo/master/img/2-1-1.png"><br><img src="https://raw.githubusercontent.com/songapore/For-PicGo/master/img/2-1-1.png" alt=""></p>
-<ul>
-<li>图中告诉我们存在4个状态：untracked, unmodified,modified,staged</li>
-<li>创建的新文件，且没有git add 则属于untracked状态；add之后为staged状态</li>
-<li>staged状态 git commit 之后为 unmodified 状态</li>
-<li>当我们修改后，变为modified 状态；需要继续git add 添加，才变为staged状态</li>
-<li>当我们git rm之后，变为 untracked状态</li>
-</ul>
-<h2 id="记录及修改-log-amp-diff"><a href="#记录及修改-log-amp-diff" class="headerlink" title="记录及修改 (log &amp; diff)"></a>记录及修改 (log &amp; diff)</h2><p>在 git 中, 每一次提交(commit)的修改, 都会被单独的保存起来. 也可以说 git 的中的所有文件都是一次次修改累积起来的. 文件好比楼房, 每个 commit 记录 了盖楼需添加或者拿走的材料. 整个施工过程也被记录了下来.</p>
-<h3 id="修改记录-log"><a href="#修改记录-log" class="headerlink" title="修改记录 log"></a>修改记录 log</h3><p>我们来查看版本库的施工过程<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git log</span><br></pre></td></tr></table></figure></p>
-<h3 id="查看状态status"><a href="#查看状态status" class="headerlink" title="查看状态status"></a>查看状态status</h3><p>git status命令可以让我们时刻掌握仓库当前的状态<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git status</span><br></pre></td></tr></table></figure></p>
-<ul>
-<li><p>要随时掌握工作区的状态，使用git status命令。</p>
-</li>
-<li><p>如果git status告诉你有文件被修改过，用git diff可以查看修改内容。</p>
-</li>
-</ul>
-<h3 id="查看-unstaged"><a href="#查看-unstaged" class="headerlink" title="查看 unstaged"></a>查看 unstaged</h3><p>如果想要查看这次还没 add (unstaged) 的修改部分 和上个已经 commit 的文件有何不同, 我们将使用 $ git diff:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git diff</span><br></pre></td></tr></table></figure>
-<h3 id="查看-staged-–cached"><a href="#查看-staged-–cached" class="headerlink" title="查看 staged (–cached)"></a>查看 staged (–cached)</h3><p>如果你已经 add 了这次修改, 文件变成了 “可提交状态” (staged), 我们可以在 diff 中添加参数 –cached 来查看修改:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git add .   # add 全部修改的文件</span><br><span class="line">$ git diff --cached</span><br></pre></td></tr></table></figure>
-<h1 id="回到从前"><a href="#回到从前" class="headerlink" title="回到从前"></a>回到从前</h1><h2 id="回到从前-reset"><a href="#回到从前-reset" class="headerlink" title="回到从前 (reset)"></a>回到从前 (reset)</h2><h3 id="修改已-commit-的版本"><a href="#修改已-commit-的版本" class="headerlink" title="修改已 commit 的版本"></a>修改已 commit 的版本</h3><p>有时候我们总会忘了什么, 比如已经提交了 commit 却发现在这个 commit 中忘了附上另一个文件。</p>
-<p>接下来我们模拟这种情况.我们最后一个 commit 是 change 2, 我们将要添加另外一个文件, 将这个修改也 commit 进 change 2. 所以我们复制 1.py 这个文件, 改名为 2.py. 并把 2.py 变成 staged, 然后使用 <strong>–amend</strong> 将这次改变合并到之前的 change 2 中.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git add 2.py</span><br><span class="line">$ git commit --amend --no-edit   # &quot;--no-edit&quot;: 不编辑, 直接合并到上一个 commit</span><br><span class="line">$ git log --oneline    # &quot;--oneline&quot;: 每个 commit 内容显示在一行</span><br></pre></td></tr></table></figure>
-<h3 id="reset-回到-add-之前"><a href="#reset-回到-add-之前" class="headerlink" title="reset 回到 add 之前"></a>reset 回到 add 之前</h3><p>有时我们添加 add 了修改, 但是又后悔, 并想补充一些内容再 add. 这时, 我们有一种方式可以回到 add 之前.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ git add 1.py</span><br><span class="line">$ git status</span><br><span class="line">#后悔了 咋办</span><br><span class="line">$ git reset 1.py</span><br></pre></td></tr></table></figure></p>
-<h3 id="reset-回到-commit-之前"><a href="#reset-回到-commit-之前" class="headerlink" title="reset 回到 commit 之前"></a>reset 回到 commit 之前</h3><p>在穿梭到过去的 commit 之前, 我们必须了解 git 是如何一步一步累加更改的。<br><img src="https://raw.githubusercontent.com/songapore/For-PicGo/master/img/2-2-1.png" alt="image"><br><img src="https://raw.githubusercontent.com/songapore/For-PicGo/master/img/2-2-2.png" alt="image"></p>
-<p>每个 commit 都有自己的 id 数字号, HEAD 是一个指针, 指引当前的状态是在哪个 commit. 最近的一次 commit 在最右边, 我们如果要回到过去, 就是让 HEAD 回到过去并 reset 此时的 HEAD 到过去的位置.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"># 不管我们之前有没有做了一些 add 工作, 这一步让我们回到 上一次的 commit</span><br><span class="line">$ git reset --hard HEAD    </span><br><span class="line"># 输出</span><br><span class="line">HEAD is now at 904e1ba change 2</span><br><span class="line">-----------------------</span><br><span class="line"># 看看所有的log</span><br><span class="line">$ git log --oneline</span><br><span class="line"># 输出</span><br><span class="line">904e1ba change 2</span><br><span class="line">c6762a1 change 1</span><br><span class="line">13be9a7 create 1.py</span><br><span class="line">-----------------------</span><br><span class="line"># 回到 c10ea64 change 1</span><br><span class="line"># 方式1: &quot;HEAD^&quot;</span><br><span class="line">$ git reset --hard HEAD^  </span><br><span class="line"></span><br><span class="line"># 方式2: &quot;commit id&quot;</span><br><span class="line">$ git reset --hard c6762a1</span><br><span class="line">-----------------------</span><br><span class="line"># 看看现在的 log</span><br><span class="line">$ git log --oneline</span><br><span class="line"># 输出</span><br><span class="line">c6762a1 change 1</span><br><span class="line">13be9a7 create 1.py</span><br></pre></td></tr></table></figure>
-<p>怎么 change 2 消失了!!! 还有办法挽救消失的 change 2 吗? 我们可以查看 $ git reflog 里面最近做的所有 HEAD 的改动, 并选择想要挽救的 commit id:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ git reflog</span><br><span class="line"># 输出</span><br><span class="line">c6762a1 HEAD@&#123;0&#125;: reset: moving to c6762a1</span><br><span class="line">904e1ba HEAD@&#123;1&#125;: commit (amend): change 2</span><br><span class="line">0107760 HEAD@&#123;2&#125;: commit: change 2</span><br><span class="line">c6762a1 HEAD@&#123;3&#125;: commit: change 1</span><br><span class="line">13be9a7 HEAD@&#123;4&#125;: commit (initial): create 1.py</span><br></pre></td></tr></table></figure>
-<p>重复 reset 步骤就能回到 commit (amend): change 2 (id=904e1ba)这一步了:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ git reset --hard 904e1ba</span><br><span class="line">$ git log --oneline</span><br><span class="line"># 输出</span><br><span class="line">904e1ba change 2</span><br><span class="line">c6762a1 change 1</span><br><span class="line">13be9a7 create 1.py</span><br></pre></td></tr></table></figure>
-<p>我们又再次奇迹般的回到了 change 2.</p>
-<h2 id="回到从前-checkout-针对单个文件"><a href="#回到从前-checkout-针对单个文件" class="headerlink" title="回到从前 (checkout 针对单个文件)"></a>回到从前 (checkout 针对单个文件)</h2><p>之前我们使用 reset 的时候是针对整个版本库, 回到版本库的某个过去. 不过如果我们只想回到某个文件的过去, 又该怎么办呢?</p>
-<h3 id="改写文件-checkout"><a href="#改写文件-checkout" class="headerlink" title="改写文件 checkout"></a>改写文件 checkout</h3><p>我们仅仅要对 1.py 进行回到过去操作, 回到 c6762a1 change 1 这一个 commit.</p>
-<p>使用 <strong>checkout + id c6762a1 + – + 文件目录 1.py</strong>, 我们就能将 1.py 的指针 HEAD 放在这个时刻 c6762a1:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ git log --oneline</span><br><span class="line"># 输出</span><br><span class="line">904e1ba change 2</span><br><span class="line">c6762a1 change 1</span><br><span class="line">13be9a7 create 1.py</span><br><span class="line">---------------------</span><br><span class="line">$ git checkout c6762a1 -- 1.py</span><br></pre></td></tr></table></figure>
-<h2 id="分支管理"><a href="#分支管理" class="headerlink" title="分支管理"></a>分支管理</h2><h3 id="分支-branch"><a href="#分支-branch" class="headerlink" title="分支 (branch)"></a>分支 (branch)</h3><p>很多时候我们需要给自己或者客户用一个稳定的版本库, 然后同时还在开发另外一个升级版. 自然而然, 我们会想到把这两者分开处理, 用户使用稳定版, 我们开发我们的开发版. 不过 git 的做法却不一样, 它把这两者融合成了一个文件, 使用不同的分支来管理.</p>
-<h3 id="分支-图例"><a href="#分支-图例" class="headerlink" title="分支 图例"></a>分支 图例</h3><p>之前我们说编辑的所有改变都是在一条主分支 master 上进行的. 通常我们会把 master 当作最终的版本, 而开发新版本或者新属性的时候, 在另外一个分支上进行, 这样就能使开发和使用互不干扰了<br><img src="https://raw.githubusercontent.com/songapore/For-PicGo/master/img/branch.PNG" alt="image"></p>
-<h3 id="使用-branch-创建-dev-分支"><a href="#使用-branch-创建-dev-分支" class="headerlink" title="使用 branch 创建 dev 分支"></a>使用 branch 创建 dev 分支</h3><p>我们之前的文件当中, 仅仅只有一条 master 分支, 我们可以通过 –graph 来观看分支</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ git log --oneline --graph</span><br><span class="line"># 输出</span><br><span class="line">* 47f167e back to change 1 and add comment for 1.py</span><br><span class="line">* 904e1ba change 2</span><br><span class="line">* c6762a1 change 1</span><br><span class="line">* 13be9a7 create 1.py</span><br></pre></td></tr></table></figure>
-<p>接着我们建立另一个分支 dev, 并查看所有分支:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ git branch dev    # 建立 dev 分支</span><br><span class="line">$ git branch        # 查看当前分支</span><br><span class="line"></span><br><span class="line"># 输出</span><br><span class="line">  dev       </span><br><span class="line">* master    # * 代表了当前的 HEAD 所在的分支</span><br></pre></td></tr></table></figure>
-<h3 id="使用-checkout-切换到-dev-分支"><a href="#使用-checkout-切换到-dev-分支" class="headerlink" title="使用 checkout 切换到 dev 分支"></a>使用 checkout 切换到 dev 分支</h3><p>当我们想把 HEAD 切换去 dev 分支的时候, 我们可以用到上次说的 checkout:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout dev</span><br><span class="line"></span><br><span class="line"># 输出</span><br><span class="line">Switched to branch &apos;dev&apos;</span><br><span class="line">--------------------------</span><br><span class="line">$ git branch</span><br><span class="line"></span><br><span class="line"># 输出</span><br><span class="line">* dev       # 这时 HEAD 已经被切换至 dev 分支</span><br><span class="line">  master</span><br></pre></td></tr></table></figure>
-<p>使用 checkout -b + 分支名, 就能直接创建和切换到新建的分支:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout -b  dev</span><br><span class="line"></span><br><span class="line"># 输出</span><br><span class="line">Switched to a new branch &apos;dev&apos;</span><br><span class="line">--------------------------</span><br><span class="line">$ git branch</span><br><span class="line"></span><br><span class="line"># 输出</span><br><span class="line">* dev       # 这时 HEAD 已经被切换至 dev 分支</span><br><span class="line">  master</span><br></pre></td></tr></table></figure>
-<h3 id="在-dev-分支中修改"><a href="#在-dev-分支中修改" class="headerlink" title="在 dev 分支中修改"></a>在 dev 分支中修改</h3><p>因为当前的指针 HEAD 在 dev 分支上, 所以现在对文件夹中的文件进行修改将不会影响到 master 分支.</p>
-<p>我们修改dev分支, 然后再 commit:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git commit -am &quot;change 3 in dev&quot;  # &quot;-am&quot;: add 所有改变 并直接 commit</span><br></pre></td></tr></table></figure></p>
-<p>假设我们的开发板 dev 已经更新好了, 我们要将 dev 中的修改推送到 master 中, 大家就能使用到正式版中的新功能了.</p>
-<p>首先我们要切换到 master, 再将 dev 推送过来.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout master   # 切换至 master 才能把其他分支合并过来</span><br><span class="line"></span><br><span class="line">$ git merge dev         # 将 dev merge 到 master 中</span><br><span class="line">$ git log --oneline --graph</span><br><span class="line"></span><br><span class="line"># 输出</span><br><span class="line">* f9584f8 change 3 in dev</span><br><span class="line">* 47f167e back to change 1 and add comment for 1.py</span><br><span class="line">* 904e1ba change 2</span><br><span class="line">* c6762a1 change 1</span><br><span class="line">* 13be9a7 create 1.py</span><br></pre></td></tr></table></figure></p>
-<p>要注意的是, 如果直接 git merge dev, git 会采用默认的 Fast forward 格式进行 merge, 这样 merge 的这次操作不会有 commit 信息. log 中也不会有分支的图案. 我们可以采取 –no-ff 这种方式保留 merge 的 commit 信息.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$ git merge --no-ff -m &quot;keep merge info&quot; dev         # 保留 merge 信息</span><br><span class="line">$ git log --oneline --graph</span><br><span class="line"></span><br><span class="line"># 输出</span><br><span class="line">*   c60668f keep merge info</span><br><span class="line">|\  </span><br><span class="line">| * f9584f8 change 3 in dev         # 这里就能看出, 我们建立过一个分支</span><br><span class="line">|/  </span><br><span class="line">* 47f167e back to change 1 and add comment for 1.py</span><br><span class="line">* 904e1ba change 2</span><br><span class="line">* c6762a1 change 1</span><br><span class="line">* 13be9a7 create 1.py</span><br></pre></td></tr></table></figure></p>
-<h2 id="merge-分支冲突"><a href="#merge-分支冲突" class="headerlink" title="merge 分支冲突"></a>merge 分支冲突</h2><p>情况是这样, 想象不仅有人在做开发版 dev 的更新, 还有人在修改 master 中的一些 bug. 当我们再 merge dev 的时候, 冲突就来了. 因为 git 不知道应该怎么处理 merge 时, 在 master 和 dev 的不同修改.</p>
-<p>当创建了一个分支后, 我们同时对两个分支都进行了修改.<br>比如在:</p>
-<ul>
-<li>master 中的 1.py 加上 # edited in master.</li>
-<li>dev 中的 1.py 加上 # edited in dev.</li>
-</ul>
-<p>当我们想要 merge dev 到 master 的时候:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$ git branch #查看当前分支</span><br><span class="line"> dev</span><br><span class="line">* master</span><br><span class="line">-------------------------</span><br><span class="line">$ git merge dev  合并</span><br><span class="line"></span><br><span class="line"># 输出</span><br><span class="line">Auto-merging 1.py</span><br><span class="line">CONFLICT (content): Merge conflict in 1.py</span><br><span class="line">Automatic merge failed; fix conflicts and then commit the result.</span><br></pre></td></tr></table></figure>
-<p>git 发现的我们的 1.py 在 master 和 dev 上的版本是不同的, 所以提示 merge 有冲突. 具体的冲突, git 已经帮我们标记出来, 我们打开 1.py 就能看到:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">a = 1</span><br><span class="line"># I went back to change 1</span><br><span class="line">&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</span><br><span class="line"># edited in master</span><br><span class="line">=======</span><br><span class="line"># edited in dev</span><br><span class="line">&gt;&gt;&gt;&gt;&gt;&gt;&gt; dev</span><br></pre></td></tr></table></figure></p>
-<p>所以我们只要在 1.py 中<strong>手动合并</strong>一下两者的不同就 OK 啦. 然后再 commit 现在的文件, 冲突就解决啦.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git commit -am &quot;solve conflict&quot;</span><br></pre></td></tr></table></figure>
-<h3 id="临时修改-stash"><a href="#临时修改-stash" class="headerlink" title="临时修改 (stash)"></a>临时修改 (stash)</h3><h4 id="暂存修改"><a href="#暂存修改" class="headerlink" title="暂存修改"></a>暂存修改</h4><p>假设我们现在在 dev 分支上快乐地改代码:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout dev</span><br></pre></td></tr></table></figure></p>
-<p>在 dev 中的 1.py 中加上一行 # feel happy, 然后老板的电话来了, 可是我还没有改进完这些代码. 所以我就用 stash 将这些改变暂时放一边.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">$ git status -s</span><br><span class="line"># 输出</span><br><span class="line"> M 1.py</span><br><span class="line">------------------</span><br><span class="line">$ git stash</span><br><span class="line"># 输出</span><br><span class="line">Saved working directory and index state WIP on dev: f7d2e3a change 3 in dev</span><br><span class="line">HEAD is now at f7d2e3a change 3 in dev</span><br><span class="line">-------------------</span><br><span class="line">$ git status</span><br><span class="line"># 输出</span><br><span class="line">On branch dev</span><br><span class="line">nothing to commit, working directory clean  # 干净得很</span><br></pre></td></tr></table></figure></p>
-<h4 id="做其它任务"><a href="#做其它任务" class="headerlink" title="做其它任务"></a>做其它任务</h4><p>然后我们建立另一个 branch 用来完成老板的任务:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout -b boss</span><br><span class="line"></span><br><span class="line"># 输出</span><br><span class="line">Switched to a new branch &apos;boss&apos; # 创建并切换到 boss</span><br></pre></td></tr></table></figure></p>
-<p>然后苦逼地完成着老板的任务, 比如添加 # lovely boss 去 1.py. 然后 commit, 完成老板的任务.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git commit -am &quot;job from boss&quot;</span><br><span class="line">$ git checkout master</span><br><span class="line">$ git merge --no-ff -m &quot;merged boss job&quot; boss</span><br></pre></td></tr></table></figure></p>
-<h4 id="恢复暂存"><a href="#恢复暂存" class="headerlink" title="恢复暂存"></a>恢复暂存</h4><p>轻松了, 现在可以继续开心的在 dev 上刷代码了.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout dev</span><br><span class="line">$ git stash list    # 查看在 stash 中的缓存</span><br><span class="line"></span><br><span class="line"># 输出</span><br><span class="line">stash@&#123;0&#125;: WIP on dev: f7d2e3a change 3 in dev</span><br></pre></td></tr></table></figure></p>
-<p>上面说明在 dev 中, 我们的确有 stash 的工作. 现在可以通过 pop 来提取这个并继续工作了.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">$ git stash pop</span><br><span class="line"></span><br><span class="line"># 输出</span><br><span class="line">On branch dev</span><br><span class="line">Changes not staged for commit:</span><br><span class="line">  (use &quot;git add &lt;file&gt;...&quot; to update what will be committed)</span><br><span class="line">  (use &quot;git checkout -- &lt;file&gt;...&quot; to discard changes in working directory)</span><br><span class="line"></span><br><span class="line">	modified:   1.py</span><br><span class="line"></span><br><span class="line">no changes added to commit (use &quot;git add&quot; and/or &quot;git commit -a&quot;)</span><br><span class="line">Dropped refs/stash@&#123;0&#125; (23332b7edc105a579b09b127336240a45756a91c)</span><br><span class="line">----------------------</span><br><span class="line">$ git status -s</span><br><span class="line"># 输出</span><br><span class="line"> M 1.py     # 和最开始一样了</span><br></pre></td></tr></table></figure></p>
-
-          
+          在Windows上安装Git在Windows上使用Git，可以从Git官网直接下载安装程序，（国内镜像），然后按默认选项安装即可。
+安装完成后，在开始菜单里找到“Git”-&gt;“Git Bash”，蹦出一个类似命令行窗口的东西，就说明Git安装成功！
+安装完成后，还需要最后一步设置，在命令行输入
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/03/17/git/2018-03-17-git_tutorial/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1676,13 +1465,17 @@
       
         
           
-            <h1 id="实现需求"><a href="#实现需求" class="headerlink" title="实现需求"></a>实现需求</h1><p>在git中如果想忽略掉某个文件或者文件夹，不想这个文件或者文件夹提交到版本库中，可以使用修改根目录中 .gitignore 文件的方法（如无，则需自己手工建立此文件）。这个文件每一行保存了一个匹配的规则例如：</p>
-<h1 id="创建gitignore文件"><a href="#创建gitignore文件" class="headerlink" title="创建gitignore文件"></a>创建gitignore文件</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">touch .gitignore</span><br></pre></td></tr></table></figure>
-<h2 id="注释Git忽略规则"><a href="#注释Git忽略规则" class="headerlink" title="注释Git忽略规则"></a>注释Git忽略规则</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># 此为注释 – 将被 Git 忽略</span><br><span class="line"></span><br><span class="line">*.a       # 忽略所有 .a 结尾的文件</span><br><span class="line">!lib.a    # 但 lib.a 除外</span><br><span class="line">/-songaporesite     # 仅仅忽略项目根目录下的 songaporesite 文件，不包括 subdir/songaporesite</span><br><span class="line">songapore/    # 忽略 songapore文件夹/ 目录下的所有文件以及文件夹本身</span><br><span class="line">doc/*.txt # 会忽略 doc/notes.txt 但不包括 doc/server/arch.txt</span><br></pre></td></tr></table></figure>
-<h2 id="gitignore忽略规则不生效原因"><a href="#gitignore忽略规则不生效原因" class="headerlink" title="gitignore忽略规则不生效原因"></a>gitignore忽略规则不生效原因</h2><p>规则很简单，不做过多解释，但是有时候在项目开发过程中，突然心血来潮想把某些目录或文件加入忽略规则，按照上述方法定义后发现并未生效，原因是.gitignore只能忽略那些原来没有被track的文件，如果某些文件已经被纳入了版本管理中，则修改.gitignore是无效的。那么解决方法就是先把本地缓存删除（改变成未track状态），然后再提交：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git rm -r --cached .</span><br><span class="line">git add .</span><br><span class="line">git commit -m &apos;update .gitignore&apos;</span><br></pre></td></tr></table></figure>
-
-          
+          实现需求在git中如果想忽略掉某个文件或者文件夹，不想这个文件或者文件夹提交到版本库中，可以使用修改根目录中 .gitignore 文件的方法（如无，则需自己手工建立此文件）。这个文件每一行保存了一个匹配的规则例如：
+创建gitignore文件1touch .gitignore
+注释Git忽略规则1
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/03/16/git/2018-03-16-gitignore/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1822,37 +1615,16 @@
       
         
           
-            <h2 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h2><p>我打算把所有服务器的配置文件用git管理起来，这样可以记录配置变更状况。 但是有一个问题是，如何多人协作？服务器配置信息非常敏感，如果这个版本库泄漏，整个公司的服务器架构就彻底泄漏了。 这个版本库只能在开发者本地电脑里面解密，远程托管版本库的服务器不应该知道文件里面的内容。</p>
-<p>那么解决办法就是：本地git版本库是解密的，在上传过程中内容全部加密，密钥保存在本地，同时密钥可以分享给其他开发者。</p>
-<h3 id="考虑了几个解决方案："><a href="#考虑了几个解决方案：" class="headerlink" title="考虑了几个解决方案："></a>考虑了几个解决方案：</h3><ol>
-<li><p><code>git-crypt</code>：可以加密部分文件，原理是加上了加密的fiter和diff， 但是官方说只适合加密部分文件，而不适合全版本库加密。部分文件加密很容易造成信息泄漏，一定要全版本库加密才适合。</p>
-</li>
-<li><p>串联<code>sshfs</code>和远程服务器加密文件系统<code>encfs</code>：首先用<code>sshfs</code>加载远端文件系统，然后用<code>encfs</code>创建加密文件系统。 我估计无法解决多人同时<code>push</code>情况下的竞争条件，并且encfs有安全漏洞，使用<code>上push/pull</code>之前需要加载两层文件系统，不是很方便。</p>
-</li>
-<li><p><code>git-remote-gcryp</code>t用<code>gpg</code>进行远端加密。 比较符合我预期的模式，但是用<code>gpg</code>不是特别方便协作。但是别的方法走不通，只有这个方法可用。</p>
-</li>
-</ol>
-<h4 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h4><h6 id="安装git-remote-gcrypt和gnupg"><a href="#安装git-remote-gcrypt和gnupg" class="headerlink" title="安装git-remote-gcrypt和gnupg"></a>安装git-remote-gcrypt和gnupg</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install git-remote-gcrypt gnupg</span><br></pre></td></tr></table></figure>
-<h6 id="创建一个gpg的key，"><a href="#创建一个gpg的key，" class="headerlink" title="创建一个gpg的key，"></a>创建一个gpg的key，</h6><p> 需要设置用户名，邮箱，描述等，不要设置过期时间<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gpg --gen-key</span><br></pre></td></tr></table></figure></p>
-<h6 id="记录一下生成的key的ID，"><a href="#记录一下生成的key的ID，" class="headerlink" title="记录一下生成的key的ID，"></a>记录一下生成的key的ID，</h6><p>比如2048R/songapore013里面的songapore013，2048代表加密轮数，越多越不容易破解<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gpg --list-keys</span><br></pre></td></tr></table></figure></p>
-<h6 id="生成一个测试版本库"><a href="#生成一个测试版本库" class="headerlink" title="生成一个测试版本库"></a>生成一个测试版本库</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mkdir test1 &amp;&amp; cd test1</span><br><span class="line">git init .</span><br><span class="line">echo &quot;test&quot; &gt; a.txt</span><br><span class="line">git add . &amp;&amp; git ci -m &quot;update&quot;</span><br></pre></td></tr></table></figure>
-<h5 id="创建一个测试project"><a href="#创建一个测试project" class="headerlink" title="创建一个测试project"></a>创建一个测试project</h5><p>在你的github上面创建一个project，比如：<a href="https://github.com/songapore" target="_blank" rel="noopener">https://github.com/songapore</a></p>
-<h6 id="配置远端加密版本库"><a href="#配置远端加密版本库" class="headerlink" title="配置远端加密版本库"></a>配置远端加密版本库</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote add cryptremote gcrypt::git@github.com:songapore/songapore.git</span><br></pre></td></tr></table></figure>
-<h6 id="最好指定用哪个key加密"><a href="#最好指定用哪个key加密" class="headerlink" title="最好指定用哪个key加密"></a>最好指定用哪个key加密</h6><p> 这样可以共享这个key给其他人用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config remote.cryptremote.gcrypt-participants &quot;songapore013&quot;</span><br></pre></td></tr></table></figure></p>
-<h6 id="push到远端"><a href="#push到远端" class="headerlink" title="push到远端"></a>push到远端</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push cryptremote master</span><br></pre></td></tr></table></figure>
-<ul>
-<li>访问远端版本库，看看文件内容，和commit里面的信息，是不是都是加密的？</li>
-</ul>
-<h2 id="如何分享给其他人"><a href="#如何分享给其他人" class="headerlink" title="如何分享给其他人"></a>如何分享给其他人</h2><h5 id="导出key"><a href="#导出key" class="headerlink" title="导出key"></a>导出key</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gpg --export-secret-key -a &quot;share@share.com&quot; &gt; secretkey.asc</span><br></pre></td></tr></table></figure>
-<ul>
-<li>把secretkey.asc分享给其他人，拷贝的时候记得先压缩加密一下再发送，更安全</li>
-</ul>
-<h6 id="别人电脑里面导入"><a href="#别人电脑里面导入" class="headerlink" title="别人电脑里面导入"></a>别人电脑里面导入</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gpg --import secretkey.asc</span><br></pre></td></tr></table></figure>
-<h6 id="下载代码"><a href="#下载代码" class="headerlink" title="下载代码"></a>下载代码</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git clone gcrypt::git@github.com:songapore/songapore.git test2 // test2是git clone 在本地的文</span><br><span class="line">件名</span><br></pre></td></tr></table></figure>
-<h6 id="也要指定一下用什么key加密"><a href="#也要指定一下用什么key加密" class="headerlink" title="也要指定一下用什么key加密"></a>也要指定一下用什么key加密</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config remote.cryptremote.gcrypt-participants &quot;songapore013&quot;</span><br></pre></td></tr></table></figure>
-<p>用这种方法，可以用<code>git</code>管理一些私密又需要协作的信息（比如服务器配置）， 也可以把github当作私密的版本控制系统来用（commit的消息还是明文的）。</p>
-
-          
+          目的我打算把所有服务器的配置文件用git管理起来，这样可以记录配置变更状况。 但是有一个问题是，如何多人协作？服务器配置信息非常敏感，如果这个版本库泄漏，整个公司的服务器架构就彻底泄漏了。 这个版本库只能在开发者本地电脑里面解密，远程托管版本库的服务器不应该知道文件里面的内容。
+那么解决办法就是：本
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/03/15/git/2018-03-15-githubyaunchengjiami/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>

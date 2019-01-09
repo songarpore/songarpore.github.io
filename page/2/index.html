@@ -11,6 +11,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="theme-color" content="#222">
+<meta name="google-site-verification" content="4b5ChOPlfrWPkfJKVSwbnGC4WDT5fyOTDO62HVBosls">
+
 
 
 
@@ -384,37 +386,16 @@
       
         
           
-            <p>在深度学习的历史上，包括许多知名研究者在内，提出了优化算法，并很好地解决了一些问题，但随后这些优化算法被指出并不能一般化，并不适用于多种神经网络。</p>
-<p>RMSprop以及Adam优化算法，就是少有的经受住人们考验的两种算法，已被证明适用于不同的深度学习结构，这个算法我会毫不犹豫地推荐给你，因为很多人都试过，并且用它很好地解决了许多问题。</p>
-<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><p><strong>Adam 优化算法</strong>（Adaptive Moment Estimation，自适应矩估计）基本上就是将 Momentum 和 RMSProp 算法结合在一起，通常有超越二者单独时的效果。那么来看看如何使用Adam算法</p>
-<p><img src="https://raw.githubusercontent.com/songapore/For-PicGo/master/img/Adam%20optimization%20algorithm.png" alt="Adam optimization algorithm"></p>
-<p>使用Adam算法，首先你要初始化：</p>
-<p>$$<br>v_{dW} = 0, s_{dW} = 0, v_{db} = 0, s_{db} = 0<br>$$</p>
-<p>用每一个 mini-batch 计算 dW、db，第 t 次迭代时</p>
-<p>$$<br>v_{dW} = \beta_1 v_{dW} + (1 - \beta_1) dW<br>$$</p>
-<p>$$<br>v_{db} = \beta_1 v_{db} + (1 - \beta_1) db<br>$$</p>
-<p>$$<br>s_{dW} = \beta_2 s_{dW} + (1 - \beta_2) {(dW)}^2<br>$$</p>
-<p>$$<br>s_{db} = \beta_2 s_{db} + (1 - \beta_2) {(db)}^2<br>$$</p>
-<p>一般使用 Adam 算法时需要计算偏差修正：</p>
-<p>$$<br>v^{corrected}<em>{dW} = \frac{v</em>{dW}}{1-{\beta_1}^t}<br>$$</p>
-<p>$$<br>v^{corrected}<em>{db} = \frac{v</em>{db}}{1-{\beta_1}^t}<br>$$</p>
-<p>$$<br>s^{corrected}<em>{dW} = \frac{s</em>{dW}}{1-{\beta_2}^t}<br>$$</p>
-<p>$$<br>s^{corrected}<em>{db} = \frac{s</em>{db}}{1-{\beta_2}^t}<br>$$</p>
-<p>所以，更新 W、b 时有：</p>
-<p>$$<br>W := W - \alpha \frac{v^{corrected}<em>{dW}}{\sqrt{s^{corrected}</em>{dW}} + \epsilon}<br>$$</p>
-<p>$$<br>b := b - \alpha \frac{v^{corrected}<em>{db}}{\sqrt{s^{corrected}</em>{db}} + \epsilon}<br>$$</p>
-<p>（可以看到 Andrew 在这里 ϵ 没有写到平方根里去，和他在 RMSProp 中写的不太一样。考虑到 ϵ 所起的作用，我感觉影响不大）</p>
-<h2 id="超参数选择"><a href="#超参数选择" class="headerlink" title="超参数选择"></a>超参数选择</h2><p><img src="https://raw.githubusercontent.com/songapore/For-PicGo/master/img/hyperparameters%20choice.png" alt="超参数选择"></p>
-<p>Adam 优化算法有很多的超参数，其中</p>
-<ul>
-<li>学习率 α：需要尝试一系列的值，来寻找比较合适的；</li>
-<li>β1：常用的缺省值为 0.9；</li>
-<li>β2：Adam 算法的作者建议为 0.999；</li>
-<li>ϵ：不重要，不会影响算法表现，Adam 算法的作者建议为 10−8；</li>
-</ul>
-<p>β1、β2、ϵ 通常不需要调试。</p>
-
-          
+          在深度学习的历史上，包括许多知名研究者在内，提出了优化算法，并很好地解决了一些问题，但随后这些优化算法被指出并不能一般化，并不适用于多种神经网络。
+RMSprop以及Adam优化算法，就是少有的经受住人们考验的两种算法，已被证明适用于不同的深度学习结构，这个算法我会毫不犹豫地推荐给你，因为很多人都试
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/05/02/DeepLearning/2018-05-02-course2-Week2-8-Adam optimization algorithm/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -554,25 +535,17 @@
       
         
           
-            <p>你们知道了动量（Momentum）可以加快梯度下降，还有一个叫做RMSprop的算法，全称是root mean square prop算法，它也可以加速梯度下降，我们来看看它是如何运作的。</p>
-<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p><strong>RMSProp</strong>算法是<strong>在对梯度进行指数加权平均的基础上，引入平方和平方根</strong>。</p>
-<p>如果你执行梯度下降，虽然横轴方向正在推进，但纵轴方向会有大幅度摆动，为了分析这个例子，假设纵轴代表参数b，横轴代表参数W.</p>
-<p>所以，你想减缓 纵轴方向的学习，同时加快 横轴方向的学习，RMSprop算法可以实现这一点</p>
-<p><img src="https://raw.githubusercontent.com/songapore/For-PicGo/master/img/RMSProp.png" alt="RMSProp 算法"></p>
-<p>我们来理解一下其原理。我们希望W学习速度快，而在垂直方向，也就是例子中的b方向，我们希望减缓纵轴上的摆动，所以有了和S_dw, S_db<br>.</p>
-<p>我们希望S_dw会相对较小，所以我们要除以一个较小的数，而希望S_db又较大，所以这里我们要除以较大的数字，这样就可以减缓纵轴上的变化。</p>
-<p>因为函数的倾斜程度，在纵轴上，也就是b方向上要大于在横轴上，也就是W方向上。db的平方较大，所以S_db也会较大，而相比之下，dw会小一些，亦或平方会小一些，因此S_dw会小一些，结果就是纵轴上的更新要被一个较大的数相除，就能消除摆动，而水平方向的更新则被较小的数相除。</p>
-<p>RMSprop的影响就是你的更新最后会变成这样（绿色线），纵轴方向上摆动较小，而横轴方向继续推进。还有个影响就是，你可以用一个更大学习率，然后加快学习，而无须在纵轴上垂直方向偏离。</p>
-<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><p><img src="https://raw.githubusercontent.com/songapore/For-PicGo/master/img/RMSProp%20%281%29.png" alt="RMSProp 算法"><br>$$<br>s_{dw} = \beta s_{dw} + (1 - \beta)(dw)^2<br>$$</p>
-<p>$$<br>s_{db} = \beta s_{db} + (1 - \beta)(db)^2<br>$$</p>
-<p>$$<br>w := w - \alpha \frac{dw}{\sqrt{s_{dw} + \epsilon}}<br>$$</p>
-<p>$$<br>b := b - \alpha \frac{db}{\sqrt{s_{db} + \epsilon}}<br>$$</p>
-<p>如果的平方根趋近于0怎么办？得到的答案就非常大，为了确保数值稳定，在实际中，你要在分母上加上一个很小很小的ϵ，是多少没关系，10^-8<br>是个不错的选择，这只是保证数值能稳定一些。</p>
-<h2 id="题外话"><a href="#题外话" class="headerlink" title="题外话"></a>题外话</h2><p>所以RMSprop跟Momentum有很相似的一点，可以消除梯度下降中的摆动，包括mini-batch梯度下降，并允许你使用一个更大的学习率，从而加快你的算法学习速度。</p>
-<p>所以你学会了如何运用RMSprop，这是给学习算法加速的另一方法。关于RMSprop的一个有趣的事是，它首次提出并不是在学术研究论文中，而是在多年前Jeff Hinton在Coursera的课程上。我想Coursera并不是故意打算成为一个传播新兴的学术研究的平台，但是却达到了意想不到的效果。就是从Coursera课程开始，RMSprop开始被人们广为熟知，并且发展迅猛。</p>
-<p>我们讲过了Momentum，我们讲了RMSprop，如果二者结合起来，你会得到一个更好的优化算法，在下个视频中我们再好好讲一讲为什么。</p>
-
-          
+          你们知道了动量（Momentum）可以加快梯度下降，还有一个叫做RMSprop的算法，全称是root mean square prop算法，它也可以加速梯度下降，我们来看看它是如何运作的。
+原理RMSProp算法是在对梯度进行指数加权平均的基础上，引入平方和平方根。
+如果你执行梯度下降，虽然横轴方向
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/04/30/DeepLearning/2018-04-30-course2-Week2-7-RMSProp/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -712,26 +685,18 @@
       
         
           
-            <h2 id="定义及实现过程"><a href="#定义及实现过程" class="headerlink" title="定义及实现过程"></a>定义及实现过程</h2><p><strong>动量梯度下降</strong>（Gradient Descent with Momentum）是计算梯度的指数加权平均数，并利用该值来更新参数值。</p>
-<p>动量梯度下降法的运行速度几乎总是快于标准的梯度下降算法。具体过程为：</p>
-<p>for l = 1, .. , L：</p>
-<p>$$<br>v_{dW^{[l]}} = \beta v_{dW^{[l]}} + (1 - \beta) dW^{[l]}<br>$$</p>
-<p>$$<br>v_{db^{[l]}} = \beta v_{db^{[l]}} + (1 - \beta) db^{[l]}<br>$$</p>
-<p>$$<br>W^{[l]} := W^{[l]} - \alpha v_{dW^{[l]}}<br>$$</p>
-<p>$$<br>b^{[l]} := b^{[l]} - \alpha v_{db^{[l]}}<br>$$</p>
-<p>其中，将动量衰减参数 β 设置为 0.9 是超参数的一个常见且效果不错的选择。当 β 被设置为 0 时，显然就成了 batch 梯度下降法。</p>
-<p><img src="https://raw.githubusercontent.com/songapore/For-PicGo/master/img/Gradient-Descent-with-Momentum.png" alt="Gradient-Descent-with-Momentum"></p>
-<p>进行一般的梯度下降将会得到图中的蓝色曲线，由于存在上下波动，减缓了梯度下降的速度，因此只能使用一个较小的学习率进行迭代。如果用较大的学习率，结果可能会像紫色曲线一样偏离函数的范围。</p>
-<p>而使用动量梯度下降时，通过累加过去的梯度值来减少抵达最小值路径上的波动，加速了收敛，因此在横轴方向下降得更快，从而得到图中红色的曲线。</p>
-<p>当前后梯度方向一致时，动量梯度下降能够加速学习；而前后梯度方向不一致时，动量梯度下降能够抑制震荡。</p>
-<p>另外，在 10 次迭代之后，移动平均已经不再是一个具有偏差的预测。因此实际在使用梯度下降法或者动量梯度下降法时，不会同时进行偏差修正。</p>
-<h2 id="动量梯度下降法的形象解释"><a href="#动量梯度下降法的形象解释" class="headerlink" title="动量梯度下降法的形象解释"></a>动量梯度下降法的形象解释</h2><p>将成本函数想象为一个碗状，从顶部开始运动的小球向下滚，其中 dw，db 想象成球的加速度；而 vdw、vdb 相当于速度。</p>
-<p>小球在向下滚动的过程中，因为加速度的存在速度会变快，但是由于 β 的存在，其值小于 1，可以认为是摩擦力，所以球不会无限加速下去。</p>
-<p>最后要说一点，如果你查阅了动量梯度下降法相关资料，你经常会看到 1-β 被删除了，即</p>
-<p>$$<br>v_{dW^{[l]}} = \beta v_{dW^{[l]}} +dW^{[l]}<br>$$</p>
-<p>所以V_dw缩小了1-β倍,所以你要用梯度下降最新值的话，a也要相应变化。实际上这2种方法效果都不错，只会影响到学习率a的最佳值。</p>
-
-          
+          定义及实现过程动量梯度下降（Gradient Descent with Momentum）是计算梯度的指数加权平均数，并利用该值来更新参数值。
+动量梯度下降法的运行速度几乎总是快于标准的梯度下降算法。具体过程为：
+for l = 1, .. , L：
+$$v_{dW^{[l]}} = \beta v
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/04/29/DeepLearning/2018-04-29-course2-Week2-6-Gradient descent with Momentum/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -871,39 +836,18 @@
       
         
           
-            <h2 id="计算公式"><a href="#计算公式" class="headerlink" title="计算公式"></a>计算公式</h2><ul>
-<li>指数加权平均（Exponentially Weight Average）是一种常用的序列数据处理方式，计算公式为：</li>
-</ul>
-<p>$$<br>S_t =<br>\begin{cases}<br>Y_1, &amp;t = 1 \<br>\beta S_{t-1} + (1-\beta)Y_t, &amp;t &gt; 1<br>\end{cases}<br>$$</p>
-<p>其中 Yt 为 t 下的实际值，St 为 t 下加权平均后的值，β 为权重值。</p>
-<p><img src="https://raw.githubusercontent.com/songapore/For-PicGo/master/img/Exponentially-weight-average.png" alt="Exponentially weighted averages"></p>
-<p>给定一个时间序列，例如伦敦一年每天的气温值，图中蓝色的点代表真实数据。对于一个即时的气温值，取权重值 β 为 0.9，根据求得的值可以得到图中的红色曲线，它反映了气温变化的大致趋势。</p>
-<p>当取权重值 β=0.98 时，可以得到图中更为平滑的绿色曲线。而当取权重值 β=0.5 时，得到图中噪点更多的黄色曲线 <strong>。β 越大相当于求取平均利用的天数越多，曲线自然就会越平滑而且越滞后。</strong></p>
-<h2 id="理解指数加权平均"><a href="#理解指数加权平均" class="headerlink" title="理解指数加权平均"></a>理解指数加权平均</h2><p>当 β 为 0.9 时，</p>
-<p>$$<br>v_{100} = 0.9v_{99} + 0.1 \theta_{100}<br>$$</p>
-<p>$$<br>v_{99} = 0.9v_{98} + 0.1 \theta_{99}<br>$$</p>
-<p>$$<br>v_{98} = 0.9v_{97} + 0.1 \theta_{98}<br>$$</p>
-<p>…</p>
-<p>$$<br>v_{100} = 0.1 \theta_{100} + 0.1 <em> 0.9 \theta_{99} + 0.1 </em> {(0.9)}^2 \theta_{98} + …<br>$$</p>
-<p>其中 θi 指第 i 天的实际数据。所有 θ 前面的系数（不包括 0.1）相加起来为 1 或者接近于 1，这些系数被称作<strong>偏差修正（Bias Correction）</strong>。</p>
-<p>根据函数极限的定理：</p>
-<p>$$<br>{\lim_{\beta\to 0}}(1 - \beta)^{\frac{1}{\beta}} = \frac{1}{e} \approx 0.368<br>$$</p>
-<p>当 β 为 0.9 时，可以当作把过去 10 天的气温指数加权平均作为当日的气温，因为 10 天后权重已经下降到了当天的 1/3 左右。同理，当 β 为 0.98 时，可以把过去 50 天的气温指数加权平均作为当日的气温。</p>
-<p>因此，在计算当前时刻的平均值时，只需要前一天的平均值和当前时刻的值。</p>
-<p>$$<br>v_t = \beta v_{t-1} + (1 - \beta)\theta_t<br>$$</p>
-<p>考虑到代码，只需要不断更新 v 即可：</p>
-<p>$$<br>v := \beta v + (1 - \beta)\theta_t<br>$$</p>
-<p>指数平均加权并不是最精准的计算平均数的方法，你可以直接计算过去 10 天或 50 天的平均值来得到更好的估计，但<strong>缺点</strong>是保存数据需要占用更多内存，执行更加复杂，计算成本更加高昂。</p>
-<p>指数加权平均数公式的好处之一在于它只需要一行代码，且占用极少内存，因此 <strong>效率极高，且节省成本。</strong></p>
-<h2 id="指数加权平均的偏差修正"><a href="#指数加权平均的偏差修正" class="headerlink" title="指数加权平均的偏差修正"></a>指数加权平均的偏差修正</h2><p>我们通常有</p>
-<p>$$<br>v_0 = 0<br>$$</p>
-<p>$$<br>v_1 = 0.98v_0 + 0.02\theta_1<br>$$</p>
-<p>因此，v1 仅为第一个数据的 0.02（或者说 1-β），显然不准确。往后递推同理。</p>
-<p>因此，我们修改公式为</p>
-<p>$$<br>v_t = \frac{\beta v_{t-1} + (1 - \beta)\theta_t}{1-\beta^t}<br>$$</p>
-<p>随着 t 的增大，β 的 t 次方趋近于 0。因此当 t 很大的时候，偏差修正几乎没有作用，但是在前期学习可以帮助更好的预测数据。在实际过程中，一般会忽略前期偏差的影响。</p>
+          计算公式
+指数加权平均（Exponentially Weight Average）是一种常用的序列数据处理方式，计算公式为：
 
-          
+$$S_t =\begin{cases}Y_1, &amp;t = 1 \\beta S_{t-1} + (1-\beta)Y_t, &amp;t &gt; 1\end{c
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/04/28/DeepLearning/2018-04-28-course2-Week2-3-指数加权平均数（Exponentially weighted averages)/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1043,72 +987,16 @@
       
         
           
-            <h1 id="Mini-batch-梯度下降（Mini-batch-gradient-descent）"><a href="#Mini-batch-梯度下降（Mini-batch-gradient-descent）" class="headerlink" title="Mini-batch 梯度下降（Mini-batch gradient descent）"></a>Mini-batch 梯度下降（Mini-batch gradient descent）</h1><h2 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h2><p>机器学习的应用是一个高度依赖经验的过程，伴随着大量迭代的过程，你需要训练诸多模型，才能找到合适的那一个，而优化算法能够帮助你快速训练模型。</p>
-<p>深度学习难以在大数据领域发挥最大效果的一个原因是，在巨大的数据集基础上进行训练速度很慢。而优化算法能够帮助快速训练模型，大大提高效率。</p>
-<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><ul>
-<li><strong>batch 梯度下降法</strong>（批梯度下降法，我们之前一直使用的梯度下降法）是最常用的梯度下降形式，即同时处理整个训练集。其在更新参数时使用所有的样本来进行更新</li>
-</ul>
-<p>但是如果每次处理训练数据的一部分即进行梯度下降法，则我们的算法速度会执行的更快。而处理的这些一小部分训练子集即称为 mini-batch。</p>
-<ul>
-<li><strong>mini-batch梯度下降法</strong>每次同时处理单个的 mini-batch，其他与 batch 梯度下降法一致。</li>
-</ul>
-<h2 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h2><p>那么究竟mini-batch梯度下降法的原理是什么？在训练集上运行mini-batch梯度下降法，你运行for t=1……5000，因为我们有5000个各有1000个样本的组，在for循环里你要做得基本就是对 X^{t}和Y^{t} 执行一步梯度下降法。假设你有一个拥有1000个样本的训练集，而且假设你已经很熟悉一次性处理完的方法，你要用向量化去几乎同时处理1000个样本。</p>
-<p><img src="https://raw.githubusercontent.com/songapore/For-PicGo/master/img/Mini-batch%20gradient%20descent.png" alt="Mini-batch gradient descent"></p>
-<p>你也会注意到，我们做的一切似曾相识，其实跟之前我们执行梯度下降法如出一辙，除了你现在的对象不是X，Y，而是 X^{t} 和 Y^{t}</p>
-<p>这是使用mini-batch梯度下降法训练样本的一步，我写下的代码也可被称为进行“一代”（1 epoch）的训练。一代这个词意味着只是一次遍历了训练集。</p>
-<p>使用batch梯度下降法，一次遍历训练集只能让你做一个梯度下降，使用mini-batch梯度下降法，一次遍历训练集，能让你做5000个梯度下降。当然正常来说你想要多次遍历训练集，还需要为另一个while循环设置另一个for循环。所以你可以一直处理遍历训练集，直到最后你能收敛到一个合适的精度。</p>
-<p>如果你有一个丢失的训练集，mini-batch梯度下降法比batch梯度下降法运行地更快，所以几乎每个研习深度学习的人在训练巨大的数据集时都会用到，下一课中，我们将进一步深度讨论mini-batch梯度下降法，你也会因此更好地理解它的作用和原理。</p>
-<h1 id="理解mini-batch梯度下降法"><a href="#理解mini-batch梯度下降法" class="headerlink" title="理解mini-batch梯度下降法"></a>理解mini-batch梯度下降法</h1><p>我们将进一步学习如何执行梯度下降法，更好地理解其作用和原理。</p>
-<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p>Mini-Batch 梯度下降法（小批量梯度下降法）每次同时处理单个的 mini-batch，其他内容与 batch 梯度下降法一致。</p>
-<p>使用 batch 梯度下降法，对整个训练集的一次遍历只能做一个梯度下降；而使用 Mini-Batch 梯度下降法，对整个训练集的一次遍历（称为一个 epoch）能做 mini-batch 个数个梯度下降。之后，可以一直遍历训练集，直到最后收敛到一个合适的精度。</p>
-<p>batch 梯度下降法和 Mini-batch 梯度下降法代价函数的变化趋势如下：</p>
-<p><img src="https://raw.githubusercontent.com/songapore/For-PicGo/master/img/training-with-mini-batch-gradient-descent.png" alt="training-with-mini-batch-gradient-descent"></p>
-<p>使用batch梯度下降法时，每次迭代你都需要历遍整个训练集，可以预期每次迭代成本都会下降，所以成本函数J是迭代次数的一个函数，它应该会随着每次迭代而减少，如果在某次迭代中J增加了，那肯定出了问题，也许你的学习率太大。</p>
-<p>使用mini-batch梯度下降法，如果你作出成本函数在整个过程中的图，发现并不是每次迭代都是下降的，特别是在每次迭代中，你要处理的是 X^{t} 和 Y^{t}，如果要作出成本函数 J^{t} 的图，而 J^{t} 只和 X^{t} 和 Y^{t} 有关，也就是每次迭代下你都在训练不同的样本集或者说训练不同的mini-batch，如果你要作出成本函数的图，你很可能会看到这样的结果，走向朝下，但有更多的噪声，所以如果你作出的J^{t}图，因为在训练mini-batch梯度下降法时，会经过多代，你可能会看到这样的曲线。没有每次迭代都下降是不要紧的，但走势应该向下。</p>
-<h2 id="batch-的不同大小（size）带来的影响"><a href="#batch-的不同大小（size）带来的影响" class="headerlink" title="batch 的不同大小（size）带来的影响"></a>batch 的不同大小（size）带来的影响</h2><ul>
-<li>mini-batch 的大小为 1，即是<strong>随机梯度下降法</strong>（stochastic gradient descent），每个样本都是独立的 mini-batch；</li>
-<li>mini-batch 的大小为 m（数据集大小），即是 batch 梯度下降法；</li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/songapore/For-PicGo/master/img/choosing-mini-batch-size.png" alt="choosing your mini_batch size"></p>
-<ul>
-<li><strong>batch 梯度下降法</strong>：</li>
-</ul>
-<ol>
-<li>对所有 m 个训练样本执行一次梯度下降，每一次迭代时间较长，训练过程慢；</li>
-<li>相对噪声低一些，幅度也大一些；</li>
-<li>成本函数总是向减小的方向下降。</li>
-</ol>
-<ul>
-<li><strong>随机梯度下降法</strong>：</li>
-</ul>
-<ol>
-<li>对每一个训练样本执行一次梯度下降，训练速度快，但丢失了向量化带来的计算加速；</li>
-<li>有很多噪声，减小学习率可以适当；</li>
-<li>成本函数总体趋势向全局最小值靠近，但永远不会收敛，而是一直在最小值附近波动。<h2 id="mini-batch-大小的选择"><a href="#mini-batch-大小的选择" class="headerlink" title="mini-batch 大小的选择"></a>mini-batch 大小的选择</h2>如果mini-batch大小既不是1也不是，应该取中间值，那应该怎么选择呢？其实是有指导原则的。</li>
-</ol>
-<p>首先，如果训练集较小，直接使用batch梯度下降法，样本集较小就没必要使用mini-batch梯度下降法，你可以快速处理整个训练集，所以使用batch梯度下降法也很好，这里的少是说 <strong>小于2000个样本，</strong> 这样比较适合使用batch梯度下降法。</p>
-<p>不然，样本数目较大的话，<strong>一般的mini-batch大小为64到512</strong>， <strong>考虑到电脑内存设置和使用的方式，如果mini-batch大小是2的<br>n<br>次方，</strong> 代码会运行地快一些，64就是2的6次方，以此类推，128是2的7次方，256是2的8次方，512是2的9次方。所以我经常把mini-batch大小设成2的次方。在上一个视频里，我的mini-batch大小设为了1000，建议你可以试一下1024，也就是2的10次方。也有mini-batch的大小为1024，不过比较少见，64到512的mini-batch比较常见。</p>
-<p>最后需要注意的是在你的mini-batch中，要确保和要符合CPU/GPU内存，取决于你的应用方向以及训练集的大小。如果你处理的mini-batch和CPU/GPU内存不相符，不管你用什么方法处理数据，你会注意到算法的表现急转直下变得惨不忍睹，所以我希望你对一般人们使用的mini-batch大小有一个直观了解。事实上mini-batch大小是另一个重要的变量，你需要做一个快速尝试，才能找到能够最有效地减少成本函数的那个，我一般会尝试几个不同的值，几个不同的2次方，然后看能否找到一个让梯度下降优化算法最高效的大小。希望这些能够指导你如何开始找到这一数值。</p>
-<p>总结起来，</p>
-<ul>
-<li>如果训练样本的大小比较小，如 m ⩽ 2000 时，选择 batch 梯度下降法；</li>
-<li>如果训练样本的大小比较大，选择 Mini-Batch 梯度下降法。为了和计算机的信息存储方式相适应，代码在 mini-batch 大小为 2 的幂次时运行要快一些。典型的大小为 26、27、…、29；</li>
-<li>mini-batch 的大小要符合 CPU/GPU 内存。</li>
-<li>mini-batch 的大小也是一个重要的超变量，需要根据经验快速尝试，找到能够最有效地减少成本函数的值。</li>
-</ul>
-<h2 id="获得-mini-batch-的步骤"><a href="#获得-mini-batch-的步骤" class="headerlink" title="获得 mini-batch 的步骤"></a>获得 mini-batch 的步骤</h2><ul>
-<li>将数据集打乱；</li>
-<li>按照既定的大小分割数据集；<br>其中打乱数据集的代码：</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">m = X.shape[1]</span><br><span class="line">permutation = list(np.random.permutation(m))</span><br><span class="line">shuffled_X = X[:, permutation]</span><br><span class="line">shuffled_Y = Y[:, permutation].reshape((1,m))</span><br></pre></td></tr></table></figure>
-<ul>
-<li><strong>符号表示约定</strong></li>
-<li>使用上角小括号 i 表示训练集里的值，x^(i) 是第 i 个训练样本；</li>
-<li>使用上角中括号 l 表示神经网络的层数，z^[l] 表示神经网络中第 l 层的 z 值；</li>
-<li>现在引入大括号 t 来代表不同的 mini-batch，因此有 X^{t} 、Y^{t}</li>
-</ul>
-
-          
+          Mini-batch 梯度下降（Mini-batch gradient descent）作用机器学习的应用是一个高度依赖经验的过程，伴随着大量迭代的过程，你需要训练诸多模型，才能找到合适的那一个，而优化算法能够帮助你快速训练模型。
+深度学习难以在大数据领域发挥最大效果的一个原因是，在巨大的数据集基础
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/04/27/DeepLearning/2018-04-27-course2-Week2-1-Mini-batch梯度下降/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1248,30 +1136,18 @@
       
         
           
-            <p>自动驾驶正在你意想不到的各个领域快速落地，并开始服务大众。下面，就一起来盘点一下无人驾驶都在哪些场景实现了落地</p>
-<h2 id="1-无人快递车"><a href="#1-无人快递车" class="headerlink" title="1.无人快递车"></a>1.无人快递车</h2><p>无人快递车，这可能是最早为你服务的无人车。电商与快递市场的急速增长，快递小哥即使风餐露宿、日以继夜也负担不起日益增长的单量，无人物流车正是为了减轻他们负担而诞生。比如，</p>
-<ul>
-<li>阿里菜鸟ET物流实验室无人配送小车系列</li>
-<li>京东X事业部智能配送车</li>
-<li>智行者蜗必达-无人配送物流车</li>
-<li>真机智能&amp;苏宁物流无人物流车</li>
-<li>迦智科技园区无人配送车等等<h2 id="2-无人扫地-amp-作业车"><a href="#2-无人扫地-amp-作业车" class="headerlink" title="2.无人扫地&amp;作业车"></a>2.无人扫地&amp;作业车</h2>无人扫地车，为日晒雨淋环卫工人们找个好帮手。环卫 工人们总是默默无闻地把一个城市最脏最累的事情完成。无人扫地车就是为了减轻他们的负担而发明，它不但可以日夜工作，还无惧风雨和烈日，在恶劣天气条件下作业能避免环卫工人受到伤害。目前，各地无人扫地车已在开始运行，并有效完成清扫任务，如</li>
-<li>autowire.ai (仙途智能) 6米长的大型清洁车，已在上海松江启迪漕河泾（中山）科技园内试运行作业</li>
-<li>智行者“蜗Ω”系列-无人扫路机已在北京的公园内运行作业。<h2 id="3-无人驾驶园区观光-amp-摆渡车"><a href="#3-无人驾驶园区观光-amp-摆渡车" class="headerlink" title="3.无人驾驶园区观光&amp;摆渡车"></a>3.无人驾驶园区观光&amp;摆渡车</h2>如果你想找一辆能坐的无人车，那么无人观光车和无人摆渡车就是不错的选择。这类低速无人驾驶载人车，是目前在落地运营最快的载人无人驾驶项目。比如说</li>
-<li>驭势科技的“机场摆渡车”</li>
-<li>天隼“旋风智能车”</li>
-<li>清智科技无人观光车等等，你可以在体验人工智能高科技的同时还能欣赏风景<h2 id="4-自动驾驶公交车"><a href="#4-自动驾驶公交车" class="headerlink" title="4.自动驾驶公交车"></a>4.自动驾驶公交车</h2>自动驾驶公交车，这可能是未来无人驾驶时代全面到了之时，你使用频率最高的无人驾驶车辆。</li>
-<li>去年“刷屏”的深圳智能驾驶公交车–阿尔法巴</li>
-<li>李院士主导的北京园博园自动驾驶公交车</li>
-<li>青飞智能的G200无人小巴车等等<h2 id="5-无人驾驶乘用车"><a href="#5-无人驾驶乘用车" class="headerlink" title="5.无人驾驶乘用车"></a>5.无人驾驶乘用车</h2>当然，你楼下车库那辆车，也正在变成无人驾驶车辆！ 提到无人驾驶大家最先期待可能还不是上面所提到的“工具车”，而是每天都在开的乘用车，目前使用乘用车做的自动驾驶方案大多为高速场景无人驾驶方案，车辆由小轿车、SUV、甚至房车改装而成。</li>
-<li>roadstar.ai 、</li>
-<li>图森未来、</li>
-<li>环宇智行、</li>
-<li>奇瑞、</li>
-<li>智尊保等企业，都在快速推动无人驾驶高速场景落地。<h2 id="6-无人大卡车"><a href="#6-无人大卡车" class="headerlink" title="6.无人大卡车"></a>6.无人大卡车</h2>大卡车，无人驾驶也有一颗硬汉的心。在霸气的体量和造型之下，大卡车几乎包揽了全世界所有海港集装箱的陆上运输，在国际贸易中的至关重要，然而由于运输成本，道路通畅性问题，大卡车大多选择在凌晨0点~3点上路，非常不利于驾驶员身体健康，而无人驾驶大卡车就不存在健康问题，更适合晚上作业。比如 图森未来 就是一家无人驾驶货运卡车方案商，图森在中美两国有着先进的无人驾驶大卡车方案正在快速落地。</li>
-</ul>
+          自动驾驶正在你意想不到的各个领域快速落地，并开始服务大众。下面，就一起来盘点一下无人驾驶都在哪些场景实现了落地
+1.无人快递车无人快递车，这可能是最早为你服务的无人车。电商与快递市场的急速增长，快递小哥即使风餐露宿、日以继夜也负担不起日益增长的单量，无人物流车正是为了减轻他们负担而诞生。比如，
 
-          
+阿
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/04/20/self-driving/2018-04-20-self-driving-application/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1411,22 +1287,19 @@
       
         
           
-            <h2 id="在神经网络实施梯度检验的实用技巧和注意事项。"><a href="#在神经网络实施梯度检验的实用技巧和注意事项。" class="headerlink" title="在神经网络实施梯度检验的实用技巧和注意事项。"></a>在神经网络实施梯度检验的实用技巧和注意事项。</h2><p><img src="https://raw.githubusercontent.com/songapore/For-PicGo/master/img/Gradient%20Checking%20Implementation%20Notes.png" alt="Gradient Checking Implementation Notes"></p>
-<ul>
-<li>首先，不要在训练中使用梯度检验，它只用于调试。</li>
-</ul>
-<p>我的意思是，计算所有i值的dθapprox[i]<br>是一个非常漫长的计算过程，为了实施梯度下降，你必须使用和 backprop来计算，并使用backprop来计算导数，只要调试的时候，你才会计算它，来确认数值是否接近。完成后，你会关闭梯度检验，梯度检验的每一个迭代过程都不执行它，因为它太慢了。</p>
-<ul>
-<li>第二点，如果算法的梯度检验失败，要检查所有项，检查每一项，并试着找出bug。</li>
-</ul>
-<p>也就是说，如果与dθ[i]的值相差很大，我们要做的就是查找不同的i值，看看是哪个导致dθapprox[i]与dθ[i]的值相差这么多。</p>
-<ul>
-<li>第三点，在实施梯度检验时，当成本函数包含正则项时，也需要带上正则项进行检验；</li>
-<li>第四点，梯度检验不能与dropout同时使用。</li>
-</ul>
-<p>因为每次迭代过程中，dropout会随机消除隐藏层单元的不同子集，难以计算dropout在梯度下降上的代价函数。因此dropout可作为优化代价函数的一种方法，但是代价函数J被定义为对所有指数极大的节点子集求和。而在任何迭代过程中，这些节点都有可能被消除，所以很难计算代价函数。你只是对成本函数做抽样，用dropout，每次随机消除不同的子集，所以很难用梯度检验来双重检验dropout的计算，所以我一般不同时使用梯度检验和dropout。如果你想这样做，可以把dropout中的keepprob设置为1.0，然后打开dropout，并寄希望于dropout的实施是正确的，你还可以做点别的，比如修改节点丢失模式确定梯度检验是正确的。实际上，我一般不这么做，我建议关闭dropout，用梯度检验进行双重检查，在没有dropout的情况下，你的算法至少是正确的，然后打开dropout。</p>
+          在神经网络实施梯度检验的实用技巧和注意事项。
 
-          
+首先，不要在训练中使用梯度检验，它只用于调试。
+
+我的意思是，计算所有i值的dθapprox[i]是一个非常漫长的计算过程，为了实施梯度下降，你必须使用和 backprop来计算，并使用backprop来计算导数，只要调试的时候，你才会计算它，来确认数
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/04/19/DeepLearning/2018-04-19-course2-Week1-14-梯度检验应用的注意事项（Gradient Checking Implementation Notes）/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1566,29 +1439,20 @@
       
         
           
-            <ul>
-<li>梯度检验帮我们节省了很多时间，也多次帮我发现backprop实施过程中的bug，接下来，我们看看如何利用它来调试或检验backprop的实施是否正确。</li>
-</ul>
-<h2 id="连接参数"><a href="#连接参数" class="headerlink" title="连接参数"></a>连接参数</h2><p><img src="https://raw.githubusercontent.com/songapore/For-PicGo/master/img/Gradient%20checking.png" alt="Gradient checking"></p>
-<p>将 W[1]，b[1]，…，W[L]，b[L]全部连接出来，成为一个巨型向量 θ。这样，</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">J(W[1],b[1],...,W[L]，b[L])=J(θ)</span><br></pre></td></tr></table></figure>
-<p>同时，对 dW[1]，db[1]，…，dW[L]，db[L]执行同样的操作得到巨型向量 dθ，它和 θ 有同样的维度。</p>
-<h2 id="进行梯度检验"><a href="#进行梯度检验" class="headerlink" title="进行梯度检验"></a>进行梯度检验</h2><ul>
-<li>现在的问题是dθ 和代价函数J的梯度或坡度有什么关系？</li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/songapore/For-PicGo/master/img/Gradient%20checking2.png" alt="Gradient checking"></p>
-<p>首先，我们要清楚 J 是超参数 θ 的一个函数。</p>
-<p>使用双边误差，也就是</p>
-<p>$$<br>d\theta_{approx}[i] ＝ \frac{J(\theta_1, \theta_2, …, \theta_i+\varepsilon, …) - J(\theta_1, \theta_2, …, \theta_i-\varepsilon, …)}{2\varepsilon}<br>$$</p>
-<p>具体来说，如何定义两个向量是否真的接近彼此？我一般做下列运算，计算这两个向量的距离</p>
-<p>$$<br>\frac{||d\theta_{approx} - d\theta||<em>2}{||d\theta</em>{approx}||_2+||d\theta||_2}<br>$$</p>
-<p>注意这里没有平方，它是误差平方之和，然后求平方根，得到欧式距离，然后用向量长度归一化，使用向量长度的欧几里得范数。分母只是用于预防这些向量太小或太大，分母使得这个方程式变成比率</p>
-<p>如果左边这个方程式结果是10^-3 ,我就会担心是否存在bug，计算结果应该比10^-3小很多，如果比大很多，我就会很担心，担心是否存在bug。这时应该仔细检查所有项，看是否有一个具体的值，使得与dθ[i]大不相同，并用它来追踪一些求导计算是否正确，经过一些调试，最终结果会是这种非常小的值（10^-7），那么，你的实施可能是正确的。</p>
-<ul>
-<li>在实施神经网络时，我经常需要执行foreprop和backprop，然后我可能发现这个梯度检验有一个相对较大的值，我会怀疑存在bug，然后开始调试，调试，调试，调试一段时间后，我得到一个很小的梯度检验值，现在我可以很自信的说，神经网络实施是正确的。</li>
-</ul>
-
           
+梯度检验帮我们节省了很多时间，也多次帮我发现backprop实施过程中的bug，接下来，我们看看如何利用它来调试或检验backprop的实施是否正确。
+
+连接参数
+将 W[1]，b[1]，…，W[L]，b[L]全部连接出来，成为一个巨型向量 θ。这样，
+1J(W[1],b[1],...,W[L]，
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/04/19/DeepLearning/2018-04-19-course2-Week1-13-梯度检验（Gradient checking）/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1728,12 +1592,17 @@
       
         
           
-            <p>在实施backprop时，有一个测试叫做梯度检验，它的作用是确保backprop正确实施。因为有时候，你虽然写下了这些方程式，却不能100%确定，执行backprop的所有细节都是正确的。为了逐渐实现梯度检验，我们首先说说如何计算梯度的数值逼近</p>
-<p><img src="https://raw.githubusercontent.com/songapore/For-PicGo/master/img/one-and-two-sided-difference.png.png" alt="image"></p>
-<p>当 ε 越小时，结果越接近真实的导数，也就是梯度值。</p>
-<p>我们可以使用这个方法来检验反向传播是否得以正确实施，如果不正确，它可能有bug需要你来解决。</p>
+          在实施backprop时，有一个测试叫做梯度检验，它的作用是确保backprop正确实施。因为有时候，你虽然写下了这些方程式，却不能100%确定，执行backprop的所有细节都是正确的。为了逐渐实现梯度检验，我们首先说说如何计算梯度的数值逼近
 
-          
+当 ε 越小时，结果越接近真实的导数，也就是梯度值。
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/04/19/DeepLearning/2018-04-19-course2-Week1-12-梯度的数值逼近（Numerical approximation of gradients）/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1873,18 +1742,18 @@
       
         
           
-            <p>针对梯度消失和梯度爆炸问题，我们想出了一个不完整的解决方案，虽然不能彻底解决问题，却很有用，有助于我们为神经网络更谨慎地选择随机初始化参数。</p>
-<p><img src="https://raw.githubusercontent.com/songapore/For-PicGo/master/img/Weight%20Initialization.png" alt="Weight Initialization"></p>
-<p>当输入的数量 n 较大时，我们希望每个 wi 的值都小一些，这样它们的和得到的 z 也较小。</p>
-<p>要得到较小的 wi，设置Var(wi)=1/n，这里称为 <strong>Xavier initialization</strong>。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">WL = np.random.randn(WL.shape[0], WL.shape[1]) * np.sqrt(1/n)</span><br></pre></td></tr></table></figure>
-<p>n就是我喂给的神经单元数量</p>
-<p>这样，激活函数的输入 x 近似设置成均值为 0，标准方差为 1，相应的，神经元输出 z 的方差就正则化到 1 了。虽然没有解决梯度消失和爆炸的问题，但其在一定程度上确实减缓了梯度消失和爆炸的速度。</p>
-<p>将 ReLU 作为激活函数时，Var(wi)=2/n</p>
-<p> 总结，当激活函数使用 ReLU 时，Var(wi)=2/n；当激活函数使用 tanh 时，Var(wi)=1/n。</p>
-<p> 实际上，我认为所有这些公式只是给你一个起点，它们给出初始化权重矩阵的方差的默认值</p>
+          针对梯度消失和梯度爆炸问题，我们想出了一个不完整的解决方案，虽然不能彻底解决问题，却很有用，有助于我们为神经网络更谨慎地选择随机初始化参数。
 
-          
+当输入的数量 n 较大时，我们希望每个 wi 的值都小一些，这样它们的和得到的 z 也较小。
+要得到较小的 wi，设置Var(wi)=1/n，这里称为 Xa
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/04/19/DeepLearning/2018-04-19-course2-Week1-11-神经网络的权重初始化（Weight Initialization for Deep Networks）/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>

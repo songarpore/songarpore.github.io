@@ -11,6 +11,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="theme-color" content="#222">
+<meta name="google-site-verification" content="4b5ChOPlfrWPkfJKVSwbnGC4WDT5fyOTDO62HVBosls">
+
 
 
 
@@ -384,124 +386,17 @@
       
         
           
-            <h1 id="感知"><a href="#感知" class="headerlink" title="感知"></a>感知</h1><p>在本课中 我们将首先介绍计算机视觉的基本应用领域，然后我们将介绍机器学习、神经网络和卷积神经网络的基础知识。</p>
-<p>我们将继续讨论感知模块在无人驾驶车中的具体任务，接下来将介绍 Apollo 感知模块的体系结构和传感器融合的相关主题。希望这会让你对无人驾驶感知系统有一个清晰认识</p>
-<h2 id="计算机视觉"><a href="#计算机视觉" class="headerlink" title="计算机视觉"></a>计算机视觉</h2><p>作为人类 你和我可以自动识别图像中的物体，甚至可以推断这些物体之间的关系。但是 对于计算机而言，图像只是红色、绿色和蓝色值的集合。如何将这些颜色值翻译为解读有意义的图像内容并不明显。</p>
-<p><strong>无人驾驶车有四个感知世界的核心任务</strong>。</p>
-<ul>
-<li><p>检测 是指找出物体在环境中的位置</p>
-</li>
-<li><p>分类 是指明确对象是什么</p>
-</li>
-<li><p>跟踪 是指随时间的推移观察移动物体。如其他车辆、自行车和行人</p>
-</li>
-<li>语义分割意味着将图像中的每个像素与语义类别进行匹配。如道路、汽车或天空</li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/songapore/For-PicGo/master/img/perception.jpg" alt=""></p>
-<p>我们可将 <strong>分类</strong> 作为作为研究计算机视觉一般数据流程的例子。</p>
-<p><strong>图像分类器是一种将图像作为输入并输出标识该图像的标签或“类别”的算法</strong>。例如 交通标志分类器查看停车标志并识别它是停车标志、让路标志、限速标志，还是其他类型的标志。分类器甚至可以识别行为。比如一个人是在走路 还是在跑步。</p>
-<p><img src="https://raw.githubusercontent.com/songapore/For-PicGo/master/img/classification%20steps.jpg" alt=""></p>
-<p>分类器有很多种，但它们都包含一系列类似的步骤。</p>
-<ul>
-<li>首先 计算机接收类似摄像头等成像设备的输入，这通常被捕获为图像或一系列图像。</li>
-<li>然后通过预处理发送每个图像预处理对每个图像进行了标准化处理。常见的预处理步骤包括调整图像大小或旋转图像或将图像从一个色彩空间转换为另一个色彩空间。例如从全彩到灰度。预处理可帮助我们的模型更快地处理和学习图像。</li>
-<li>接下来 提取特征。特征有助于计算机理解图像。例如 将汽车与自行车区分开来的一些特征，汽车通常具有更大的形状 并且它有四个轮子而不是两个，形状和车轮将是汽车的显著特征。我们将在本课的后面详细讨论特征。</li>
-<li>最后 这些特征被输入到分类模型中，此步骤使用特征来选择图像类别。例如 分类器可以确定图像是否包含汽车、自行车、行人或者根本不包含这样的对象。为了完成这些视觉任务，需要建立模型。模型是帮助计算机了解图像内容的工具，在计算机视觉中 无论经过训练的模型执行什么任务，它们通常在开始时将摄像头图像作为输入。</li>
-</ul>
-<h2 id="摄像头图像"><a href="#摄像头图像" class="headerlink" title="摄像头图像"></a>摄像头图像</h2><p>摄像头图像是最常见的计算机视觉数据。</p>
-<p>以这张汽车照片为例，让我们看看计算机如何认为这实际上是一辆汽车的图像。</p>
-<p><img src="https://raw.githubusercontent.com/songapore/For-PicGo/master/img/%E5%9B%BE%E5%83%8F%E7%9F%A9%E9%98%B5.jpg" alt=""></p>
-<p> <strong>从计算机的角度来看，图像只是一个二维网格，也被称为矩阵</strong>。矩阵中的每个单元格都包含一个值，数字图像全部由像素组成，其中包含非常小的颜色或强度单位。</p>
-<p>图像中的每个像素都只是一个数值，这些值构成了我们的图像矩阵。我们甚至可以改变这些像素值。我们可以通过为每个像素值添加一个标量整数来改变图像亮度，我们也可以向右移动每个像素值，我们还可以执行许多其他操作。通常 这些数字网格是许多图像处理技术的基础。多数颜色和形状转换都只是通过对图像进行数学运算以及逐一像素进行更改来完成。现在是一个将图像分解为二维灰度像素值网格的示例。</p>
-<p><img src="https://raw.githubusercontent.com/songapore/For-PicGo/master/img/RGB%E5%9B%BE.jpg" alt=""></p>
-<p>彩色图像是相似的 但更复杂一点，彩色图像被构建为值的三维立方体。每个立方体都有高度、宽度和深度，深度为颜色通道数量。大多数彩色图像以三种颜色组合表示，红色、绿色和蓝色，这些图像被称为 <strong>RGB 图像</strong>。对于 RGB 图像 深度为 3！因此 RGB 图像可以用一个薄盒子表示，将深度视为三重叠加的二维色层很有帮助。一层为红色，一层为绿色、一层为蓝色，它们一起构建了一个完整的彩色图像。</p>
-<h2 id="LiDAR-图像"><a href="#LiDAR-图像" class="headerlink" title="LiDAR 图像"></a>LiDAR 图像</h2><p>激光雷达传感器创建环境的点云表征，提供了难以通过摄像头图像获得的信息，如距离和高度。</p>
-<p>激光雷达传感器使用光线 ，尤其是激光 来测量与环境中反射该光线的物体之间的距离。激光雷达发射激光脉冲并测量物体将每个激光脉冲反射回传感器所花费的时间。反射需要的时间越长 物体离传感器越远，激光雷达正是通过这种方式来构建世界的视觉表征。</p>
-<p><img src="https://raw.githubusercontent.com/songapore/For-PicGo/master/img/lidar%E5%9B%BE%E5%83%8F.jpg" alt=""></p>
-<p>你可以在此可视化视图中看到激光雷达的输出，激光雷达通过发射光脉冲来检测汽车周围的环境。蓝色点表示反射激光脉冲的物体，中间的黑色区域是无人驾驶车本身占据的空间。由于激光雷达测量激光束反射，它收集的数据形成一团点或 <strong>“点云”</strong>。</p>
-<p>点云中的每个点代表反射回传感器的激光束，这些点云可以告诉我们关于物体的许多信息，例如其形状和表面纹理。通过对点进行聚类和分析，这些数据提供了足够的对象检测、跟踪或分类信息，在这里你可以看到在点云上执行的检测和分类结果。红点为行人 绿点表示其他汽车，正如你所看到的那样 激光雷达数据提供了用于构建世界视觉表征的足够空间信息。</p>
-<p>计算机视觉技术不仅可以使用摄像头图像进行对象分类，还可以使用点云和其他类型的空间相关数据进行对象分类。</p>
-<h2 id="机器学习"><a href="#机器学习" class="headerlink" title="机器学习"></a>机器学习</h2><p>机器学习是使用特殊算法来训练计算机从数据中学习的计算机科学领域。通常 这种学习结果存放在一种被称为“模型”的数据结构中。有很多种模型，事实上 “模型”只是一种可用于理解和预测世界的数据结构。</p>
-<ul>
-<li><p>机器学习涉及使用数据和相关的真值标记来进行模型训练。例如 可能会显示车辆和行人的计算机图像，以及告诉计算机哪个是哪个的标签，我会让计算机学习如何最好地区分两类图像，这类机器学习也称为 <strong>监督式学习</strong>，因为模型利用了人类创造的真值标记</p>
-</li>
-<li><p>你可以设想一个类似的学习过程，但这次使用的是没有真值标记的车辆与行人图像。在这种方法中 我们会让计算机自行决定，哪些图像相似 哪些图像不同，这被称为 <strong>无监督学习</strong>。我们在这不提供真值标记，而是通过分析输入的数据，计算机凭借自行学习找到区别。</p>
-</li>
-<li><p>另一种方法被称为 <strong>“半监督式”学习</strong>。它将监督学习和无监督学习的特点结合在一起，该方法使用少量的标记数据和大量的未标记数据来训练模型。</p>
-</li>
-<li><p><strong>强化学习</strong>  是另一种机器学习，强化学习涉及允许模型通过尝试许多不同的方法来解决问题，然后衡量哪种方法最为成功。计算机将尝试许多不同的解决方案，最终使其方法与环境相适应。</p>
-</li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/songapore/For-PicGo/master/img/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%BB%83%E4%B9%A0%E9%A2%98.jpg" alt=""></p>
-<p>例如 在模拟器中，强化学习智能体可训练汽车进行右转，智能体将在初始位置发动车辆，然后进行实验性驾驶，以多种不同的方向和速度。如果汽车实际完成了右转，智能体会提高奖励，即得分，这是针对导致成功结果的初始操作。起初 汽车可能无法找到执行转弯的方法，然而 就像人类那样，汽车最终会从一些成功的右转经验中学习，最后学会如何完成任务。</p>
-<h2 id="神经网络"><a href="#神经网络" class="headerlink" title="神经网络"></a>神经网络</h2><p>人工神经网络是通过数据来学习复杂模式的工具。神经网络由大量的神经元组成，正如人体神经系统的神经元那样，人工神经元负责传递和处理信息，也可以对这些神经元进行训练。</p>
-<p>你可以将一些图像识别为车辆 无论它们是黑是白或大或小，你甚至可能不知道自己如何知道它们是车辆，也许是某些特征触发了你的反应，如车轮、车灯和车窗。</p>
-<p>人工神经网络具有相似的运作方式，通过密集训练 计算机可以辨别汽车、行人、交通信号灯和电线杆。</p>
-<p><img src="https://raw.githubusercontent.com/songapore/For-PicGo/master/img/how%20know%20a%20car.jpg" alt=""></p>
-<p>当看到该图像时，你的大脑如何工作？你的大脑可能会将图像分为几部分，然后识别特征，如车轮、车窗和颜色 然后 大脑将使用这些特征对图像进行检测和分类。例如 在确定图像是否为汽车时，大脑可能不会认为颜色是关键特征 因为汽车有多种颜色，所以大脑会将更多权重放在其他特征上 并降低颜色的重要性。</p>
-<p>同样地 <strong>神经网络也会从图像中提取许多特征</strong>但这些特征可能是我们人类无法描述或甚至无法理解的特征，但我们最终并不需要理解，计算机将 <strong>调整这些特征的权重</strong>以完成神经网络的最终任务，这就是深层神经网络的思维方式。</p>
-<h2 id="反向传播算法"><a href="#反向传播算法" class="headerlink" title="反向传播算法"></a>反向传播算法</h2><p>我们已经讨论过神经网络如何从数据中“学习”,那么你可能想知道这种学习如何发生。</p>
-<p><strong>学习有时称为训练，它由三步循环组成：前馈、误差测定和反向传播</strong>。</p>
-<ul>
-<li>首先随机分配初始权重，即人工神经元的值。通过神经网络来馈送每个图像 产生输出值，这被称为前馈。</li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/songapore/For-PicGo/master/img/backpropagation.jpg" alt=""></p>
-<ul>
-<li>下一步为误差测定，误差是真值标记与与前馈过程所产生输出之间的偏差。</li>
-<li>最后一步是反向传播，通过神经网络反向发送误差此过程类似前馈过程 只是以相反方向进行。</li>
-</ul>
-<p>每个人工神经元都对其值进行微调，这是基于通过神经网络后向传播的误差。所有这些独立调整的结果 可生成更准确的网络 。</p>
-<p>一个训练周期： 包括前馈、误差测定和反向传播还远远不够，为了训练网络 通常需要数千个这样的周期。但最终结果应该是：模型能够根据新数据做出准确预测。</p>
-<h2 id="卷积神经网络"><a href="#卷积神经网络" class="headerlink" title="卷积神经网络"></a>卷积神经网络</h2><p>卷积神经网络 （CNN） 是 一种人工神经网络， 它对感知问题特别有效。CNN 接受多维输入，包括定义大多数传感器数据的二维和三维形状。</p>
-<p>如果使用标准神经网络对图像进行分类，则需要通过一种方法将图像连接到网络的第一层，这属于一维。标准做法是通过将图像矩阵重塑为一个矢量，并在一个大行中连接所有列 将图像“展开”为一维像素阵列 。</p>
-<p><img src="https://raw.githubusercontent.com/songapore/For-PicGo/master/img/%E4%B8%80%E7%BB%B4.jpg" alt=""></p>
-<p>然而 这种方法打破了图像中所嵌入的空间信息，如果图像中有车轮，则车轮中的所有像素将散布在整个像素阵列中。但我们知道 这些像素，以二维方式连接形成车轮。如果我们将其散布在一个维度上，神经网络很难从图像中提取车轮。</p>
-<p>CNN 通过维持输入像素之间的空间关系来解决这个问题。具体来说 CNN 通过将过滤器连续滑过图像来收集信息，每次收集信息时，只对整个图像的一小部分区域进行分析，这被称为 “<strong>卷积</strong>”。</p>
-<p><img src="https://raw.githubusercontent.com/songapore/For-PicGo/master/img/cnn.jpg" alt=""><br>当我们在整个输入图像上对一个过滤器进行“卷积”时，我们将该信息与下一个卷积层相关联。例如 CNN 可以识别第一个卷积层中的基本边缘和颜色信息，然后 通过在第一层上卷积新过滤器，CNN 可以使用边缘和颜色信息，来归纳更复杂的结构 如车轮、车门和挡风玻璃。而另一个卷积可使用车轮、车门和挡风玻璃识别整个车辆。最后 神经网络可使用这一高阶信息对车辆进行分类。</p>
-<p>人们通常不太清楚 CNN 如何解读图像，CNN 有时会侧重于图像中令人惊讶的部分，但这也是深度学习的神奇之处。<strong>CNN 根据其任务查找真正需要的特征，任务可能是图像检测、分类、分割或其他类型的目标</strong>。</p>
-<h2 id="检测与分类"><a href="#检测与分类" class="headerlink" title="检测与分类"></a>检测与分类</h2><p>在感知任务中,首先想到的是<strong>障碍物检测和分类</strong>。</p>
-<p>在驾驶过程中会遇到许多障碍物，静态障碍物包括墙壁、树木、杆子和建筑物。动态障碍物包括行人、自行车和各种汽车。</p>
-<p><strong>计算机首先需要知道这些障碍物的位置，然后对它们进行分类</strong>。在路中行驶的无人驾驶车可能会探测到许多不同的物体，汽车根据所感知的物体类型，来确定路径和速度。如果感知到前方有一辆自行车，汽车可能会决定减速和变道 以便安全驶过自行车。但是 如果感知到前方有另一辆车，并预测到前方车辆也将以接近限速的速度行驶。无人驾驶车可能会保持其速度和车道。</p>
-<p>另一个示例为 <strong>交通信号灯检测分类</strong>。首先 我们将使用计算机视觉对图像中的交通信号灯进行定位。然后 我们可以根据灯光显示颜色对交通信号灯进行分类。</p>
-<p><img src="https://raw.githubusercontent.com/songapore/For-PicGo/master/img/%E5%88%86%E7%B1%BB.jpg" alt=""></p>
-<p>在无人驾驶车辆中，我们使用什么算法来对障碍物进行检测和分类？我们可以先使用检测 CNN 来查找图像中的对象的位置，在对图像中的对象进行定位后，我们可以将图像发送给另一个 CNN 进行分类。</p>
-<p>我们也可以使用单一 CNN 体系结构对对象进行检测和分类。一种通常的做法为在单个网络体系结构的末端附加几个不同的“头”，一个头可能执行检测，另一个则可能执行分类。</p>
-<p>一个经典的体系结构为 R-CNN 及其变体 Fast R-CNN 和 Faster R-CNN、YOLO 和 SSD 是具有类似形式的不同体系结构。</p>
-<h2 id="tracking跟踪"><a href="#tracking跟踪" class="headerlink" title="tracking跟踪"></a>tracking跟踪</h2><p>在检测完对象后 我们需要追踪它们。</p>
-<p>追踪的意义是什么？如果我们对每个帧中的每个对象进行检测并用边界框对每个对象进行标识。</p>
-<p>那么跨帧追踪对象会带来哪些好处？首先 追踪在检测失败时是至关重要的。如果你在运行检测算法时，对象被其他对象遮挡一部分，则检测算法可能会失败。追踪可以解决遮挡问题。另一个原因在于追踪可以保留身份。障碍物检测的输出为包含对象的边界框，但是 对象没有与任何身份关联，单独使用对象检测时，计算机不知道一个帧中的哪些对象与下一帧中的哪些对象相对应。</p>
-<p>该任务对人类来说很简单 但对汽车来说很困难。追踪的第一步为确认身份，通过查找特征相似度最高的对象，我们将在之前的帧中检测到的所有对象与在当前的帧中检测到的对象进行匹配。对象具有各种特征，有些特征可能基于颜色 而另一些特征可能基于形状，计算机视觉算法可以计算出复杂的图像特征，如局部二值模式和方向梯度直方图。当然 我们也需要考虑连续视频帧中，两个障碍物之间的位置和速度。<strong>由于两个帧之间的对象位置和速度没有太大变化，该信息也可以帮助我们快速找到匹配的对象</strong>。在确定身份后 我们可以使用对象的位置，并结合预测算法以估计在下一个时间步的速度和位置，该预测可帮助我们识别下一帧中的相应对象。</p>
-<h2 id="segmentation-语义分割"><a href="#segmentation-语义分割" class="headerlink" title="segmentation 语义分割"></a>segmentation 语义分割</h2><p>语义分割涉及对图像的每个像素进行分类。它用于尽可能详细地了解环境，并确定车辆可驾驶区域。</p>
-<p>语义分割依赖于一种特殊类型的 CNN，它被称为全卷积网络 或 FCN。FCN 用卷积层来替代传统 CNN 体系结构末端的平坦层。现在 网络中的每一层都是卷积层，因此其名称为“全卷积网络”。</p>
-<p>FCN 提供了可在原始输入图像之上叠加的逐像素输出，我们必须考虑的一个复杂因素是大小。在典型的 CNN 中 经过多次卷积之后，所产生的输出比原始输入图像小得多。</p>
-<p>然而 为了分割像素，输出尺寸必须与原始图像的尺寸相匹配，为了达到该目的 我们可以对中间输出进行上采样处理，直到最终输出的大小与原始输出图像的大小相匹配，网络的前半部分通常被称为编码器。因为这部分网络对输入图像的特征进行了提取和编码，网络的后半部分通常被称为解码器，因为它对这些特征进行了解码 并将其应用于输出。</p>
-<p><img src="https://raw.githubusercontent.com/songapore/For-PicGo/master/img/fully%20CN.jpg" alt=""></p>
-<h2 id="Apollo-感知"><a href="#Apollo-感知" class="headerlink" title="Apollo 感知"></a>Apollo 感知</h2><p>Apollo 开放式软件栈可感知障碍物、交通信号灯和车道。对于三维对象检测，Apollo 在高精度地图上使用 感兴趣区域 (ROI)来重点关注相关对象。</p>
-<p>Apollo 将 ROI 过滤器应用于点云和图像数据，以缩小搜索范围并加快感知。然后 通过检测网络馈送已过滤的点云，输出用于构建围绕对象的三维边界框，最后 我们使用被称为 <strong>检测跟踪关联</strong> 的算法来跨时间步识别单个对象。</p>
-<p>该算法先保留在每个时间步要跟踪的对象列表，然后在下一个时间步中找到每个对象的最佳匹配。对于交通信号灯的分类,Apollo 先使用高精度地图来确定前方是否存在交通信号灯,如果前方有交通信号灯,则高精度地图会返回灯的位置,这侧重于摄像头搜索范围,在摄像头捕获到交通信号灯图像后,Apollo 使用检测网络对图像中的灯进行定位,然后 Apollo 从较大的图像中提取交通信号灯。Apollo 将裁剪的交通灯图像提供给分类网络，以确定灯颜色。如果有许多灯，则系统需要选择哪些灯与其车道相关。</p>
-<p><img src="https://raw.githubusercontent.com/songapore/For-PicGo/master/img/detection%20network.jpg" alt=""></p>
-<p>Apollo 使用 <strong>YOLO 网络</strong>，来检测车道线和动态物体。 其中包括车辆、卡车、骑自行车的人和行人，在经过 YOLO 网络检测后，在线检测模块会并入来自其他传感器的数据，对车道线预测进行调整，车道线最终被并入名为“虚拟车道”的单一数据结构中。同样 也通过其他传感器的数据对 YOLO 网络所检测到的动态对象进行调整以获得每个对象的类型、位置、速度和前进方向。虚拟通道和动态对象均被传递到规划与控制模块。</p>
-<p><img src="https://raw.githubusercontent.com/songapore/For-PicGo/master/img/YOLO.jpg" alt=""></p>
-<h2 id="传感器数据比较"><a href="#传感器数据比较" class="headerlink" title="传感器数据比较"></a>传感器数据比较</h2><p><img src="https://raw.githubusercontent.com/songapore/For-PicGo/master/img/camera%20radar%20lidar%20compare.jpg" alt=""></p>
-<p><strong>感知通常依赖于摄像头、激光雷达和雷达</strong>。该图显示了这三种传感器的优缺点，绿色代表性能良好，黄色代表混合性能，红色代表性能不佳。</p>
-<ul>
-<li>摄像头非常适用于分类，在 Apollo 中 摄像头主要用于交通信号灯分类 以及车道检测。</li>
-<li>激光雷达的优势在于障碍物检测，即使在夜间 在没有自然光的情况下，激光雷达仍能准确地检测障碍物。</li>
-<li>雷达在探测范围和应对恶劣天气方面占优势</li>
-</ul>
-<p>通过融合这三种传感器的数据，可实现最佳聚合性能，这被称为“传感器融合”</p>
-<h3 id="雷达与激光雷达"><a href="#雷达与激光雷达" class="headerlink" title="雷达与激光雷达"></a>雷达与激光雷达</h3><p>雷达已经在汽车上使用很多年，在各种系统中都需要雷达，如自适应巡航控制、盲点警告、碰撞浸膏和碰撞预防系统等。尽管雷达技术已经成熟，它仍在不断进步，作用不断提升。其他传感器测量速度的方法是计算两次读数之间的差距，而雷达则通过多普勒效应来直接测量速度。多普勒效应根据对象在远离还是接近你，测量出雷达的频率变化。就像消防车警报器一样，当车辆正在远离你和驶向你时，听起来声是不一样的。多普勒效应对传感器融合至关重要。因为它可以把速度作为独立的测量参数，从而提升了融合算法的收敛速度。雷达还可以生成环境的雷达地图，进而实现定位。因为雷达波在坚硬表面会回弹。因此，它可以直接测量对象距离，无需在视线范围内也可以。雷达可以看到其他车辆底部。并发现可能会被阻挡的建筑物和对象。在车上的所有传感器中，雷达是至不容易受雨雾影响的。而且视野宽阔，可达 150 度，距离可达200 多米。与激光雷达和摄像头相比，雷达分辨率较低，尤其是在垂直方向，分辨率非常有限。分辨率低意味着来自静态物体的反射可能产生问题。例如，街道上检修孔盖或汽水罐，可能产生很高的雷达反射率，但他们并不大。我们将其称为雷达杂波。因此，当前的车载雷达通常会忽视静态物体。</p>
-<p>激光雷达是激光探测与测量的简称，而雷达则谁无线电探测与测量的简称。雷达使用无线电波，而激光雷达则使用红激光束来确定传感器和附近对象的距离。目前的激光雷达大多使用 900 纳米光波长度的光源。但部分激光雷达使用的光波长度更长，在雨雾中性能更好。当前的激光雷达使用旋转座架发射激光，扫描周边环境。激光室脉冲式的，脉冲被对象反射，然后返回一个点云，来代表这些物体。激光雷达的空间分辨率远远高于雷达。因为激光束越聚焦，垂直方向的扫描层数量就越多，因此每层的激光雷达的密度也越高。目前，激光雷达还不能直接测量对象的速度，必须使用两次或多次扫描之间的位置差来确定。激光雷达受天气和传感器清洁程度影响也很大，因此需要保持清洁。它们块头也比其他传感器更大，因此也很难安装，除非你只想在车顶安装一个大的激光扫描器。</p>
-<p><img src="https://raw.githubusercontent.com/songapore/For-PicGo/master/img/radar%20lidar.jpg" alt=""></p>
-<h2 id="感知融合策略"><a href="#感知融合策略" class="headerlink" title="感知融合策略"></a>感知融合策略</h2><p>Apollo 使用激光雷达和雷达来检测障碍物。用于融合输出的主要算法为卡尔曼滤波。</p>
-<p><img src="https://raw.githubusercontent.com/songapore/For-PicGo/master/img/two%20step%20estimation%20problem.jpg" alt=""></p>
-<p>卡尔曼滤波有两个步骤。第一步为预测状态，第二步是更新测量结果。</p>
-<p>设想我们正在跟踪一名行人，这里的状态表示行人的位置和速度，从已经掌握的行人状态开始。我们使用这些信息来执行卡尔曼滤波的第一步，即预测行人在将来的状态。</p>
-<p>下一步为误差结果更新，我们使用新的传感器来更新我们所认为的行人状态，卡尔曼滤波算法是预测和更新步骤的无限循环。</p>
-<p><img src="https://raw.githubusercontent.com/songapore/For-PicGo/master/img/fusion%20fuse.jpg" alt=""></p>
-<p>实际上有两种测量结果更新步骤：同步和异步。同步融合同时更新来自不同传感器的测量结果，而异步融合则逐个更新所收到的传感器测量结果。传感器融合可提高感知性能 因为各传感器相辅相成，融合也可以减少跟踪误差，所以我们可以更加确信，对道路上其他物体位置的预测。</p>
-
-          
+          感知在本课中 我们将首先介绍计算机视觉的基本应用领域，然后我们将介绍机器学习、神经网络和卷积神经网络的基础知识。
+我们将继续讨论感知模块在无人驾驶车中的具体任务，接下来将介绍 Apollo 感知模块的体系结构和传感器融合的相关主题。希望这会让你对无人驾驶感知系统有一个清晰认识
+计算机视觉作为人类 你
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/07/18/Self-Driving Car Fundamentals-Featuring Apollo/2018-07-18-Self-Driving Car Fundamentals-Featuring Apollo-lesson 4-Perception/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -641,89 +536,17 @@
       
         
           
-            <h1 id="定位"><a href="#定位" class="headerlink" title="定位"></a>定位</h1><p>定位是让无人驾驶车知道自身确切位置的方法,这是一个美妙而富有挑战性的任务.</p>
-<h2 id="定位简介"><a href="#定位简介" class="headerlink" title="定位简介"></a>定位简介</h2><p>现在我们假设你有一张全球的高精度地图，定位的任务是确定你的车辆在这张高精度地图上的位置。</p>
-<p>在我的日常生活中，我一直使用手机 GPS 来确定自己的位置，但 GPS 对于无人驾驶车来说不够精确。<strong>大多数时候，GPS 的精度在1-3米间</strong>，这对于无人驾驶车来说太不精确了。</p>
-<p>在一些情况下比如我们被高楼、山脉围绕或位于峡谷内，GPS 的精度可能只有10 米、甚至只有 50 米。</p>
-<p>由于我们无法完全信任 GPS，因此我们必须找到另一种方法来更准确地确定车辆在地图上的位置。<strong>最常用的方法是将汽车传感器所看到的内容与地图上所显示的内容进行比较</strong>。</p>
-<p>车辆传感器可以测量车辆与静态障碍物之间的距离，如树木、电线杆、路标和墙壁等。我们在车辆自身的坐标系中测量这些距离、这些静态障碍物的方向。随着车辆转弯，车辆自身的坐标系必然与地图坐标系不一致，车辆的坐标和地图坐标系可能均取决于手机导航系统中的设置。</p>
-<p>为估计车辆在地图上的位置，我们将传感器的地标观测值与这些地标在地图上的位置进行匹配。地图自带坐标系，无人驾驶软件必须将传感器的测量值从车辆坐标系转换为地图坐标系，反之亦然。执行这类转换是解决定位问题的关键步骤。</p>
-<p>我来做一个总结：对于定位，车辆将其传感器识别的地标与其高精度地图上存在的地标进行比对。为了进行该比对，必须能够在它自身坐标系和地图坐标系之间转换数据。然后，系统必须在地图上以十厘米的精度确定车辆的精确位置。</p>
-<p>定位提供了许多可供选择的方法，每种方法都有各自的优缺点。<strong>我们将探讨几种常见的无人驾驶车定位方法 如GNSS RTK、惯性导航、LiDAR 定位和视觉定位</strong></p>
-<p>最后 我们将了解 Apollo 框架是如何解决定位问题的。</p>
-<h2 id="Sebastian介绍定位"><a href="#Sebastian介绍定位" class="headerlink" title="Sebastian介绍定位"></a>Sebastian介绍定位</h2><p>什么是定位比如机器人需要知道它在哪里，这包括 X、Y 坐标位置、航向等信息。精确定位，我们要精确到 以准确地知道我们在哪个地方以及我们在车道内的哪个位置。</p>
-<p>为什么要追求精确定位呢？因为如果我们确切地知道我们在哪里，如果没有其他汽车和行人等，我们几乎可以闭着眼开车。</p>
-<p>所以要做一个关于定位的全景图，它将涉及不同类型的传感器也就是我们所谓的惯性感知，此外，还有不同类型的外部传感器包括摄像头、激光雷达等。</p>
-<h2 id="GNSS-RTK"><a href="#GNSS-RTK" class="headerlink" title="GNSS RTK"></a>GNSS RTK</h2><p>如果在野外迷路 你会怎么做？</p>
-<p>假如你看到自己离一棵树 75 米远,你可能在哪里?你只知道自己位于离树 75 米远的地方,更确切地说 你位于一个以树为中心 半径为 75 米的圆上。</p>
-<p>现在你看到了一个离自己 64 米远的房子，你知道自己现在在哪里吗？ 信不信由你 你可能不知道。你知道自己位于两个圆的交点处，但可能有两个交点，你不知道自己位于哪个交点上。</p>
-<p>现在假设你看到了第三个路标，即路灯 经过测量 你发现自己离路灯 55 米远，你总算知道了相对于这些地标的确切位置。</p>
-<p><img src="https://raw.githubusercontent.com/songapore/For-PicGo/master/img/GNSS%20location.png" alt=""></p>
-<p>如果你有一张地图，里面注明了这些地标在世界上的位置，你就知道了自己在世界上的确切位置,该过程被称为 <strong>三角测量</strong>。</p>
-<p>我们刚刚讲解的示例有两个维度，想象一下 我们试图在地球表面上进行三维定位。我们将使用传送它们与我们之间距离的卫星，而不是我们可以看到的地标，这就是 GPS 的工作原理。</p>
-<p>如果我们在地球上某一处，我们至少需要有多少卫星才能知道我们在哪里？</p>
-<p><img src="https://raw.githubusercontent.com/songapore/For-PicGo/master/img/L3_GNSS+RTK.png" alt=""></p>
-<p>答案与二维平面中的问题相同。 然而，实际生活中，GPS 使用另外一颗卫星来确定海拔高度。所以，每时每刻总共有 4 颗卫星确定你的位置。</p>
-<p>GPS 即全球定位系统，这是一种由美国政府开发并在全球范围内运营的卫星导航系统。这类系统的通用名称为全球导航卫星系统或 GNSS。<strong>GPS 是使用最广泛的 GNSS 系统</strong>。</p>
-<ul>
-<li>GPS 分为三部分。第一部分是卫星。在任何特定时间 大约有 30 颗 GPS 卫星在外层空间运行。它们各自距离地球表面约 2 万公里。</li>
-<li>该系统的第二部分由世界各地的控制站组成。控制站用于监视和控制卫星，其主要目的是让系统保持运行，并验证 GPS 广播信号的精确度</li>
-<li>系统的最后一部分是 GPS 接收器。GPS 接收器存在于手机、电脑、汽车、船只以及许多其他设备中。<strong>如果周围没有高楼等障碍物，并且天气良好，那么无论你身在何处，GPS 接收器每次应至少检测到四颗 GPS 卫星</strong>。</li>
-</ul>
-<p>GPS 接收器实际上并不直接探测你与卫星之间的距离，它首先测量信号的飞行时间，也就是说 信号从卫星传播到你的 GPS 接收器需要多长时间？通过将光速乘以这个飞行时间，来计算离卫星的距离。由于光速的值很大，即使是少量的时间误差也会在距离计算中造成巨大的误差。因此 为进一步减小误差 每颗卫星都配备了高精确度的原子钟。</p>
-<p>我们可以使用 <strong>实时运动定位</strong>（或 RTK）。RTK 涉及在地面上建立几个基站，每个基站都知道自己精确的“地面实况”位置。但是 每个基站也通过 GPS 测量自己的位置，已知的“地面实况”位置，与通过 GPS 测量的位置之间的偏差为 GPS 测量结果中的误差.</p>
-<p><img src="https://raw.githubusercontent.com/songapore/For-PicGo/master/img/RTK.png" alt=""></p>
-<p>然后 将这个误差传递给其他 GPS 接收器,以供其调整自身的位置计算。<strong>在 RTK 的帮助下，GPS 可以将定位误差限制在 10 厘米以内</strong>。但是 仍存在高楼和其他障碍物可能阻挡 GPS 信号的问题，这使定位变得困难 或根本无法定位。</p>
-<p><strong>GPS 的另一个缺点在于它的更新频率很低，大约为 10 赫兹 或每秒更新 10 次</strong>，由于无人驾驶车在快速移动，我们可能需要更频繁地更新位置。</p>
-<h2 id="惯性导航"><a href="#惯性导航" class="headerlink" title="惯性导航"></a>惯性导航</h2><p>我们来学习一种被称为惯性导航的定位方法。</p>
-<p>假设一辆汽车正以恒定速度直线行驶，如果我为你提供了汽车的初始位置、速度、行驶时长。你可以告诉我汽车现在处于什么位置吗？即从初始位置开始，然后速度乘以时间。<br>$$<br>s=s_0+vt<br>$$</p>
-<p>接下来 让我们尝试一个更难的问题。还是同样的问题 但不是初始位置和速度，而是 我向你提供初始速度和加速度，稍后你能告诉我车辆的速度吗？<br>$$<br>v=v_0+at<br>$$</p>
-<p>我们可以使用加速度、初始速度和初始位置来计算汽车在任何时间点的车速和位置。</p>
-<p>但是 这又引出了另一个问题：我们该如何测量加速度？</p>
-<p>我们需要一个名为三轴加速计的传感器。有三种不同类型的三轴加速度计，它们采用不同的方法，但共同的目标是精确测量加速度。</p>
-<p>然而 加速度计本身，不足以计算我们的位置和速度。加速度计根据车辆的坐标系记录测量结果，我们需要知道如何将这些测量值转换为全局坐标系，这种转换需要另一个名为陀螺仪的传感器。</p>
-<p>三轴陀螺仪的三个外部平衡环一直在旋转，但三轴陀螺仪中的旋转轴始终固定在世界坐标系中，我们计算车辆在坐标系中的位置是通过测量旋转轴和三个外部平衡环的相对位置来计算的。</p>
-<p><img src="https://raw.githubusercontent.com/songapore/For-PicGo/master/img/gyro.jpg" alt=""></p>
-<p><strong>加速度计和陀螺仪是惯性测量单元 (或 IMU) 的主要组件。IMU 的一个重要特征在于它以高频率更新，其频率可达到 1000 赫兹，所以 IMU 可以提供接近实时的位置信息。</strong></p>
-<p>遗憾的是 <strong>惯性测量单元的缺点在于其运动误差随时间增加而增加，我们只能依靠惯性测量单元，在很短的时间范围内进行定位</strong></p>
-<p>但是 <strong>我们可以结合 GPS 和 IMU 来定位汽车。一方面 IMU 弥补了 GPS 更新频率较低的缺陷，另一方面 GPS 纠正了 IMU 的运动误差。</strong></p>
-<p>但是 即使将 GPS 和 IMU 系统相结合，也不能完全解决我们的定位问题。如果我们在山间行驶，或城市峡谷中，或者最糟糕的是在地下隧道中行驶。那么我们可能会长时间没有 GPS 更新，这会让整个定位面临失败风险。</p>
-<h2 id="LiDAR定位"><a href="#LiDAR定位" class="headerlink" title="LiDAR定位"></a>LiDAR定位</h2><p><strong>利用激光雷达 我们可以通过点云匹配来对汽车进行定位</strong>。该方法将来自激光雷达传感器的检测数据，与预先存在的高精度地图连续匹配。通过这种比较，可获知汽车在高精度地图上的全球位置和行驶方向。</p>
-<p>有许多算法可用于匹配点云。</p>
-<ul>
-<li><strong>迭代最近点</strong>（或 ICP）是一种方法。假设我们想对两次点云扫描进行匹配，对于第一次扫描中的每个点，我们需要找到另一次扫描中最接近的匹配点。最终我们会收集到许多匹配点对，我们把每对点之间的距离误差相加，然后计算平均距离误差。我们的目标是通过点云旋转和平移来最大限度地降低这一平均距离误差，一旦我们最大限度地降低了点云之间的误差，我们就可以在传感器扫描和地图之间找到匹配，我们将通过传感器扫描到的车辆位置转换为全球地图上的位置，并计算出在地图上的精确位置。</li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/songapore/For-PicGo/master/img/iterative%20closest%20point.jpg" alt=""></p>
-<ul>
-<li>滤波算法是另一种LiDAR 定位方法。滤波算法可消除冗余信息，并在地图上找到最可能的车辆位置。Apollo 使用了 <strong>直方图滤波算法</strong>，该方法有时也被称为 <strong>误差平方和算法（或 SSD）</strong>。为了应用直方图滤波，我们将通过传感器扫描的点云滑过地图上的每个位置。在每个位置我们计算扫描的点与高精度地图上的对应点之间的误差或距离，然后对误差的平方求和。求得的和越小，扫描结果与地图之间的匹配越好。该示例显示一些对齐较好的点 以红色表示，以及一些对齐较差的点 以蓝色表示。在该示例中 绿色表示中等对齐。</li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/songapore/For-PicGo/master/img/histogram%20filter.jpg" alt=""></p>
-<ul>
-<li><strong>卡尔曼滤波</strong>是另一种LiDAR 定位方法。卡尔曼滤波是一种算法,用于根据我们在过去的状态和新的传感器测量结果预测我们当前的状态。具体来说 卡尔曼滤波使用了预测更新周期。首先 我们根据之前的状态以及对移动距离和方向的估计，来估计或“预测”我们的新位置。当然 我们的运动估计并不完美，所以需要通过使用传感器测量我们的位置并加以纠正。<br>一旦用传感器测量了我们的新位置，我们便可以使用概率规则 ，将也不完美的传感器测量结果与我们现有的位置预测结合起来，我们会永远遵循这个预测更新周期，只要我们需要对车辆进行定位，先预测我们的新位置 然后用传感器测量我们的位置。</li>
-</ul>
-<p><strong>LiDAR 定位的主要优势在于稳健性</strong>。只要从高精度地图开始 并且存在有效的传感器，我们就始终能够进行定位。</p>
-<p><strong>主要缺点在于难以构建高精度地图,并使其保持最新</strong>。事实上 几乎不可能让地图完全保持最新，因为几乎每个地图均包含瞬态元素，汽车和行人 甚至停放的汽车，在我们下次驾车驶过时都会消失，街道上的垃圾会被吹走，世界上的许多元素都在不断发生变化。</p>
-<h2 id="视觉定位"><a href="#视觉定位" class="headerlink" title="视觉定位"></a>视觉定位</h2><p>图像是要收集的最简单的数据类型。摄像头便宜且种类繁多，还易于使用，我们可以使用图像来定位汽车吗？</p>
-<p>通过图像实现精确定位非常困难，实际上 摄像头图像通常与来自其他传感器的数据相结合，以准确定位车辆。但 <strong>将摄像头数据与地图和 GPS 数据相结合比单独使用摄像头图像进行定位的效果更好</strong>。</p>
-<p>假设一辆车正在路上行驶 它感知到右边有一棵树，但是 地图显示道路右侧有几棵树，全部位于不同的位置，我们如何知道车辆现在看到哪棵树？</p>
-<p>我们可以用概率来解决这个问题。想象一下 我们位于道路上许多不同点中的任意一点处，使用概率来确定哪个点，最可能代表我们的实际位置。</p>
-<p>我们知道在右边看到一棵树，我们假设从一些点可以看到右边有一棵树 而从另一些点则看不到，当然 我们很可能位于可以看到右边有一棵树的地方。我们可以排除在地图上无法看到右边那棵树的点。</p>
-<p><img src="https://raw.githubusercontent.com/songapore/For-PicGo/master/img/particle%20filter%201.jpg" alt=""></p>
-<p>我们可以在开车的同时继续观察周边世界。想象一下 我们开车前行 然后观察到右边的另一棵树。在观察地图上的其余点之后。我们发现仅在少数几个位置，会发现车辆右侧有成排的两棵树，我们当然最有可能位于这些位置之一，所以我们可以排除所有其他位置。</p>
-<p><img src="https://raw.githubusercontent.com/songapore/For-PicGo/master/img/particle%20filter%202.jpg" alt=""></p>
-<p>我们继续该过程 通过观察结果、概率和地图来确定我们最可能的位置。<strong>该过程被称为粒子滤波</strong>。</p>
-<p>因为我们使用粒子或点来估计最可能的位置,当然 树木在许多道路上比较稀少，但是 车道线在许多道路上却很常见，可以使用相同的粒子滤波原理对车道线进行拍照，然后使用拍摄的图像来确定车辆在道路中的位置。可以将道路摄像头图像与地图进行比较，我们的摄像头图像与地图的某些部分匹配得很好，但与地图的其他部分匹配得没那么好。</p>
-<p><img src="https://raw.githubusercontent.com/songapore/For-PicGo/master/img/lane%20detection.jpg" alt=""></p>
-<p>这是视觉车道线匹配的一个示例。蓝色代表地图上两个不同位置的车道线。我们想确定哪个位置更有可能是我们所处的位置。红色代表车辆摄像头观察到的车道线，红线与右侧蓝线的匹配度要比与左侧蓝线的匹配度高得多，因此 我们更有可能位于与右侧图像对应的地图位置上。</p>
-<p><strong>视觉定位的优点在于图像数据很容易获得，缺点在于缺乏三维信息和对三维地图的依赖。</strong></p>
-<h2 id="Apollo定位"><a href="#Apollo定位" class="headerlink" title="Apollo定位"></a>Apollo定位</h2><p>Apollo 使用基于 GPS、IMU 和激光雷达的多传感器融合定位系统。这种融合方法利用了不同传感器的互补优势，它也提高了稳定性和准确性，</p>
-<p><img src="https://raw.githubusercontent.com/songapore/For-PicGo/master/img/appllo%20kalman%20filter.jpg" alt=""></p>
-<p>Apollo 定位模块依赖于 IMU、GPS、激光雷达、雷达和高精度地图。这些传感器同时支持 GNSS 定位和LiDAR 定位。GNSS 定位输出位置和速度信息，LiDAR 定位输出位置和行进方向信息。</p>
-<p>融合框架通过卡尔曼滤波将这些输出结合在一起，卡尔曼滤波建立在两步预测测量周期之上。在 Apollo 中 惯性导航解决方案用于卡尔曼滤波的预测步骤，GNSS 和 LiDAR 定位用于卡尔曼滤波的测量结果更新步骤。</p>
-<p>点击 <a href="https://classroom.udacity.com/courses/cs373/lessons/48723604/concepts/486709880923" target="_blank" rel="noopener">这里</a> 了解卡尔曼滤波的工作原理。</p>
-<p>关于 Apollo 定位的论文，可以查阅 “<a href="https://arxiv.org/pdf/1711.05805.pdf" target="_blank" rel="noopener">Robust and Precise Vehicle Localization based on Multi-sensor Fusion in Diverse CityScenes, ICRA, 2018</a>”.</p>
-
-          
+          定位定位是让无人驾驶车知道自身确切位置的方法,这是一个美妙而富有挑战性的任务.
+定位简介现在我们假设你有一张全球的高精度地图，定位的任务是确定你的车辆在这张高精度地图上的位置。
+在我的日常生活中，我一直使用手机 GPS 来确定自己的位置，但 GPS 对于无人驾驶车来说不够精确。大多数时候，GPS 的
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/07/14/Self-Driving Car Fundamentals-Featuring Apollo/2018-07-14-Self-Driving Car Fundamentals-Featuring Apollo-lesson 3-Location/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -863,44 +686,16 @@
       
         
           
-            <h1 id="高精度地图"><a href="#高精度地图" class="headerlink" title="高精度地图"></a>高精度地图</h1><h2 id="导航地图-Navigation-Map-VS高精度地图-HD-Map"><a href="#导航地图-Navigation-Map-VS高精度地图-HD-Map" class="headerlink" title="导航地图(Navigation Map)VS高精度地图(HD Map)"></a>导航地图(Navigation Map)VS高精度地图(HD Map)</h2><p>高精度地图是当前无人驾驶车技术不可或缺的一部分。</p>
-<p>高精度地图包含大量的驾驶辅助信息，最重要的信息是道路网的精确三维表征。<br>例如 ：交叉路口布局和路标位置。高精度地图还包含很多语义信息，地图可能会报告交通灯上不同颜色的含义，它也可能指示道路的速度限制<br>以及左转车道开始的位置。</p>
-<p>高精度地图最重要的特征之一是精度。手机上的导航地图只能达到米级精度，高精度地图使车辆能够达到厘米级的精度，这对确保无人驾驶车辆的安全性至关重要</p>
-<h2 id="地图与定位"><a href="#地图与定位" class="headerlink" title="地图与定位"></a>地图与定位</h2><p>可以将定位与拼图进行比较。如果我同时为你提供地图和同一张地图的一小块，你能否在地图上找到这一小块的确切位置？试一试，<br>正如拼图游戏那样。无人驾驶车辆需要知道它在地图上的确切位置，首先 车辆可能会寻找地标。我们可以使用从各类传感器收集的数据<br>，如摄像机图像数据以及激光雷达收集的三维点云数据来查找地标。车辆将其收集的数据与其高精度地图上的已知地标进行比较.</p>
-<p> 这一匹配过程是需要预处理、坐标转换和数据融合的复杂过程 。</p>
-<ul>
-<li>预处理消除了不准确或质量差的数据,</li>
-<li>坐标变换将来自不同视角的数据转换为统一的坐标系</li>
-<li>借助数据融合 可将来自各种车辆和传感器的数据合并</li>
-</ul>
-<p>一旦无人驾驶车高度精确地确定了其位置,定位任务也就完成了. 整个定位过程取决于地图.</p>
-<p>正因为如此 车辆需要高精度地图 以便知道它处于什么位置</p>
-<h2 id="地图与感知"><a href="#地图与感知" class="headerlink" title="地图与感知"></a>地图与感知</h2><ul>
-<li><p>无人驾驶车也可以使用高精度地图来帮助感知。人有眼睛和耳朵，但都有距离限制，我们无法看到或听到太远的事物。无人驾驶汽车的传感器也会受到类似限制<br>摄像机、激光雷达和雷达探测物体的能力，在超过一定距离后都会受到限制。在恶劣的天气条件下或在夜间，传感器识别障碍物的能力可能会受到进一步限制<br>另外 当汽车遇到障碍物时，传感器无法透过障碍物来确定障碍物后面的物体。在这种情况下 高精度地图有很大帮助。即使传感器尚未检测到交通信号灯<br>它也可以将交通信号灯的位置提供给软件栈的其余部分，这可以帮助汽车做下一个决策。</p>
-</li>
-<li><p>另一个好处在于 地图可帮助传感器缩小检测范围。例如 高精度地图可能会告知我们，在特定位置寻找停车标志。传感器就可以集中在该位置检测停车标志。<br>这被称为感兴趣区域或 ROI，ROI 可帮助我们提高检测精确度和速度，并节约计算资源。</p>
-</li>
-</ul>
-<h2 id="地图与规划"><a href="#地图与规划" class="headerlink" title="地图与规划"></a>地图与规划</h2><p>正如定位和感知软件依赖于高精度地图那样，规划软件也是如此。</p>
-<p>高精度地图可帮助车辆找到合适的行车空间，它还可以帮助规划器确定不同的路线选择，并帮助预测软件预测道路上其他车辆在将来的位置。</p>
-<p>例如 高精度地图可帮助车辆识别车道的确切中心线，这样车辆可以尽可能地靠近中心行驶。</p>
-<p>在具有低速限制、人行横道或减速带的区域，高精度地图使车辆能够提前查看 并预先减速</p>
-<p>更重要的是 如果前方有障碍物，车辆可能需要变道，高精度地图可帮助车辆缩小选择范围，以便选择最佳方案。</p>
-<h2 id="appllo高精度地图"><a href="#appllo高精度地图" class="headerlink" title="appllo高精度地图"></a>appllo高精度地图</h2><p>高精度地图的构建由五个过程组成：数据采集、数据处理、对象检测、手动验证和地图发布.</p>
-<ul>
-<li><p><strong> 数据采集 </strong> 是一项庞大的密集型任务.无人驾驶车需要其地图始终保持最新状态。大量的调查车辆可确保每次道路发生改变时<br>，地图均会得到快速更新。调查车辆使用了多种传感器 如 GPS、惯性测量单元、激光雷达和摄像机。Apollo 定义了一个硬件框架<br>将这些传感器集成到单个自主系统中，通过支持多种类的传感器，Apollo 可以收集各类数据，将这些数据融合，最终生成高精度地图。</p>
-</li>
-<li><p>数据处理指的是 Apollo 如何对收集到的数据进行整理、分类和清洗以获得没有任何语义信息或注释的初始地图模板</p>
-</li>
-<li><p>对于对象检测 Apollo 团队使用人工智能来检测静态对象，并对其进行分类，其中包括车道线、交通标志 甚至是电线杆</p>
-</li>
-<li><p>手动验证可确保自动地图创建过程正确进行并及时发现问题。Apollo 软件使手动验证团队能够高效标记和编辑地图。</p>
-</li>
-<li><p>在经过数据采集、数据处理、对象检测和手动验证之后 地图即可发布。除发布高精度地图外，Apollo 还发布了采用自上而下视图<br>的相应定位地图以及三维点云地图</p>
-</li>
-</ul>
-
-          
+          高精度地图导航地图(Navigation Map)VS高精度地图(HD Map)高精度地图是当前无人驾驶车技术不可或缺的一部分。
+高精度地图包含大量的驾驶辅助信息，最重要的信息是道路网的精确三维表征。例如 ：交叉路口布局和路标位置。高精度地图还包含很多语义信息，地图可能会报告交通灯上不同颜色的含义，
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/07/12/Self-Driving Car Fundamentals-Featuring Apollo/2018-07-12-Self-Driving Car Fundamentals-Featuring Apollo-lesson 2-HD Maps/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1040,105 +835,18 @@
       
         
           
-            <h1 id="无人驾驶概览"><a href="#无人驾驶概览" class="headerlink" title="无人驾驶概览"></a>无人驾驶概览</h1><p>Udacity无人驾驶项目负责人David Silver 表示： “在全球无人驾驶技术人才奇缺的宏观现实下，如果你对无人驾驶汽车感兴趣，或者有志于从事无人驾驶开发的工作，现在就是最好的时机</p>
-<h2 id="你将学到什么"><a href="#你将学到什么" class="headerlink" title="你将学到什么"></a>你将学到什么</h2><p> Apollo 无人驾驶开源平台的主要部分</p>
-<ul>
-<li><p>high-definition maps 高精度地图</p>
-<p>无人驾驶车的核心模块——高精度地图，几乎支持着软件栈的所有其他模块，包括定位、感知、预测和规划</p>
-</li>
-<li><p>localization 定位</p>
-<p>在定位课程中，将讨论汽车如何确定它所处的位置。这比预想得更难！汽车利用激光和雷达数据，将这些传感器感知内容与高分辨率地图进行对比，这种对比使汽车能够以个位数厘米级精度进行自定位</p>
-</li>
-<li><p>perception 感知</p>
-<p>在感知课程中，将了解无人驾驶车如何感知这个世界。深度学习是一个重要且强有力的感知工具，卷积神经网络构成深度学习分支，对感知任务至关重要。如分类、检测和分割，这些方法适用于几种不同无人驾驶车传感器的数据来源，包括摄像头、雷达和激光雷达</p>
-</li>
-<li><p>prediction 预测</p>
-<p>我们将概述几种不同的方式，用于预测其他车辆或行人可能如何移动。一种方法称为递归神经网络。可对其他物体随时间的运动进行跟踪，并使用该时间序列数据预测未来</p>
-</li>
-<li><p>planning 规划</p>
-<p>规划课程将涵盖如何将预测与路线相结合以生成车辆轨迹，规划是构建无人驾驶车最困难的部分之一</p>
-</li>
-<li><p>control 控制</p>
-<p>控制课程展示了如何使用转向、油门和制动来执行规划轨迹。我们将阐释几种不同类型的控制器，类型从简单到愈加复杂，而性能却从弱到强</p>
-<p>希望：在完成这门课时，你将了解无人驾驶车的基本工作原理。我希望你开始这段学习之旅时，像我第一次开始学习无人驾驶车时那样激动</p>
-<h3 id="Apollo核心模块"><a href="#Apollo核心模块" class="headerlink" title="Apollo核心模块"></a>Apollo核心模块</h3><p>在课程开始之前, 你可以先阅读Github中以下模块的Readme, 来对无人驾驶技术的架构有一个总体的了解~</p>
-</li>
-<li><a href="https://github.com/ApolloAuto/apollo/blob/master/modules/localization/README_cn.md" target="_blank" rel="noopener">定位</a></li>
-<li><a href="https://github.com/ApolloAuto/apollo/blob/master/modules/perception/README_cn.md" target="_blank" rel="noopener">感知</a></li>
-<li><a href="https://github.com/ApolloAuto/apollo/blob/master/modules/prediction/README_cn.md" target="_blank" rel="noopener">预测</a></li>
-<li><a href="https://github.com/ApolloAuto/apollo/blob/master/modules/routing/README_cn.md" target="_blank" rel="noopener">路由</a></li>
-<li><a href="https://github.com/ApolloAuto/apollo/blob/master/modules/planning/README_cn.md" target="_blank" rel="noopener">规划</a></li>
-<li><a href="https://github.com/ApolloAuto/apollo/blob/master/modules/control/README_cn.md" target="_blank" rel="noopener">控制</a></li>
-</ul>
-<h2 id="为什么我们需要无人驾驶车？"><a href="#为什么我们需要无人驾驶车？" class="headerlink" title="为什么我们需要无人驾驶车？"></a>为什么我们需要无人驾驶车？</h2><p>最重要的原因是安全</p>
-<p><img src="https://raw.githubusercontent.com/songapore/For-PicGo/master/img/compare%20human%20and%20self%20driving.png" alt="比较"></p>
-<h3 id="无人车等级划分"><a href="#无人车等级划分" class="headerlink" title="无人车等级划分"></a>无人车等级划分</h3><p>汽车工程师已建立并确定了 6 个等级的无人驾驶车<br><img src="https://raw.githubusercontent.com/songapore/For-PicGo/master/img/%E8%87%AA%E5%8A%A8%E9%A9%BE%E9%A9%B6%E7%9A%84%E5%88%86%E7%BA%A7%E6%AF%94%E8%BE%83.jpg" alt="自动驾驶等级划分]"></p>
-<ul>
-<li>0 级为基本等级，驾驶员是系统的唯一决策者</li>
-<li>1 级为驾驶员辅助，车辆为驾驶员提供转向或加速支持如巡航控制</li>
-<li>2 级为部分自动化，车辆自动控制几项功能如自动巡航控制和车道保持</li>
-<li>3 级为有条件的自动化，车辆自主驾驶</li>
-<li>4 级为高度自动化，车辆控制、驾驶方面不期望驾驶员的介入</li>
-<li>5 级为最高级别，完全自动化，应与人类驾驶员的水平一样高或比其更高</li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/songapore/For-PicGo/master/img/SAE%20autonomy%20levels.png" alt="sae autonomy levels"></p>
-<h2 id="How-self-driving-cars-work"><a href="#How-self-driving-cars-work" class="headerlink" title="How self-driving cars work"></a>How self-driving cars work</h2><p>无人驾驶车包括五个核心部件<br><img src="https://raw.githubusercontent.com/songapore/For-PicGo/master/img/how%20a%20self-driving%20car%20works.png" alt=""></p>
-<ul>
-<li><strong>计算机视觉</strong> 就是我们通过摄像头图像弄清楚我们周围的世界是怎样的</li>
-<li><strong>传感器融合</strong> 是我们合并来自其他传感器的数据， 如激光和雷达，从而更加深入地了解我们周围的环境</li>
-<li>只要我们对周围的世界有了深刻的理解，就可以使用 <strong>定位</strong> 来精确地确定我们在那个世界所处的位置</li>
-<li>弄清楚where we are in the world and what the world looks like，就可以使用 <strong>路径规划</strong> 来绘制路线</li>
-<li><strong>控制</strong> 就是我们为了让汽车沿着我们在路径规划期间建立的轨道，如何转动方向盘并打开油门 然后踩刹车</li>
-</ul>
-<h2 id="Apollo-技术框架由四个层面组成"><a href="#Apollo-技术框架由四个层面组成" class="headerlink" title="Apollo 技术框架由四个层面组成"></a>Apollo 技术框架由四个层面组成</h2><p>参考车辆平台、参考硬件平台、开源软件平台和云服务平台</p>
-<h2 id="参考车辆与硬件平台"><a href="#参考车辆与硬件平台" class="headerlink" title="参考车辆与硬件平台"></a>参考车辆与硬件平台</h2><p>如果我们想要打造一辆无人驾驶车。首先要开发一款可通过电子控制的基础车辆，而不仅仅是通过实体方向盘、油门踏板和刹车踏板来控制，这种类型的车辆具有特殊的名称：<strong>线控驾驶车辆</strong></p>
-<p>Apollo 无人驾驶车有几个不同的传感器。</p>
-<ul>
-<li>控制器区域网络（或 CAN），是车辆的内部通信网络，计算机系统通过 CAN 卡连接汽车内部网络，发送加速、制动和转向信号。</li>
-<li>全球定位系统（或 GPS），通过绕地卫星接收信号，这些信号可帮助我们确定所处位置。</li>
-<li>惯性测量装置（或 IMU），测量车辆的运动和位置，是通过跟踪位置、速度、加速度和其他因素。</li>
-<li>激光雷达 (LiDAR) 由一组脉冲激光器组成Apollo 使用的激光雷达可 360 度扫描车辆周围，这些激光束的反射形成了软件可用于了解环境的点云</li>
-<li>摄像头捕获图像数据，我们可以使用计算机视觉来提取这些图像的内容并了解周围的环境。例如 因为摄像头可以感知颜色，我们用它们来检测和了解交通灯</li>
-<li>雷达也用于检测障碍物，雷达分辨率低，难以分辨雷达检测到了哪种障碍物，但雷达的优势在于经济实惠，适用于各种天气和照明条件，雷达特别擅长测量其他车辆的速度。</li>
-</ul>
-<p>下图说明如何将主要硬件组件安装到车辆上,包括摄像头、雷达、激光雷达、GPS-IMU 和 IPC<br><img src="https://raw.githubusercontent.com/songapore/For-PicGo/master/img/applo%20hardware.png" alt=""></p>
-<h2 id="开源软件栈"><a href="#开源软件栈" class="headerlink" title="开源软件栈"></a>开源软件栈</h2><p>软件层分为三个子层:<strong>实时操作系统(real-time operating system(ROTS))</strong>、<strong>运行时框架(Runtime Framework)</strong> 和 <strong>应用程序模块层(a layer of application modules)</strong></p>
-<p><strong>实时操作系统（或 RTOS）</strong>可确保在给定时间内完成特定任务。“实时”是指无人驾驶车的操作系统能够及时进行计算、分析并执行相应的操作。实时性能是确保系统稳定性和驾驶安全性的重要要求。</p>
-<p>Apollo RTOS 是 Ubuntu Linux 操作系统与 Apollo 内核相互结合的成果。Ubuntu 是业内顶级 Linux 发行版之一，也是最流行的云操作系统，然而 原始 Ubuntu 系统并非实时操作系统，通过加入 Apollo 设计的内核 我们可以使其成为一个 RTOS。</p>
-<p><strong>运行时框架</strong> 是 Apollo 的操作环境它是 ROS（机器人操作系统）的定制版，ROS 实际上是一个在 Apollo RTOS 上运行的软件框架。ROS 在机器人行业有着悠久的历史，目前有 3,000 多个基础库支持应用程序的快速开发，ROS 根据功能将自治系统划分为多个模块，每个模块负责接收、处理和发布自己的消息。由于这些模块相互独立 只能通过运行时框架进行通信，因此调整任何单一模块都很容易。ROS 是应用最广泛的机器人框架，因此它所包含的模块涉及许多最新的研究突破，所有这些功能使 ROS 成为理想的 Apollo 开发与集成框架。</p>
-<p><strong>为使 ROS 适应无人驾驶车，Apollo 团队改进了共享内存的功能和性能、去中心化和数据兼容性</strong></p>
-<ul>
-<li><strong>共享内存</strong>降低了需要访问不同模块时的数据复制需求。</li>
-</ul>
-<p>对于一对多传输方案，共享内存支持“一次写入 多次读取”模式。例如 如果你只收到一次点云 你可以同时运行障碍物检测、定位和 GUI 工具。这可以加快通信速度</p>
-<ul>
-<li><strong>去中心化</strong> 解决了单点故障问题</li>
-</ul>
-<p>现成的 ROS 由许多节点组成,每个节点都有对应的功能。例如 一个节点可能负责收集摄像头图像，另一个节点可能负责规划轨迹，而第三个节点可能负责将控制命令发送到 CAN 总线上的车辆，但是所有这些节点都需要由单个 ROS 主节点来控制。如果这个主节点发生故障，整个系统都会失效。</p>
-<p>为了避免这个问题，Apollo 将所有节点放在一个公共域中，域中的每个节点都有关于域中其他节点的信息，通过这种去中心化方案，公共域取代了原来的 ROS 主节点，因此消除了单点故障风险。</p>
-<ul>
-<li>对于无人驾驶车来说 由于项目本身的规模很大，<strong>数据兼容性</strong> 至关重要</li>
-</ul>
-<p>不同的 ROS 节点通过,名为 ROS 消息的接口语言相互通信。ROS 消息需要使用通用接口语言，使每个节点都可以解读来自其他节点的消息数据。如果消息文件的格式，与节点所期望的格式稍有不同，通信会失败，这可能会导致严重的兼容性问题。例如 当一个接口升级时，数据不兼容通常会导致系统故障。此外 必须一次又一次地转换之前所记录的测试数据， 以适应新的消息格式。</p>
-<p><strong>为了解决这个问题，Apollo 团队使用另一种名为 protobuf 的接口语言，来替代原生 ROS 消息。Protobuf 是一种结构化数据序列化方法</strong>. 这对开发用于通过电线彼此通信，或用于存储数据的程序非常有用。你可以将新字段添加到消息格式中 而不会破坏后向兼容性，新的二进制文件可以在解析过程中接受旧的消息格式。向 ROS 添加 protobuf 格式有助于 Apollo 的长期发展。</p>
-<ul>
-<li><strong>应用程序模块</strong></li>
-</ul>
-<p>Apollo 的软件平台具有各种模块，这些模块包括 MAP 引擎、定位、感知、规划、控制、端到端驾驶以及人机接口（或 HMI）。每个模块都有自己的算法库，模块之间的关系非常复杂。后续将在整个课程中对这些模块及其关联方式进行研究</p>
-<h2 id="云服务"><a href="#云服务" class="headerlink" title="云服务"></a>云服务</h2><p><strong>Apollo 云服务包含高精度地图(HD Maps)、仿真环境(Simulation)、数据平台(Data Platform)、安全(Security)、软件升级(OTA)以及被称为 DuerOS 的智能语音系统</strong></p>
-<p>在这里 我们将重点介绍仿真和数据平台。</p>
-<ul>
-<li><strong>仿真环境平台</strong>是 Apollo 开放软件栈的重要工具</li>
-</ul>
-<p>该平台允许每个人出于自身需要 来构建仿真环境。该平台还聚合了大量驾驶数据，使开发人员能够检验和验证无人驾驶软件系统。仿真环境使 Apollo 车辆不仅可以查看环境，还可以了解道路情况和场景。</p>
-<p>仿真环境平台具有许多功能。首先，仿真环境平台允许开发人员配置不同的驾驶场景，比如障碍物，路线和交通灯状态。执行模式为开发人员提供了一个在多个场景中运转的完整设置。在执行模式中 ，开发人员可以在 Apollo 环境中上传和验证模块。当前的自动评分系统，从几个指标对场景进行评估。其中包括：碰撞检测、交通灯识别、速度限制、障碍物检测和路线逻辑。最后，三维可视化描述了实时路况。在显示无人驾驶车状态的同时，使模块输出可视化。</p>
-<ul>
-<li>数据对无人驾驶车来说很重要。无人驾驶数据可能来自模拟场景或道路测试，Apollo 为这些类别提供了各种各样的数据。</li>
-</ul>
-<p>仿真场景数据有两个不同的来源：记录场景和虚拟场景。我们可以使用记录的场景，来重放我们在实际道路测试中已经观察到的传感器数据，我们可以借助虚拟场景 使用虚拟编辑器创建新的驾驶场景，这有助于快速检验与验证算法。为了训练像深度学习网络那样的机器学习模型，我们需要带标签的注释数据，其中包括交通信号灯数据，带边界框的障碍物数据，以及语义分割数据。</p>
-<p>此外 Apollo 已向公众发布了 ApolloScape 数据集。ApolloScape 涵盖了各种复杂路况，ApolloScape 在单个图像中列入并注释了，多达 162 辆车或 80 名行人。同时 开放数据集使用语义分割对图像进行逐像素标记，这使得 ApolloScape 成为世界上最为复杂又最精确的无人驾驶数据集。</p>
+          无人驾驶概览Udacity无人驾驶项目负责人David Silver 表示： “在全球无人驾驶技术人才奇缺的宏观现实下，如果你对无人驾驶汽车感兴趣，或者有志于从事无人驾驶开发的工作，现在就是最好的时机
+你将学到什么 Apollo 无人驾驶开源平台的主要部分
 
-          
+high-definition maps
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/07/11/Self-Driving Car Fundamentals-Featuring Apollo/2018-07-11-Self-Driving Car Fundamentals-Featuring Apollo-lesson 1-无人驾驶概览/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1278,47 +986,23 @@
       
         
           
-            <h1 id="3-10-深度学习框架（Deep-Learning-frameworks）"><a href="#3-10-深度学习框架（Deep-Learning-frameworks）" class="headerlink" title="3.10 深度学习框架（Deep Learning frameworks）"></a>3.10 深度学习框架（Deep Learning frameworks）</h1><p>我认为现在深度学习已经很成熟了，利用一些深度学习框架会更加实用，会使你的工作更加有效，那就让我们来看下有哪些框架。</p>
-<ul>
-<li>Caffe / Caffe 2</li>
-<li>CNTK</li>
-<li>DL4J</li>
-<li>Keras</li>
-<li>Lasagne</li>
-<li>mxnet</li>
-<li>PaddlePaddle</li>
-<li>TensorFlow</li>
-<li>Theano</li>
-<li>Torch</li>
-</ul>
-<h2 id="选择框架的标准"><a href="#选择框架的标准" class="headerlink" title="选择框架的标准"></a>选择框架的标准</h2><ul>
-<li>便于编程：包括神经网络的开发和迭代、配置产品；</li>
-<li>运行速度：特别是训练大型数据集时；</li>
-<li>是否真正开放：不仅需要开源，而且需要良好的管理，能够持续开放所有功能。</li>
-</ul>
-<h1 id="3-11-TensorFlow"><a href="#3-11-TensorFlow" class="headerlink" title="3.11 TensorFlow"></a>3.11 TensorFlow</h1><p>有很多很棒的深度学习编程框架，其中一个是TensorFlow</p>
-<p>Tensorflow 框架内可以直接调用梯度下降算法，极大地降低了编程人员的工作量。例如</p>
-<p><img src="https://raw.githubusercontent.com/songapore/For-PicGo/master/img/tensorflow%20code%20example.png" alt="tensorflow code example"></p>
-<ul>
-<li><p>Writing and running programs in TensorFlow has the following steps:</p>
-<ul>
-<li>Create Tensors (variables) that are not yet executed/evaluated.</li>
-<li>Write operations between those Tensors.</li>
-<li>Initialize your Tensors.</li>
-<li>Create a Session.</li>
-<li>Run the Session. This will run the operations you’d written above.</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line">import tensorflow as tf</span><br><span class="line"></span><br><span class="line">cofficients = np.array([[1.],[-20.],[25.]])</span><br><span class="line"></span><br><span class="line">w = tf.Variable(0,dtype=tf.float32)</span><br><span class="line"></span><br><span class="line">x = tf.placeholder(tf.float32,[3,1])</span><br><span class="line"># cost = tf.add(tf.add(w**2,tf.multiply(- 10.,w)),25)</span><br><span class="line"># Tensorflow 重载了加减乘除符号</span><br><span class="line">cost = x[0][0]*w**2 + x[1][0]*w + x[2][0]</span><br><span class="line"></span><br><span class="line"># 改变下面这行代码，可以换用更好的优化算法</span><br><span class="line">train = tf.train.GradientDescentOptimizer(0.01).minimize(cost)</span><br><span class="line"># 下面的几行是惯用表达式:</span><br><span class="line">init = tf.global_variables_initializer()</span><br><span class="line"></span><br><span class="line">session = tf.Session()#这样就开启了一个TensorFlow session。</span><br><span class="line">session.run(init)#来初始化全局变量。</span><br><span class="line">print(session.run(w))</span><br><span class="line"># with tf.Session() as session:</span><br><span class="line">#   session.run(init)</span><br><span class="line">#   print(session.run(w))    </span><br><span class="line"></span><br><span class="line">for i in range(1000):</span><br><span class="line">    session.run(train, feed_dict=(x:coefficients))</span><br><span class="line">print(session.run(w))</span><br></pre></td></tr></table></figure>
-<ul>
-<li>一旦被称为TensorFlow变量，平方，乘法和加减运算都重载了</li>
-<li>with 语句适用于对资源进行访问的场合，确保不管使用过程中是否发生异常都会执行必要的“清理”操作，释放资源，比如文件使用后自动关闭、线程中锁的自动获取和释放等。</li>
-<li>TensorFlow中的placeholder是一个你之后会赋值的变量，这种方式便于把训练数据加入损失方程</li>
-<li>当你运行训练迭代，用feed_dict来让x=coefficients。如果你在做mini-batch梯度下降，在每次迭代时，你需要插入不同的mini-batch，那么每次迭代，你就用feed_dict来喂入训练集的不同子集，把不同的mini-batch喂入损失函数需要数据的地方。</li>
-</ul>
+          3.10 深度学习框架（Deep Learning frameworks）我认为现在深度学习已经很成熟了，利用一些深度学习框架会更加实用，会使你的工作更加有效，那就让我们来看下有哪些框架。
 
-          
+Caffe / Caffe 2
+CNTK
+DL4J
+Keras
+Lasagne
+mxnet
+PaddlePa
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/05/21/DeepLearning/2018-05-21-course2-Week3-10-deep learning frameworks/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1458,30 +1142,16 @@
       
         
           
-            <h1 id="3-8-Softmax-回归（Softmax-regression）"><a href="#3-8-Softmax-回归（Softmax-regression）" class="headerlink" title="3.8 Softmax 回归（Softmax regression）"></a>3.8 Softmax 回归（Softmax regression）</h1><p>目前为止，介绍的分类例子都是二分类问题：神经网络输出层只有一个神经元，表示预测输出 y^是正类的概率 P(y = 1|x)，y &gt; 0.5 则判断为正类，反之判断为负类。</p>
-<p>对于<strong>多分类问题</strong>，用 C 表示种类个数，则神经网络输出层，也就是第 L 层的单元数量 n[L]=C。每个神经元的输出依次对应属于该类的概率，即 P(y=c|x),c=0,1,..,C−1。有一种 Logistic 回归的一般形式，叫做 <strong>Softmax 回归</strong>，可以处理多分类问题。</p>
-<p>对于 Softmax 回归模型的输出层，即第 L 层，有：</p>
-<p>$$<br>Z^{[L]} = W^{[L]}a^{[L-1]} + b^{[L]}<br>$$</p>
-<p>$$<br>a^{[L]}_i = \frac{e^{Z^{[L]}<em>i}}{\sum^C</em>{i=1}e^{Z^{[L]}_i}}<br>$$</p>
-<p>为输出层每个神经元的输出，对应属于该类的概率，满足：</p>
-<p>$$<br>\sum^C_{i=1}a^{[L]}_i = 1<br>$$<br>简单来说就是用临时变量t将它归一化，使总和为1。一个直观的计算例子如下：</p>
-<p><img src="https://raw.githubusercontent.com/songapore/For-PicGo/master/img/softmax%20layer.png" alt="softmax layer"></p>
-<h1 id="3-9-训练一个-Softmax-分类器（Training-a-Softmax-classifier）"><a href="#3-9-训练一个-Softmax-分类器（Training-a-Softmax-classifier）" class="headerlink" title="3.9 训练一个 Softmax 分类器（Training a Softmax classifier）"></a>3.9 训练一个 Softmax 分类器（Training a Softmax classifier）</h1><ul>
-<li>怎样训练带有Softmax输出层的神经网络，具体而言，我们先定义训练神经网络使会用到的损失函数。</li>
-</ul>
-<p>$$<br>L(\hat y, y) = -\sum^C_{j=1}y_jlog\hat y_j<br>$$<br>概括来讲，损失函数所做的就是它找到你的训练集中的真实类别，然后试图使该类别相应的概率尽可能地高，如果你熟悉统计学中最大似然估计，这其实就是最大似然估计的一种形式。</p>
-<ul>
-<li>这是单个训练样本的损失，整个训练集的损失J又如何呢？</li>
-</ul>
-<p>$$<br>J = \frac{1}{m}\sum^m_{i=1}L(\hat y, y)<br>$$<br>因此你要做的就是用梯度下降法，使这里的损失最小化。</p>
-<ul>
-<li>最后我们来看一下，在有Softmax输出层时如何实现梯度下降法</li>
-</ul>
-<p>多分类的 Softmax 回归模型与二分类的 Logistic 回归模型只有输出层上有一点区别。经过不太一样的推导过程，仍有</p>
-<p>$$<br>dZ^{[L]} = A^{[L]} - Y<br>$$<br>反向传播过程的其他步骤也和 Logistic 回归的一致。</p>
-<p>详细可参考：<a href="http://ufldl.stanford.edu/wiki/index.php/Softmax%E5%9B%9E%E5%BD%92" target="_blank" rel="noopener">softmax 回归</a></p>
-
-          
+          3.8 Softmax 回归（Softmax regression）目前为止，介绍的分类例子都是二分类问题：神经网络输出层只有一个神经元，表示预测输出 y^是正类的概率 P(y = 1|x)，y &gt; 0.5 则判断为正类，反之判断为负类。
+对于多分类问题，用 C 表示种类个数，则神经网络输出层
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/05/12/DeepLearning/2018-05-16-course2-Week3-8-多分类问题/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1621,40 +1291,16 @@
       
         
           
-            <h1 id="3-4-归一化网络的激活函数（Normalizing-activations-in-a-network）"><a href="#3-4-归一化网络的激活函数（Normalizing-activations-in-a-network）" class="headerlink" title="3.4 归一化网络的激活函数（Normalizing activations in a network）"></a>3.4 归一化网络的激活函数（Normalizing activations in a network）</h1><p>在深度学习兴起后，最重要的一个思想是它的一种算法，叫做Batch归一化。</p>
-<p><strong>Batch归一化</strong>（Batch Normalization，经常简称为 BN）会使你的参数搜索问题变得很容易，使神经网络对超参数的选择更加稳定，超参数的范围会更加庞大，工作效果也很好，也会是你的训练更加容易，甚至是深层网络。</p>
-<p>之前，我们对输入特征 X 使用了标准化处理。我们也可以用同样的思路处理隐藏层的激活值 a[l]，以加速 W[l+1]和 b[l+1]的训练。在实践中，经常选择标准化 Z[l]：</p>
-<p>$$<br>\mu = \frac{1}{m} \sum_i z^{(i)}<br>$$</p>
-<p>$$<br>\sigma^2 = \frac{1}{m} \sum_i {(z_i - \mu)}^2<br>$$</p>
-<p>$$<br>z_{norm}^{(i)} = \frac{z^{(i)} - \mu}{\sqrt{\sigma^2 + \epsilon}}<br>$$</p>
-<p>其中，m 是单个 mini-batch 所包含的样本个数，ϵ 是为了防止分母为零，通常取 10−8。</p>
-<p>这样，我们使得所有的输入 z(i)均值为 0，方差为 1。但我们不想让隐藏层单元总是含有平均值 0 和方差 1，也许隐藏层单元有了不同的分布会更有意义。因此，我们计算</p>
-<p>$$<br>\tilde z^{(i)} = \gamma z^{(i)}_{norm} + \beta<br>$$</p>
-<p>其中，γ 和 β 都是模型的学习参数，所以可以用各种梯度下降算法来更新 γ 和 β 的值，如同更新神经网络的权重一样。</p>
-<p><img src="https://raw.githubusercontent.com/songapore/For-PicGo/master/img/Batch%20Normalization.png" alt="batch normalization"></p>
-<p>通过对 γ 和 β 的合理设置，可以让<br>$$<br>\tilde z^{(i)}<br>$$<br>的均值和方差为任意值。这样，我们对隐藏层的 z^(i)进行标准化处理，用得到的<br>$$<br>\tilde z^{(i)}<br>$$<br>替代 z(i)。</p>
-<p>设置 γ 和 β 的原因是，如果各隐藏层的输入均值在靠近 0 的区域，即处于激活函数的线性区域，不利于训练非线性神经网络，从而得到效果较差的模型。因此，需要用 γ 和 β 对标准化后的结果做进一步处理。</p>
-<h1 id="3-5-将-Batch-Norm-拟合进神经网络（Fitting-Batch-Norm-into-a-neural-network）"><a href="#3-5-将-Batch-Norm-拟合进神经网络（Fitting-Batch-Norm-into-a-neural-network）" class="headerlink" title="3.5 将 Batch Norm 拟合进神经网络（Fitting Batch Norm into a neural network）"></a>3.5 将 Batch Norm 拟合进神经网络（Fitting Batch Norm into a neural network）</h1><p>对于 L 层神经网络，经过 Batch Normalization 的作用，整体流程如下：</p>
-<p><img src="https://raw.githubusercontent.com/songapore/For-PicGo/master/img/adding%20batch%20norm%20to%20a%20network.png" alt="adding batch norm to a network"></p>
-<p>实际上，Batch Normalization 经常使用在 mini-batch 上，这也是其名称的由来。</p>
-<p>使用 Batch Normalization 时，因为标准化处理中包含减去均值的一步，因此 b 实际上没有起到作用，其数值效果交由 β 来实现。因此，在 Batch Normalization 中，可以省略 b 或者暂时设置为 0。</p>
-<p>在使用梯度下降算法时，分别对 W[l]，β[l]和 γ[l]进行迭代更新。除了传统的梯度下降算法之外，还可以使用之前学过的动量梯度下降、RMSProp 或者 Adam 等优化算法。</p>
-<h1 id="3-6-Batch-Norm-为什么奏效？（Why-does-Batch-Norm-work-）"><a href="#3-6-Batch-Norm-为什么奏效？（Why-does-Batch-Norm-work-）" class="headerlink" title="3.6 Batch Norm 为什么奏效？（Why does Batch Norm work?）"></a>3.6 Batch Norm 为什么奏效？（Why does Batch Norm work?）</h1><p>Batch Normalization 效果很好的原因有以下两点：</p>
-<ul>
-<li>通过对隐藏层各神经元的输入做类似的标准化处理，提高神经网络训练速度；</li>
-<li>可以使前面层的权重变化对后面层造成的影响减小，整体网络更加健壮。</li>
-</ul>
-<p>关于第二点，如果实际应用样本和训练样本的数据分布不同（例如，橘猫图片和黑猫图片），我们称发生了“<strong>Covariate Shift</strong>”。这种情况下，一般要对模型进行重新训练。Batch Normalization 的作用就是减小 Covariate Shift 所带来的影响，让模型变得更加健壮，鲁棒性（Robustness）更强。</p>
-<p>即使输入的值改变了，由于 Batch Normalization 的作用，使得均值和方差保持不变（由 γ 和 β 决定），限制了在前层的参数更新对数值分布的影响程度，因此后层的学习变得更容易一些。Batch Normalization 减少了各层 W 和 b 之间的耦合性，让各层更加独立，实现自我训练学习的效果。</p>
-<p>另外，<strong>Batch Normalization 也起到微弱的正则化（regularization）效果</strong>。因为在每个 mini-batch 而非整个数据集上计算均值和方差，只由这一小部分数据估计得出的均值和方差会有一些噪声，因此最终计算出的 z~(i)也有一定噪声。类似于 dropout，这种噪声会使得神经元不会再特别依赖于任何一个输入特征。</p>
-<p>因为 Batch Normalization 只有微弱的正则化效果，因此可以和 dropout 一起使用，以获得更强大的正则化效果。通过应用更大的 mini-batch 大小，可以减少噪声，从而减少这种正则化效果。</p>
-<p>最后，不要将 Batch Normalization 作为正则化的手段，而是当作加速学习的方式。正则化只是一种非期望的副作用，Batch Normalization 解决的还是反向传播过程中的梯度问题（梯度消失和爆炸）。</p>
-<h1 id="3-7-测试时的-Batch-Norm（Batch-Norm-at-test-time）"><a href="#3-7-测试时的-Batch-Norm（Batch-Norm-at-test-time）" class="headerlink" title="3.7 测试时的 Batch Norm（Batch Norm at test time）"></a>3.7 测试时的 Batch Norm（Batch Norm at test time）</h1><p>在训练时， μ 和 σ2是在整个mini-batch上计算出来的.包含了像是64或28或其它一定数量的样本</p>
-<p>但在测试时，你可能需要逐一处理样本，方法是根据你的训练集估算和，估算的方式有很多种，理论上你可以在最终的网络中运行整个训练集来得到 μ 和 σ2</p>
-<p>但在实际操作中，我们通常运用指数加权平均来追踪在训练过程中你看到的 μ 和 σ2的值。还可以用指数加权平均，有时也叫做流动平均来粗略估算 μ 和 σ2，然后在测试中使用和的值来进行你所需要的隐藏单元值的调整。</p>
-<p>对于第 l 层隐藏层，考虑所有 mini-batch 在该隐藏层下的 μ[l]和 σ2[l]，然后用指数加权平均的方式来预测得到当前单个样本的 μ[l]和 σ2[l]。这样就实现了对测试过程单个样本的均值和方差估计。</p>
-
-          
+          3.4 归一化网络的激活函数（Normalizing activations in a network）在深度学习兴起后，最重要的一个思想是它的一种算法，叫做Batch归一化。
+Batch归一化（Batch Normalization，经常简称为 BN）会使你的参数搜索问题变得很容易，使神经网络对超
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/05/12/DeepLearning/2018-05-12-course2-Week3-4-Normalizing activations in a network/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1794,62 +1440,16 @@
       
         
           
-            <p>对于超参数而言，如何找到一套好的设定呢？本课中，我将和你分享一些指导原则，一些关于如何系统地组织超参调试过程的技巧。</p>
-<h1 id="调试处理（Tuning-process）"><a href="#调试处理（Tuning-process）" class="headerlink" title="调试处理（Tuning process）"></a>调试处理（Tuning process）</h1><h2 id="参数的重要程度排序"><a href="#参数的重要程度排序" class="headerlink" title="参数的重要程度排序"></a>参数的重要程度排序</h2><p>关于训练深度最难的事情之一是你要处理的参数的数量，从学习速率 α 到Momentum（动量梯度下降法）的参数 β 。如果使用Momentum或Adam优化算法的参数 β1，β2和 ε，也许你还得选择层数，也许你还得选择不同层中隐藏单元的数量，也许你还想使用学习率衰减。所以，你使用的不是单一的学习率α。接着，当然你可能还需要选择mini-batch的大小。</p>
-<p>结果证实一些超参数比其它的更为重要。</p>
-<h3 id="最重要"><a href="#最重要" class="headerlink" title="最重要"></a>最重要</h3><ul>
-<li>学习速率 α；</li>
-</ul>
-<h3 id="其次重要"><a href="#其次重要" class="headerlink" title="其次重要"></a>其次重要</h3><ul>
-<li><p>β：动量衰减参数，常设置为 0.9；</p>
-</li>
-<li><p>#hidden units：各隐藏层神经元个数；</p>
-</li>
-<li><p>mini-batch 的大小；</p>
-</li>
-</ul>
-<h3 id="重要性排第三位"><a href="#重要性排第三位" class="headerlink" title="重要性排第三位"></a>重要性排第三位</h3><ul>
-<li><p>β1，β2，ϵ：Adam 优化算法的超参数，常设为 0.9、0.999、10−8；</p>
-</li>
-<li><p>#layers：神经网络层数;</p>
-</li>
-<li><p>decay_rate：学习衰减率；</p>
-<pre><code>![hyperparameters](https://raw.githubusercontent.com/songapore/For-PicGo/master/img/hyperparameters.png)
-</code></pre></li>
-</ul>
-<p>希望你粗略了解到哪些超参数较为重要，α无疑是最重要的，接下来是我用橙色圈住的那些，然后是我用紫色圈住的那些，但这不是严格且快速的标准，我认为，其它深度学习的研究者可能会很不同意我的观点或有着不同的直觉。</p>
-<h2 id="调参技巧"><a href="#调参技巧" class="headerlink" title="调参技巧"></a>调参技巧</h2><h3 id="随机选择点"><a href="#随机选择点" class="headerlink" title="随机选择点"></a>随机选择点</h3><p><img src="https://raw.githubusercontent.com/songapore/For-PicGo/master/img/try%20random%20values.png" alt="try random values:don&#39;t use a grid"></p>
-<p>现在，如果你尝试调整一些超参数，该如何选择调试值呢？在早一代的机器学习算法中，如果你有两个超参数，这里我会称之为超参1，超参2，常见的做法是在网格中取样点，像这样，然后系统的研究这些数值。这里我放置的是5×5的网格，实践证明，网格可以是5×5，也可多可少，但对于这个例子，你可以尝试这所有的25个点，然后选择哪个参数效果最好。<strong>当参数的数量相对较少时，这个方法很实用。</strong></p>
-<p><strong>在深度学习领域，我推荐你采用随机选择点</strong>，你可以选择同等数量的点，25个点，接着，用这些随机取的点试验超参数的效果。之所以这么做是因为，对于你要解决的问题而言，你很难提前知道哪个超参数最重要，正如你之前看到的，一些超参数的确要比其它的更重要。</p>
-<p>举个例子，假设超参数1是α（学习速率），取一个极端的例子，假设超参数2是Adam算法中，分母中的ε。在这种情况下，α的取值很重要，而ε取值则无关紧要。如果你在网格中取点，接着，你试验了αα的5个取值，那你会发现，无论ε取何值，结果基本上都是一样的。所以，你知道共有25种模型，但进行试验的α值只有5个，我认为这是很重要的。</p>
-<p>对比而言，如果你随机取值，你会试验25个独立的，似乎你更有可能发现效果做好的那个。</p>
-<p>实践中，哪个是最重要的超参数，对于你的具体应用而言，随机取值而不是网格取值表明，你探究了更多重要超参数的潜在值，无论结果是什么。</p>
-<h3 id="由粗糙到精细的策略"><a href="#由粗糙到精细的策略" class="headerlink" title="由粗糙到精细的策略"></a>由粗糙到精细的策略</h3><p>当你给超参数取值时，另一个惯例是采用 <strong>由粗糙到精细的策略 :聚焦效果不错的点组成的小区域，在其中更密集地取值，以此类推</strong></p>
-<p><img src="https://raw.githubusercontent.com/songapore/For-PicGo/master/img/coarse%20to%20fine.png" alt="coarse to fine"></p>
-<p>比如在二维的那个例子中，你进行了取值，也许你会发现效果最好的某个点，也许这个点周围的其他一些点效果也很好，那在接下来要做的是放大这块小区域（小蓝色方框内），然后在其中更密集得取值或随机取值，聚集更多的资源，在这个蓝色的方格中搜索，如果你怀疑这些超参数在这个区域的最优结果，那在整个的方格中进行粗略搜索后，你会知道接下来应该聚焦到更小的方格中。在更小的方格中，你可以更密集得取点。所以这种从粗到细的搜索也经常使用。</p>
-<p>通过试验超参数的不同取值，你可以选择对训练集目标而言的最优值，或对于开发集而言的最优值，或在超参搜索过程中你最想优化的东西。</p>
-<p>我希望，这能给你提供一种方法去系统地组织超参数搜索过程。另一个关键点是随机取值和精确搜索，考虑使用由粗糙到精细的搜索过程。</p>
-<h1 id="3-2为超参数选择合适的范围（Using-an-appropriate-scale-to-pick-hyperparameters）"><a href="#3-2为超参数选择合适的范围（Using-an-appropriate-scale-to-pick-hyperparameters）" class="headerlink" title="3.2为超参数选择合适的范围（Using an appropriate scale to pick hyperparameters）"></a>3.2为超参数选择合适的范围（Using an appropriate scale to pick hyperparameters）</h1><p>在上一课中，你已经看到了在超参数范围中，随机取值可以提升你的搜索效率。但随机取值并不是在有效范围内的随机均匀取值，而是选择合适的标尺，用于探究这些超参数。</p>
-<ul>
-<li>对于学习率 α，用对数标尺而非线性轴的方式搜索超参数更加合理：0.0001、0.001、0.01、0.1 等，然后在这些刻度之间再随机均匀取值；</li>
-<li>对于 β，取 0.9 就相当于在 10 个值中计算平均值，而取 0.999 就相当于在 1000 个值中计算平均值。可以考虑给 1-β 取值，这样就和取学习率类似了。</li>
-</ul>
-<p>上述操作的原因是当 β 接近 1 时，即使 β 只有微小的改变，所得结果的灵敏度会有较大的变化。例如，β 从 0.9 增加到 0.9005 对结果（1/(1-β)）几乎没有影响，而 β 从 0.999 到 0.9995 对结果的影响巨大（从 1000 个值中计算平均值变为 2000 个值中计算平均值）。</p>
-<h1 id="3-3-超参数训练的实践：Pandas-VS-Caviar（Hyperparameters-tuning-in-practice-Pandas-vs-Caviar）"><a href="#3-3-超参数训练的实践：Pandas-VS-Caviar（Hyperparameters-tuning-in-practice-Pandas-vs-Caviar）" class="headerlink" title="3.3 超参数训练的实践：Pandas VS Caviar（Hyperparameters tuning in practice: Pandas vs. Caviar）"></a>3.3 超参数训练的实践：Pandas VS Caviar（Hyperparameters tuning in practice: Pandas vs. Caviar）</h1><ul>
-<li><p>深度学习如今已经应用到许多不同的领域。不同的应用出现相互交融的现象，某个应用领域的超参数设定有可能通用于另一领域。不同应用领域的人也应该更多地阅读其他研究领域的 paper，跨领域地寻找灵感；</p>
-</li>
-<li><p>考虑到数据的变化或者服务器的变更等因素，建议每隔几个月至少一次，重新测试或评估超参数，来获得实时的最佳模型；</p>
-</li>
-<li><p>根据你所拥有的计算资源来决定你训练模型的方式：</p>
-</li>
-</ul>
-<ol>
-<li>Panda（熊猫方式）：在在线广告设置或者在计算机视觉应用领域有大量的数据，但受计算能力所限，同时试验大量模型比较困难。可以采用这种方式：试验一个或一小批模型，初始化，试着让其工作运转，观察它的表现，不断调整参数；</li>
-<li>Caviar（鱼子酱方式）：拥有足够的计算机去平行试验很多模型，尝试很多不同的超参数，选取效果最好的模型；</li>
-</ol>
-<p><img src="https://raw.githubusercontent.com/songapore/For-PicGo/master/img/Hyperparameters%20tuning%20in%20practice.png" alt="hpyerparameters tuning in practice"></p>
-
-          
+          对于超参数而言，如何找到一套好的设定呢？本课中，我将和你分享一些指导原则，一些关于如何系统地组织超参调试过程的技巧。
+调试处理（Tuning process）参数的重要程度排序关于训练深度最难的事情之一是你要处理的参数的数量，从学习速率 α 到Momentum（动量梯度下降法）的参数 β 。如果使用
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/05/08/DeepLearning/2018-05-08-course2-Week3-1-Tuning process/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1989,20 +1589,17 @@
       
         
           
-            <p>在深度学习研究早期，人们总是担心优化算法会困在极差的局部最优，不过随着深度学习理论不断发展，我们对局部最优的理解也发生了改变。我向你展示一下现在我们怎么看待局部最优以及深度学习中的优化问题。</p>
-<p><img src="https://raw.githubusercontent.com/songapore/For-PicGo/master/img/the%20problem%20of%20local%20optima.png" alt="The problem of local optima"></p>
-<p>这是曾经人们在想到局部最优时脑海里会出现的图，也许你想优化一些参数，我们把它们称之为W1和W2，平面的高度就是损失函数。在图中似乎各处都分布着局部最优。梯度下降法或者某个算法可能困在一个局部最优中，而不会抵达全局最优。如果你要作图计算一个数字，比如说这两个维度，就容易出现有多个不同局部最优的图，而这些低维的图曾经影响了我们的理解，但是这些理解并不正确。</p>
-<p>事实上，如果你要创建一个神经网络，通常梯度为零的点并不是这个图中的局部最优点，实际上成本函数的零梯度点，通常是鞍点。</p>
-<p><img src="https://raw.githubusercontent.com/songapore/For-PicGo/master/img/saddle.png" alt="saddle"></p>
-<p>所以我们从深度学习历史中学到的一课就是，我们对低维度空间的大部分直觉，比如你可以画出上面的图，并不能应用到高维度空间中。适用于其它算法，因为如果你有2万个参数，那么函数有2万个维度向量，你更可能遇到鞍点，而不是局部最优点。</p>
-<p>鞍点（saddle）是函数上的导数为零，但不是轴上局部极值的点。当我们建立一个神经网络时，通常梯度为零的点是上图所示的鞍点，而非局部最小值。减少损失的难度也来自误差曲面中的鞍点，而不是局部最低点。因为在一个具有高维度空间的成本函数中，如果梯度为 0，那么在每个方向，成本函数或是凸函数，或是凹函数。而所有维度均需要是凹函数的概率极小，因此在低维度的局部最优点的情况并不适用于高维度。</p>
-<p>结论：</p>
-<ul>
-<li>在训练较大的神经网络、存在大量参数，并且成本函数被定义在较高的维度空间时，困在极差的局部最优中是不大可能的；</li>
-<li>鞍点附近的平稳段会使得学习非常缓慢，而这也是动量梯度下降法、RMSProp 以及 Adam 优化算法能够加速学习的原因，它们能帮助尽早走出平稳段。</li>
-</ul>
+          在深度学习研究早期，人们总是担心优化算法会困在极差的局部最优，不过随着深度学习理论不断发展，我们对局部最优的理解也发生了改变。我向你展示一下现在我们怎么看待局部最优以及深度学习中的优化问题。
 
-          
+这是曾经人们在想到局部最优时脑海里会出现的图，也许你想优化一些参数，我们把它们称之为W1和W2，平面的高度
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/05/07/DeepLearning/2018-05-07-course2-Week2-10-The problem of local optima/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -2142,27 +1739,16 @@
       
         
           
-            <p>加快学习算法的一个办法就是随时间慢慢减少学习率，我们将之称为<strong>学习率衰减</strong>，我们来看看如何做到。</p>
-<h2 id="为什么要计算学习率衰减"><a href="#为什么要计算学习率衰减" class="headerlink" title="为什么要计算学习率衰减"></a>为什么要计算学习率衰减</h2><p>假设你要使用mini-batch梯度下降法，mini-batch数量不大，大概64或者128个样本，在迭代过程中会有噪音（蓝色线），下降朝向这里的最小值，但是不会精确地收敛，所以你的算法最后在附近摆动，并不会真正收敛，因为你用的α是固定值，不同的mini-batch中有噪音。</p>
-<p><img src="https://raw.githubusercontent.com/songapore/For-PicGo/master/img/why%20computer%20learning%20rate%20decay.png" alt="image"></p>
-<p>但要慢慢减少学习率α的话，在初期的时候，学习率α还较大，你的学习还是相对较快，但随着α变小，你的步伐也会变慢变小，所以最后你的曲线（绿色线）会在最小值附近的一小块区域里摆动，而不是在训练过程中，大幅度在最小值附近摆动。</p>
-<p>所以慢慢减少的本质在于，在学习初期，你能承受较大的步伐，但当开始收敛的时候，小一些的学习率能让你步伐小一些。</p>
-<h2 id="最常用的学习率衰减方法："><a href="#最常用的学习率衰减方法：" class="headerlink" title="最常用的学习率衰减方法："></a>最常用的学习率衰减方法：</h2><p>$$<br>\alpha = \frac{1}{1 + decay_rate <em> epoch_num} </em> \alpha_0<br>$$<br>其中，decay_rate为衰减率（超参数），epoch_num为将所有的训练样本完整过一遍的次数。注意这个衰减率是另一个你需要调整的超参数</p>
-<p>要理解，作为代数函数，根据上述公式，你的学习率呈递减趋势。如果你想用学习率衰减，要做的是要去尝试不同的值，找到合适的值，除了这个学习率衰减的公式，人们还会用其它的公式。</p>
-<h2 id="其它的学习率衰减方法"><a href="#其它的学习率衰减方法" class="headerlink" title="其它的学习率衰减方法"></a>其它的学习率衰减方法</h2><p><img src="https://raw.githubusercontent.com/songapore/For-PicGo/master/img/Other%20learning%20rate%20decay%20methods.png" alt="other learning rate decay methods"></p>
-<ul>
-<li>指数衰减：</li>
-</ul>
-<p>$$<br>\alpha = 0.95^{epoch_num} * \alpha_0<br>$$</p>
-<ul>
-<li>其他：</li>
-</ul>
-<p>$$<br>\alpha = \frac{k}{\sqrt{epoch_num}} * \alpha_0<br>$$</p>
-<ul>
-<li>离散下降</li>
-</ul>
-
-          
+          加快学习算法的一个办法就是随时间慢慢减少学习率，我们将之称为学习率衰减，我们来看看如何做到。
+为什么要计算学习率衰减假设你要使用mini-batch梯度下降法，mini-batch数量不大，大概64或者128个样本，在迭代过程中会有噪音（蓝色线），下降朝向这里的最小值，但是不会精确地收敛，所以你的算
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/05/06/DeepLearning/2018-05-06-course2-Week2-9-Learning rate decay/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
