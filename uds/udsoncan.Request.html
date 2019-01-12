@@ -70,7 +70,7 @@
 
 
 
-  <meta name="keywords" content="DeepLearning 吴恩达,">
+  <meta name="keywords" content="udsoncan uds python,">
 
 
 
@@ -81,21 +81,18 @@
 
 
 
-<meta name="description" content="dropout工作原理除了L2 正则化，还有一个非常实用的正则化方法——“Dropout（随机失活）”，我们来看看它的工作原理。 假设你在训练左图这样的神经网络，它存在过拟合，这就是dropout所要处理的，我们复制这个神经网络，dropout会遍历网络的每一层，并设置消除神经网络中节点的概率。假设网络中的每一层，每个节点都以抛硬币的方式设置概率，每个节点得以保留和消除的概率都是0.5，设置完节点">
-<meta name="keywords" content="DeepLearning 吴恩达">
+<meta name="description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394959697989910010110210">
+<meta name="keywords" content="udsoncan uds python">
 <meta property="og:type" content="article">
-<meta property="og:title" content="dropout 正则化（Dropout Regularization）-吴恩达 深度学习 course2 1.6笔记">
-<meta property="og:url" content="https://songjiapo.com/DeepLearning/2018-04-17-course2-Week1-6-dropout-正则化.html">
+<meta property="og:title" content="udsoncan.Request源码">
+<meta property="og:url" content="https://songjiapo.com/uds/udsoncan.Request.html">
 <meta property="og:site_name" content="songjiapo">
-<meta property="og:description" content="dropout工作原理除了L2 正则化，还有一个非常实用的正则化方法——“Dropout（随机失活）”，我们来看看它的工作原理。 假设你在训练左图这样的神经网络，它存在过拟合，这就是dropout所要处理的，我们复制这个神经网络，dropout会遍历网络的每一层，并设置消除神经网络中节点的概率。假设网络中的每一层，每个节点都以抛硬币的方式设置概率，每个节点得以保留和消除的概率都是0.5，设置完节点">
+<meta property="og:description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394959697989910010110210">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://raw.githubusercontent.com/songapore/For-PicGo/master/img/dropout_regularization.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/songapore/For-PicGo/master/img/dropuout.png">
-<meta property="og:updated_time" content="2019-01-08T11:48:55.000Z">
+<meta property="og:updated_time" content="2019-01-12T15:01:42.987Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="dropout 正则化（Dropout Regularization）-吴恩达 深度学习 course2 1.6笔记">
-<meta name="twitter:description" content="dropout工作原理除了L2 正则化，还有一个非常实用的正则化方法——“Dropout（随机失活）”，我们来看看它的工作原理。 假设你在训练左图这样的神经网络，它存在过拟合，这就是dropout所要处理的，我们复制这个神经网络，dropout会遍历网络的每一层，并设置消除神经网络中节点的概率。假设网络中的每一层，每个节点都以抛硬币的方式设置概率，每个节点得以保留和消除的概率都是0.5，设置完节点">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/songapore/For-PicGo/master/img/dropout_regularization.png">
+<meta name="twitter:title" content="udsoncan.Request源码">
+<meta name="twitter:description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394959697989910010110210">
 
 
 
@@ -125,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="https://songjiapo.com/DeepLearning/2018-04-17-course2-Week1-6-dropout-正则化.html">
+  <link rel="canonical" href="https://songjiapo.com/uds/udsoncan.Request.html">
 
 
 
 
 
-  <title>dropout 正则化（Dropout Regularization）-吴恩达 深度学习 course2 1.6笔记 | songjiapo</title>
+  <title>udsoncan.Request源码 | songjiapo</title>
   
 
 
@@ -300,7 +297,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://songjiapo.com/DeepLearning/2018-04-17-course2-Week1-6-dropout-正则化.html">
+    <link itemprop="mainEntityOfPage" href="https://songjiapo.com/uds/udsoncan.Request.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="song jiapo">
@@ -317,7 +314,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">dropout 正则化（Dropout Regularization）-吴恩达 深度学习 course2 1.6笔记</h2>
+          <h2 class="post-title" itemprop="name headline">udsoncan.Request源码</h2>
         
 
         <div class="post-meta">
@@ -329,8 +326,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-17T14:43:00+08:00">
-                2018-04-17
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-12T19:50:15+08:00">
+                2019-01-12
               </time>
             
 
@@ -352,8 +349,8 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/DeepLearning/" itemprop="url" rel="index">
-                    <span itemprop="name">DeepLearning</span>
+                  <a href="/categories/uds/" itemprop="url" rel="index">
+                    <span itemprop="name">uds</span>
                   </a>
                 </span>
 
@@ -370,8 +367,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/DeepLearning/2018-04-17-course2-Week1-6-dropout-正则化.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/DeepLearning/2018-04-17-course2-Week1-6-dropout-正则化.html" itemprop="commentCount"></span>
+                <a href="/uds/udsoncan.Request.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/uds/udsoncan.Request.html" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -399,33 +396,7 @@
       
 
       
-        <h2 id="dropout工作原理"><a href="#dropout工作原理" class="headerlink" title="dropout工作原理"></a>dropout工作原理</h2><p>除了L2 正则化，还有一个非常实用的正则化方法——“<strong>Dropout（随机失活）</strong>”，我们来看看它的工作原理。<br><img src="https://raw.githubusercontent.com/songapore/For-PicGo/master/img/dropout_regularization.png" alt="image"></p>
-<p>假设你在训练左图这样的神经网络，它存在过拟合，这就是dropout所要处理的，我们复制这个神经网络，<strong>dropout会遍历网络的每一层，并设置消除神经网络中节点的概率</strong>。假设网络中的每一层，每个节点都以抛硬币的方式设置概率，每个节点得以保留和消除的概率都是0.5，设置完节点概率，我们会消除一些节点，然后删除掉从该节点进出的连线，最后得到一个节点更少，规模更小的网络，然后用backprop方法进行训练。</p>
-<p>右图是网络节点精简后的一个样本，对于其它样本，我们照旧以抛硬币的方式设置概率，保留一类节点集合，删除其它类型的节点集合。对于每个训练样本，我们都将采用一个精简后神经网络来训练它，这种方法似乎有点怪，单纯遍历节点，编码也是随机的，可它真的有效。不过可想而知，我们针对每个训练样本训练规模极小的网络，最后你可能会认识到为什么要正则化网络，因为我们在训练极小的网络</p>
-<h2 id="如何实施dropout呢"><a href="#如何实施dropout呢" class="headerlink" title="如何实施dropout呢"></a>如何实施dropout呢</h2><p>如何实施dropout呢？方法有几种，接下来我要讲的是最常用的方法，即<strong>inverted dropout（反向随机失活）</strong>，出于完整性考虑，我们用一个三层（<code>l=3</code>）网络来举例说明。</p>
-<p><img src="https://raw.githubusercontent.com/songapore/For-PicGo/master/img/dropuout.png" alt="如何实施dropout"></p>
-<ul>
-<li>首先要定义向量<code>d</code></li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">d3 = np.random.rand(a3.shape[0],a3.shape[1])</span><br></pre></td></tr></table></figure>
-<ul>
-<li>然后看它是否小于<strong>keep-prob</strong></li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">d3 = np.random.rand(a3.shape[0],a3.shape[1]) &lt; keep_prob</span><br></pre></td></tr></table></figure>
-<p>keep-prob是一个具体数字，它表示<strong>保留某个隐藏单元的概率</strong>.</p>
-<p>如果用python实现该算法的话，d3则是一个布尔型数组，值为true和false</p>
-<ul>
-<li>获取激活函数</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a3 =np.multiply( a3,d3)</span><br></pre></td></tr></table></figure>
-<ul>
-<li>最后,除以keep-prob参数</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a3 /= keep_prob</span><br></pre></td></tr></table></figure>
-<p>为了不影响<code>z4</code>的期望值，我们需要用<code>a3 /= keep_prob</code>，它将会修正或弥补我们所需的那20%，<code>a3</code>的期望值不会变。<strong>反向随机失活（inverted dropout）方法通过除以keep-prob，确保的期望值不变。</strong></p>
-<p>据我了解，目前实施dropout最常用的方法就是Inverted dropout，建议大家动手实践一下</p>
-<p>在测试阶段，我们并未使用dropout，自然也就不用抛硬币来决定失活概率，以及要消除哪些隐藏单元了，因为在测试阶段进行预测时，我们不期望输出结果是随机的，如果测试阶段应用dropout函数，预测会受到干扰。</p>
-
+        <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> udsoncan <span class="keyword">import</span> services</span><br><span class="line"><span class="keyword">import</span> inspect</span><br><span class="line"><span class="keyword">import</span> struct</span><br><span class="line"></span><br><span class="line">[docs]<span class="class"><span class="keyword">class</span> <span class="title">Request</span>:</span></span><br><span class="line">	<span class="string">"""</span></span><br><span class="line"><span class="string">	Represents a UDS Request.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">	:param service: The service for which to make the request. This parameter must be a class that extends :class:`udsoncan.services.BaseService`</span></span><br><span class="line"><span class="string">	:type service: class</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">	:param subfunction: The service subfunction. This value may be ignored if the given service does not supports subfunctions</span></span><br><span class="line"><span class="string">	:type subfunction: int or None</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">	:param suppress_positive_response: Indicates that the server should not send a response if the response code is positive. </span></span><br><span class="line"><span class="string">		This parameter has effect only when the given service supports subfunctions</span></span><br><span class="line"><span class="string">	:type suppress_positive_response: bool</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">	:param data: The service data appended after service ID and payload</span></span><br><span class="line"><span class="string">	:type data: bytes</span></span><br><span class="line"><span class="string">	"""</span></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, service = None, subfunction = None, suppress_positive_response = False, data=None)</span>:</span></span><br><span class="line">		<span class="keyword">if</span> service <span class="keyword">is</span> <span class="keyword">None</span>:</span><br><span class="line">			self.service = <span class="keyword">None</span></span><br><span class="line">		<span class="keyword">elif</span> isinstance(service, services.BaseService):</span><br><span class="line">			self.service = service.__class__</span><br><span class="line">		<span class="keyword">elif</span> inspect.isclass(service) <span class="keyword">and</span> issubclass(service, services.BaseService):</span><br><span class="line">			self.service = service</span><br><span class="line">		<span class="keyword">elif</span> service <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">None</span>:</span><br><span class="line">			<span class="keyword">raise</span> ValueError(<span class="string">"Given service must be a service class or instance"</span>)</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span> <span class="keyword">not</span> isinstance(suppress_positive_response, bool):</span><br><span class="line">			<span class="keyword">raise</span> ValueError(<span class="string">"suppress_positive_response must be a boolean value"</span>)</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span> subfunction <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">None</span>:</span><br><span class="line">			<span class="keyword">if</span> isinstance(subfunction, int):</span><br><span class="line">				self.subfunction = subfunction</span><br><span class="line">			<span class="keyword">else</span>:</span><br><span class="line">				<span class="keyword">raise</span> ValueError(<span class="string">"Given subfunction must be a valid integer"</span>)</span><br><span class="line">		<span class="keyword">else</span>:</span><br><span class="line">			self.subfunction = <span class="keyword">None</span></span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span> self.service <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">None</span>:</span><br><span class="line">			<span class="keyword">if</span> suppress_positive_response <span class="keyword">and</span> self.service.use_subfunction() == <span class="keyword">False</span>:</span><br><span class="line">				<span class="keyword">raise</span> ValueError(<span class="string">'Cannot suppress positive response for service %s. This service does not have a subfunction'</span> % (self.service.get_name()))</span><br><span class="line">		self.suppress_positive_response = suppress_positive_response</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">if</span> data <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">None</span> <span class="keyword">and</span> <span class="keyword">not</span> isinstance(data, bytes):</span><br><span class="line">			<span class="keyword">raise</span> ValueError(<span class="string">"data must be a valid bytes object"</span>)</span><br><span class="line"></span><br><span class="line">		self.data = data</span><br><span class="line"></span><br><span class="line">[docs]	<span class="function"><span class="keyword">def</span> <span class="title">get_payload</span><span class="params">(self, suppress_positive_response=None)</span>:</span></span><br><span class="line">		<span class="string">"""</span></span><br><span class="line"><span class="string">		Generates a payload to be given to the underlying protocol.</span></span><br><span class="line"><span class="string">		This method is meant to be used by a UDS client</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">		:return: A payload to be sent through the underlying protocol</span></span><br><span class="line"><span class="string">		:rtype: bytes</span></span><br><span class="line"><span class="string">		"""</span></span><br><span class="line">		<span class="keyword">if</span> <span class="keyword">not</span> issubclass(self.service, services.BaseService):</span><br><span class="line">			<span class="keyword">raise</span> ValueError(<span class="string">"Cannot generate a payload. Given service is not a subclass of BaseService"</span>)</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span> self.service.use_subfunction() <span class="keyword">and</span> <span class="keyword">not</span> isinstance(self.subfunction, int):</span><br><span class="line">			<span class="keyword">raise</span> ValueError(<span class="string">"Cannot generate a payload. Given subfunction is not a valid integer"</span>)</span><br><span class="line"></span><br><span class="line">		requestid = self.service.request_id()	<span class="comment"># Returns the service ID used to make a client request</span></span><br><span class="line">			</span><br><span class="line">		payload = struct.pack(<span class="string">"B"</span>, requestid)</span><br><span class="line">		<span class="keyword">if</span> self.service.use_subfunction():</span><br><span class="line">			subfunction = self.subfunction</span><br><span class="line">			<span class="keyword">if</span> suppress_positive_response <span class="keyword">is</span> <span class="keyword">None</span>:</span><br><span class="line">				<span class="keyword">if</span> self.suppress_positive_response:</span><br><span class="line">					subfunction |= <span class="number">0x80</span></span><br><span class="line">			<span class="keyword">else</span>:</span><br><span class="line">				<span class="keyword">if</span> suppress_positive_response == <span class="keyword">True</span>:</span><br><span class="line">					subfunction |= <span class="number">0x80</span></span><br><span class="line">				<span class="keyword">elif</span> suppress_positive_response == <span class="keyword">False</span>:</span><br><span class="line">					subfunction &amp;= ~<span class="number">0x80</span></span><br><span class="line">			payload += struct.pack(<span class="string">"B"</span>, subfunction)</span><br><span class="line">		<span class="keyword">else</span>:</span><br><span class="line">			<span class="keyword">if</span> suppress_positive_response == <span class="keyword">True</span> <span class="keyword">or</span> self.suppress_positive_response == <span class="keyword">True</span>:</span><br><span class="line">				<span class="keyword">raise</span> ValueError(<span class="string">'Cannot suppress positive response for service %s. This service does not have a subfunction'</span> % (self.service.get_name()))</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span> self.data <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">None</span>:</span><br><span class="line">			 payload += self.data</span><br><span class="line"></span><br><span class="line">		<span class="keyword">return</span> payload</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">	@classmethod</span></span><br><span class="line">[docs]	<span class="function"><span class="keyword">def</span> <span class="title">from_payload</span><span class="params">(cls, payload)</span>:</span></span><br><span class="line">		<span class="string">"""</span></span><br><span class="line"><span class="string">		Creates a ``Request`` object from a payload coming from the underlying protocols.</span></span><br><span class="line"><span class="string">		This method is meant to be used by a UDS server</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">		:param payload: The payload of data to parse</span></span><br><span class="line"><span class="string">		:type payload: bytes</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">		:return: A :ref:`Request&lt;Request&gt;` object with populated fields</span></span><br><span class="line"><span class="string">		:rtype: :ref:`Request&lt;Request&gt;`</span></span><br><span class="line"><span class="string">		"""</span></span><br><span class="line">		req = cls()</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span> len(payload) &gt;= <span class="number">1</span>:</span><br><span class="line">			req.service = services.cls_from_request_id(payload[<span class="number">0</span>])</span><br><span class="line">			<span class="keyword">if</span> req.service <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">None</span>:		<span class="comment"># Invalid service ID will make service None</span></span><br><span class="line">				offset = <span class="number">0</span></span><br><span class="line">				<span class="keyword">if</span> req.service.use_subfunction():</span><br><span class="line">					offset += <span class="number">1</span></span><br><span class="line">					<span class="keyword">if</span> len(payload) &gt;= offset+<span class="number">1</span>: </span><br><span class="line">						req.subfunction = int(payload[<span class="number">1</span>]) &amp; <span class="number">0x7F</span></span><br><span class="line">						req.suppress_positive_response = <span class="keyword">True</span> <span class="keyword">if</span> payload[<span class="number">1</span>] &amp; <span class="number">0x80</span> &gt; <span class="number">0</span> <span class="keyword">else</span> <span class="keyword">False</span></span><br><span class="line">				<span class="keyword">if</span> len(payload) &gt; offset+<span class="number">1</span>:</span><br><span class="line">					req.data = payload[offset+<span class="number">1</span>:]</span><br><span class="line">		<span class="keyword">return</span> req</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">__repr__</span><span class="params">(self)</span>:</span></span><br><span class="line">		suppress_positive_response = <span class="string">'[SuppressPosResponse] '</span> <span class="keyword">if</span> self.suppress_positive_response <span class="keyword">else</span> <span class="string">''</span></span><br><span class="line">		subfunction_name = <span class="string">'(subfunction=%d) '</span> % self.subfunction <span class="keyword">if</span> self.service.use_subfunction() <span class="keyword">and</span> self.subfunction <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">None</span> <span class="keyword">else</span> <span class="string">''</span></span><br><span class="line">		bytesize = len(self.data) <span class="keyword">if</span> self.data <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">None</span> <span class="keyword">else</span> <span class="number">0</span></span><br><span class="line">		<span class="keyword">return</span> <span class="string">'&lt;Request: [%s] %s- %d data bytes %sat 0x%08x&gt;'</span> % (self.service.get_name(), subfunction_name, bytesize, suppress_positive_response, id(self))</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">__len__</span><span class="params">(self)</span>:</span></span><br><span class="line">		<span class="keyword">try</span>:</span><br><span class="line">			<span class="keyword">return</span> len(self.get_payload())</span><br><span class="line">		<span class="keyword">except</span>:</span><br><span class="line">			<span class="keyword">return</span> <span class="number">0</span></span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -442,7 +413,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/DeepLearning-吴恩达/" rel="tag"># DeepLearning 吴恩达</a>
+            <a href="/tags/udsoncan-uds-python/" rel="tag"># udsoncan uds python</a>
           
         </div>
       
@@ -455,8 +426,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/DeepLearning/2018-04-17-course2-Week1-5-为什么正则化有利于预防过拟合呢.html" rel="next" title="为什么正则化有利于预防过拟合呢-吴恩达 深度学习 course2 1.5笔记">
-                <i class="fa fa-chevron-left"></i> 为什么正则化有利于预防过拟合呢-吴恩达 深度学习 course2 1.5笔记
+              <a href="/uds/udsoncan.Response.html" rel="next" title="udsoncan.Response源码">
+                <i class="fa fa-chevron-left"></i> udsoncan.Response源码
               </a>
             
           </div>
@@ -464,10 +435,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/DeepLearning/2018-04-17-course2-Week1-7-理解dropout.html" rel="prev" title="理解 dropout（Understanding Dropout）-吴恩达 深度学习 course2 1.7笔记">
-                理解 dropout（Understanding Dropout）-吴恩达 深度学习 course2 1.7笔记 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -522,17 +489,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -608,22 +566,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#dropout工作原理"><span class="nav-number">1.</span> <span class="nav-text">dropout工作原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何实施dropout呢"><span class="nav-number">2.</span> <span class="nav-text">如何实施dropout呢</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
@@ -1182,26 +1124,6 @@
   
 
   
-  
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-        tex2jax: {
-          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-          processEscapes: true,
-          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-        }
-      });
-    </script>
-
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for (i=0; i < all.length; i += 1) {
-          all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-      });
-    </script>
-    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
   
 
 

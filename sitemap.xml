@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://songjiapo.com/uds/udsoncan.Response.html</loc>
+    
+    <lastmod>2019-01-12T15:03:04.019Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://songjiapo.com/uds/udsoncan.Request.html</loc>
+    
+    <lastmod>2019-01-12T15:01:42.987Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://songjiapo.com/uds/Request%20and%20Response.html</loc>
     
     <lastmod>2019-01-12T12:15:03.402Z</lastmod>
@@ -44,48 +58,6 @@
   </url>
   
   <url>
-    <loc>https://songjiapo.com/DeepLearning/2018-04-17-course2-Week1-3-%E8%AE%AD%E7%BB%83%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%94%A8%E5%88%B0%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%96%B9%E6%B3%95.html</loc>
-    
-    <lastmod>2019-01-08T11:48:55.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://songjiapo.com/DeepLearning/2018-04-17-course2-Week1-4-%E6%AD%A3%E5%88%99%E5%8C%96.html</loc>
-    
-    <lastmod>2019-01-08T11:48:55.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://songjiapo.com/DeepLearning/2018-04-17-course2-Week1-5-%E4%B8%BA%E4%BB%80%E4%B9%88%E6%AD%A3%E5%88%99%E5%8C%96%E6%9C%89%E5%88%A9%E4%BA%8E%E9%A2%84%E9%98%B2%E8%BF%87%E6%8B%9F%E5%90%88%E5%91%A2.html</loc>
-    
-    <lastmod>2019-01-08T11:48:55.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://songjiapo.com/DeepLearning/2018-04-17-course2-Week1-7-%E7%90%86%E8%A7%A3dropout.html</loc>
-    
-    <lastmod>2019-01-08T11:48:55.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://songjiapo.com/DeepLearning/2018-04-17-course2-Week1-6-dropout-%E6%AD%A3%E5%88%99%E5%8C%96.html</loc>
-    
-    <lastmod>2019-01-08T11:48:55.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://songjiapo.com/DeepLearning/2018-04-17-course2-Week1-8-%E5%85%B6%E4%BB%96%E6%AD%A3%E5%88%99%E5%8C%96%E6%96%B9%E6%B3%95.html</loc>
-    
-    <lastmod>2019-01-08T11:48:55.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://songjiapo.com/DeepLearning/2018-04-18-course2-Week1-9-%E5%BD%92%E4%B8%80%E5%8C%96%E8%BE%93%E5%85%A5%EF%BC%88Normalizing%20inputs%EF%BC%89.html</loc>
     
     <lastmod>2019-01-08T11:48:55.000Z</lastmod>
@@ -100,14 +72,14 @@
   </url>
   
   <url>
-    <loc>https://songjiapo.com/DeepLearning/2018-04-19-course2-Week1-12-%E6%A2%AF%E5%BA%A6%E7%9A%84%E6%95%B0%E5%80%BC%E9%80%BC%E8%BF%91%EF%BC%88Numerical%20approximation%20of%20gradients%EF%BC%89.html</loc>
+    <loc>https://songjiapo.com/DeepLearning/2018-04-19-course2-Week1-11-%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%9A%84%E6%9D%83%E9%87%8D%E5%88%9D%E5%A7%8B%E5%8C%96%EF%BC%88Weight%20Initialization%20for%20Deep%20Networks%EF%BC%89.html</loc>
     
     <lastmod>2019-01-08T11:48:55.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://songjiapo.com/DeepLearning/2018-04-19-course2-Week1-11-%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%9A%84%E6%9D%83%E9%87%8D%E5%88%9D%E5%A7%8B%E5%8C%96%EF%BC%88Weight%20Initialization%20for%20Deep%20Networks%EF%BC%89.html</loc>
+    <loc>https://songjiapo.com/DeepLearning/2018-04-19-course2-Week1-12-%E6%A2%AF%E5%BA%A6%E7%9A%84%E6%95%B0%E5%80%BC%E9%80%BC%E8%BF%91%EF%BC%88Numerical%20approximation%20of%20gradients%EF%BC%89.html</loc>
     
     <lastmod>2019-01-08T11:48:55.000Z</lastmod>
     
@@ -128,14 +100,14 @@
   </url>
   
   <url>
-    <loc>https://songjiapo.com/DeepLearning/2018-04-29-course2-Week2-6-Gradient%20descent%20with%20Momentum.html</loc>
+    <loc>https://songjiapo.com/DeepLearning/2018-04-28-course2-Week2-3-%E6%8C%87%E6%95%B0%E5%8A%A0%E6%9D%83%E5%B9%B3%E5%9D%87%E6%95%B0%EF%BC%88Exponentially%20weighted%20averages).html</loc>
     
     <lastmod>2019-01-08T11:48:55.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://songjiapo.com/DeepLearning/2018-04-28-course2-Week2-3-%E6%8C%87%E6%95%B0%E5%8A%A0%E6%9D%83%E5%B9%B3%E5%9D%87%E6%95%B0%EF%BC%88Exponentially%20weighted%20averages).html</loc>
+    <loc>https://songjiapo.com/DeepLearning/2018-04-29-course2-Week2-6-Gradient%20descent%20with%20Momentum.html</loc>
     
     <lastmod>2019-01-08T11:48:55.000Z</lastmod>
     
@@ -191,7 +163,28 @@
   </url>
   
   <url>
+    <loc>https://songjiapo.com/DeepLearning/2018-05-21-course2-Week3-10-deep%20learning%20frameworks.html</loc>
+    
+    <lastmod>2019-01-08T11:48:55.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://songjiapo.com/Self-Driving%20Car%20Fundamentals-Featuring%20Apollo/2018-07-12-Self-Driving%20Car%20Fundamentals-Featuring%20Apollo-lesson%202-HD%20Maps.html</loc>
+    
+    <lastmod>2019-01-08T11:48:55.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://songjiapo.com/git/2018-03-15-githubyaunchengjiami.html</loc>
+    
+    <lastmod>2019-01-08T11:48:55.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://songjiapo.com/git/2018-03-16-gitignore.html</loc>
     
     <lastmod>2019-01-08T11:48:55.000Z</lastmod>
     
@@ -205,7 +198,7 @@
   </url>
   
   <url>
-    <loc>https://songjiapo.com/ros_tutorial/2018-03-20-ROS%E6%95%99%E7%A8%8B-0%20%E7%9B%AE%E5%BD%95-%E3%80%8A%E7%94%A8ROS%E5%AD%A6%E4%B9%A0%E6%9C%BA%E5%99%A8%E4%BA%BA%E7%BC%96%E7%A8%8B%E7%9A%84%E7%B3%BB%E7%BB%9F%E6%96%B9%E6%B3%95%E3%80%8B.html</loc>
+    <loc>https://songjiapo.com/DeepLearning/2018-04-17-course2-Week1-2-%E5%81%8F%E5%B7%AE-%E6%96%B9%E5%B7%AE.html</loc>
     
     <lastmod>2019-01-08T11:48:55.000Z</lastmod>
     
@@ -255,13 +248,6 @@
   
   <url>
     <loc>https://songjiapo.com/ros_tutorial/2018-03-27-ROS%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%80-4.ROS%E6%9C%8D%E5%8A%A1%E6%B6%88%E6%81%AF(.srv).html</loc>
-    
-    <lastmod>2019-01-08T11:48:55.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://songjiapo.com/git/2018-03-15-githubyaunchengjiami.html</loc>
     
     <lastmod>2019-01-08T11:48:55.000Z</lastmod>
     
@@ -324,6 +310,34 @@
   </url>
   
   <url>
+    <loc>https://songjiapo.com/DeepLearning/2018-04-17-course2-Week1-1-%E8%AE%AD%E7%BB%83-%E9%AA%8C%E8%AF%81-%E6%B5%8B%E8%AF%95%E9%9B%86.html</loc>
+    
+    <lastmod>2019-01-08T11:48:55.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://songjiapo.com/DeepLearning/2018-04-17-course2-Week1-3-%E8%AE%AD%E7%BB%83%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%94%A8%E5%88%B0%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%96%B9%E6%B3%95.html</loc>
+    
+    <lastmod>2019-01-08T11:48:55.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://songjiapo.com/DeepLearning/2018-04-17-course2-Week1-4-%E6%AD%A3%E5%88%99%E5%8C%96.html</loc>
+    
+    <lastmod>2019-01-08T11:48:55.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://songjiapo.com/DeepLearning/2018-04-27-course2-Week2-1-Mini-batch%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D.html</loc>
+    
+    <lastmod>2019-01-08T11:48:55.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://songjiapo.com/Self-Driving%20Car%20Fundamentals-Featuring%20Apollo/2018-07-11-Self-Driving%20Car%20Fundamentals-Featuring%20Apollo-lesson%201-%E6%97%A0%E4%BA%BA%E9%A9%BE%E9%A9%B6%E6%A6%82%E8%A7%88.html</loc>
     
     <lastmod>2019-01-08T11:48:55.000Z</lastmod>
@@ -345,14 +359,14 @@
   </url>
   
   <url>
-    <loc>https://songjiapo.com/DeepLearning/2018-04-27-course2-Week2-1-Mini-batch%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D.html</loc>
+    <loc>https://songjiapo.com/DeepLearning/2018-04-17-course2-Week1-5-%E4%B8%BA%E4%BB%80%E4%B9%88%E6%AD%A3%E5%88%99%E5%8C%96%E6%9C%89%E5%88%A9%E4%BA%8E%E9%A2%84%E9%98%B2%E8%BF%87%E6%8B%9F%E5%90%88%E5%91%A2.html</loc>
     
     <lastmod>2019-01-08T11:48:55.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://songjiapo.com/git/2018-03-16-gitignore.html</loc>
+    <loc>https://songjiapo.com/DeepLearning/2018-04-17-course2-Week1-6-dropout-%E6%AD%A3%E5%88%99%E5%8C%96.html</loc>
     
     <lastmod>2019-01-08T11:48:55.000Z</lastmod>
     
@@ -366,21 +380,21 @@
   </url>
   
   <url>
-    <loc>https://songjiapo.com/DeepLearning/2018-04-17-course2-Week1-2-%E5%81%8F%E5%B7%AE-%E6%96%B9%E5%B7%AE.html</loc>
+    <loc>https://songjiapo.com/DeepLearning/2018-04-17-course2-Week1-7-%E7%90%86%E8%A7%A3dropout.html</loc>
     
     <lastmod>2019-01-08T11:48:55.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://songjiapo.com/DeepLearning/2018-04-17-course2-Week1-1-%E8%AE%AD%E7%BB%83-%E9%AA%8C%E8%AF%81-%E6%B5%8B%E8%AF%95%E9%9B%86.html</loc>
+    <loc>https://songjiapo.com/DeepLearning/2018-04-17-course2-Week1-8-%E5%85%B6%E4%BB%96%E6%AD%A3%E5%88%99%E5%8C%96%E6%96%B9%E6%B3%95.html</loc>
     
     <lastmod>2019-01-08T11:48:55.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://songjiapo.com/DeepLearning/2018-05-21-course2-Week3-10-deep%20learning%20frameworks.html</loc>
+    <loc>https://songjiapo.com/ros_tutorial/2018-03-20-ROS%E6%95%99%E7%A8%8B-0%20%E7%9B%AE%E5%BD%95-%E3%80%8A%E7%94%A8ROS%E5%AD%A6%E4%B9%A0%E6%9C%BA%E5%99%A8%E4%BA%BA%E7%BC%96%E7%A8%8B%E7%9A%84%E7%B3%BB%E7%BB%9F%E6%96%B9%E6%B3%95%E3%80%8B.html</loc>
     
     <lastmod>2019-01-08T11:48:55.000Z</lastmod>
     
