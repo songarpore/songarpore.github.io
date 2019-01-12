@@ -1,0 +1,1252 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+<meta name="google-site-verification" content="4b5ChOPlfrWPkfJKVSwbnGC4WDT5fyOTDO62HVBosls">
+<meta name="baidu-site-verification" content="iotYLCUzXs">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="udsoncan uds python,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="client和server交换的消息由Request和Response表示。 client向server发送的请求包含service number(SID)，可选子subfunction和一些data。server处理Request并作出Response，该应答包含SID，响应代码和一些其他数据。 以下类提供了操作UDS Request和Response所必需的接口。 Request12345re">
+<meta name="keywords" content="udsoncan uds python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="请求与应答">
+<meta property="og:url" content="https://songjiapo.com/uds/Request and Response.html">
+<meta property="og:site_name" content="songjiapo">
+<meta property="og:description" content="client和server交换的消息由Request和Response表示。 client向server发送的请求包含service number(SID)，可选子subfunction和一些data。server处理Request并作出Response，该应答包含SID，响应代码和一些其他数据。 以下类提供了操作UDS Request和Response所必需的接口。 Request12345re">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-01-12T12:15:03.402Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="请求与应答">
+<meta name="twitter:description" content="client和server交换的消息由Request和Response表示。 client向server发送的请求包含service number(SID)，可选子subfunction和一些data。server处理Request并作出Response，该应答包含SID，响应代码和一些其他数据。 以下类提供了操作UDS Request和Response所必需的接口。 Request12345re">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://songjiapo.com/uds/Request and Response.html">
+
+
+
+
+
+  <title>请求与应答 | songjiapo</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?e07193cab6deb965ead8e1aed3d4744f";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">songjiapo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://songjiapo.com/uds/Request and Response.html">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="song jiapo">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="songjiapo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">请求与应答</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-12T15:50:15+08:00">
+                2019-01-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/uds/" itemprop="url" rel="index">
+                    <span itemprop="name">uds</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/uds/Request and Response.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/uds/Request and Response.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><code>client</code>和<code>server</code>交换的消息由<code>Request</code>和<code>Response</code>表示。</p>
+<p><code>client</code>向<code>server</code>发送的请求包含<code>service number(SID)</code>，可选子<code>subfunction</code>和一些<code>data</code>。<code>server</code>处理<code>Request</code>并作出<code>Response</code>，该应答包含<code>SID</code>，响应代码和一些其他数据。</p>
+<p>以下类提供了操作UDS <code>Request</code>和<code>Response</code>所必需的接口。</p>
+<h1 id="Request"><a href="#Request" class="headerlink" title="Request"></a>Request</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">req = Request(service=ECUReset, subfunction=<span class="number">1</span>, data=<span class="string">b'\x99\x88'</span>)</span><br><span class="line">payload = req.get_payload()</span><br><span class="line">print(payload) <span class="comment"># b'\x11\x01\x99\x88'</span></span><br><span class="line">req2 = Request.from_payload(payload)</span><br><span class="line">print(req2) <span class="comment"># &lt;Request: [ECUReset] (subfunction=1) - 2 data bytes at 0x12345678&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">udsoncan</span>.<span class="title">Request</span><span class="params">(service=None, subfunction=None, suppress_positive_response=False, data=None)</span></span></span><br><span class="line"><span class="class">#代表一个<span class="title">UDS</span> <span class="title">Request</span>.</span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class"><span class="title">Parameters</span>:</span>	</span><br><span class="line">    service (<span class="class"><span class="keyword">class</span>) – <span class="title">The</span> <span class="title">service</span> <span class="title">for</span> <span class="title">which</span> <span class="title">to</span> <span class="title">make</span> <span class="title">the</span> <span class="title">request</span>. <span class="title">This</span> <span class="title">parameter</span> <span class="title">must</span> <span class="title">be</span> <span class="title">a</span> <span class="title">class</span> <span class="title">that</span> <span class="title">extends</span> <span class="title">udsoncan</span>.<span class="title">services</span>.<span class="title">BaseService</span></span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class">    <span class="title">subfunction</span> <span class="params">(int or None)</span> – <span class="title">The</span> <span class="title">service</span> <span class="title">subfunction</span>. <span class="title">This</span> <span class="title">value</span> <span class="title">may</span> <span class="title">be</span> <span class="title">ignored</span> <span class="title">if</span> <span class="title">the</span> <span class="title">given</span> <span class="title">service</span> <span class="title">does</span> <span class="title">not</span> <span class="title">supports</span> <span class="title">subfunctions</span></span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class">    <span class="title">suppress_positive_response</span> <span class="params">(bool)</span> – <span class="title">Indicates</span> <span class="title">that</span> <span class="title">the</span> <span class="title">server</span> <span class="title">should</span> <span class="title">not</span> <span class="title">send</span> <span class="title">a</span> <span class="title">response</span> <span class="title">if</span> <span class="title">the</span> <span class="title">response</span> <span class="title">code</span> <span class="title">is</span> <span class="title">positive</span>. <span class="title">This</span> <span class="title">parameter</span> <span class="title">has</span> <span class="title">effect</span> <span class="title">only</span> <span class="title">when</span> <span class="title">the</span> <span class="title">given</span> <span class="title">service</span> <span class="title">supports</span> <span class="title">subfunctions</span></span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class">    <span class="title">data</span> <span class="params">(bytes)</span> – <span class="title">The</span> <span class="title">service</span> <span class="title">data</span> <span class="title">appended</span> <span class="title">after</span> <span class="title">service</span> <span class="title">ID</span> <span class="title">and</span> <span class="title">payload</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Request.get_payload(suppress_positive_response=<span class="keyword">None</span>)</span><br><span class="line"><span class="comment">#生成要提供给底层协议的有效负载。 此函数旨在供`UDS client`使用</span></span><br><span class="line"></span><br><span class="line">    Returns: A payload to be sent through the underlying protocol</span><br><span class="line"></span><br><span class="line">    Return type:	bytes</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">classmethod Request.from_payload(payload)</span><br><span class="line"><span class="comment">#根据来自底层协议的payload创建Request对象。 此函数旨在由UDS server使用</span></span><br><span class="line"></span><br><span class="line">    Parameters:	payload (bytes) – The payload of data to parse</span><br><span class="line"></span><br><span class="line">    Returns: A Request object <span class="keyword">with</span> populated fields</span><br><span class="line">    Return type:	Request</span><br></pre></td></tr></table></figure>
+<h1 id="Response"><a href="#Response" class="headerlink" title="Response"></a>Response</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">response = Response(service=ECUReset, code=Response.Code.PositiveResponse, data=<span class="string">b'\x11\x22'</span>)</span><br><span class="line">payload = response.get_payload()</span><br><span class="line">print(payload) <span class="comment"># b'\x51\x11\x22'</span></span><br><span class="line">response2 = Response.from_payload(payload)</span><br><span class="line">print(response2) <span class="comment"># &lt;PositiveResponse: [ECUReset] - 2 data bytes at 0x7f9367e619b0&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">class udsoncan.Response(service=None, code=None, data=None)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>#表示service对client请求的响应<br>Parameters:    </p>
+<blockquote>
+<ul>
+<li>service (class) – The service implied by this response.</li>
+<li>code (int) – The response code</li>
+<li>data (bytes) – The response data encoded after the service and response code</li>
+</ul>
+</blockquote>
+</blockquote>
+<blockquote>
+<p>valid</p>
+<blockquote>
+<p>(boolean) True if the response content is valid. Only <code>invalid_reason</code> is guaranteed to have a meaningful value if this value is False</p>
+</blockquote>
+</blockquote>
+<blockquote>
+<p>invalid_reason</p>
+<blockquote>
+<p>(string) String explaining why the response is invalid.</p>
+</blockquote>
+</blockquote>
+<blockquote>
+<p>service</p>
+<blockquote>
+<p>(class) The response target service class</p>
+</blockquote>
+</blockquote>
+<blockquote>
+<p>positive</p>
+<blockquote>
+<p>(boolean) True if the response code is 0 (PositiveResponse), False otherwise</p>
+</blockquote>
+</blockquote>
+<blockquote>
+<p>code</p>
+<blockquote>
+<p>(int) The response code.</p>
+</blockquote>
+</blockquote>
+<blockquote>
+<p>code_name</p>
+<blockquote>
+<p>(string) The response code name.</p>
+</blockquote>
+</blockquote>
+<blockquote>
+<p>data</p>
+<blockquote>
+<p>(bytes) The response data. All the payload content, except the service number and the response code</p>
+</blockquote>
+</blockquote>
+<blockquote>
+<p>service_data</p>
+<blockquote>
+<p>(object) The content of <code>data</code> interpreted by a service; can be any type of content.</p>
+</blockquote>
+</blockquote>
+<blockquote>
+<p>original_payload</p>
+<blockquote>
+<p>(bytes) When the response is built with Response.from_payload, this property contains a copy of the payload used. None otherwise.</p>
+</blockquote>
+</blockquote>
+<blockquote>
+<p>unexpected</p>
+<blockquote>
+<p>(boolean) Indicates that the response was unexpected. Set by an external source such as the Client object</p>
+</blockquote>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Response.get_payload()</span><br><span class="line"><span class="comment">#生成要提供给底层协议的有效负载。 此函数旨在供`UDS client`使用</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Returns: A payload to be sent through the underlying protocol<br>Return type: bytes</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">classmethod Response.from_payload(payload)</span><br><span class="line"><span class="comment">#根据来自底层协议的payload创建Response对象。 此函数旨在由UDS client使用</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<ul>
+<li>Parameters: payload (bytes) – The payload of data to parse</li>
+<li>Returns:A Response object with populated fields</li>
+<li>Return type:    Response</li>
+</ul>
+</blockquote>
+<h2 id="Response-Codes"><a href="#Response-Codes" class="headerlink" title="Response Codes"></a>Response Codes</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Response</span>.<span class="title">Code</span></span></span><br><span class="line">    PositiveResponse = 0</span><br><span class="line">    GeneralReject = <span class="number">16</span></span><br><span class="line">    ServiceNotSupported = <span class="number">17</span></span><br><span class="line">    SubFunctionNotSupported = <span class="number">18</span></span><br><span class="line">    IncorrectMessageLegthOrInvalidFormat = <span class="number">19</span></span><br><span class="line">    ResponseTooLong = <span class="number">20</span></span><br><span class="line">    BusyRepeatRequest = <span class="number">33</span></span><br><span class="line">    ConditionsNotCorrect = <span class="number">34</span></span><br><span class="line">    RequestSequenceError = <span class="number">36</span></span><br><span class="line">    NoResponseFromSubnetComponent = <span class="number">37</span></span><br><span class="line">    FailurePreventsExecutionOfRequestedAction = <span class="number">38</span></span><br><span class="line">    RequestOutOfRange = <span class="number">49</span></span><br><span class="line">    SecurityAccessDenied = <span class="number">51</span></span><br><span class="line">    InvalidKey = <span class="number">53</span></span><br><span class="line">    ExceedNumberOfAttempts = <span class="number">54</span></span><br><span class="line">    RequiredTimeDelayNotExpired = <span class="number">55</span></span><br><span class="line">    UploadDownloadNotAccepted = <span class="number">112</span></span><br><span class="line">    TransferDataSuspended = <span class="number">113</span></span><br><span class="line">    GeneralProgrammingFailure = <span class="number">114</span></span><br><span class="line">    WrongBlockSequenceCounter = <span class="number">115</span></span><br><span class="line">    RequestCorrectlyReceived_ResponsePending = <span class="number">120</span></span><br><span class="line">    SubFunctionNotSupportedInActiveSession = <span class="number">126</span></span><br><span class="line">    ServiceNotSupportedInActiveSession = <span class="number">127</span></span><br><span class="line">    RpmTooHigh = <span class="number">129</span></span><br><span class="line">    RpmTooLow = <span class="number">130</span></span><br><span class="line">    EngineIsRunning = <span class="number">131</span></span><br><span class="line">    EngineIsNotRunning = <span class="number">132</span></span><br><span class="line">    EngineRunTimeTooLow = <span class="number">133</span></span><br><span class="line">    TemperatureTooHigh = <span class="number">134</span></span><br><span class="line">    TemperatureTooLow = <span class="number">135</span></span><br><span class="line">    VehicleSpeedTooHigh = <span class="number">136</span></span><br><span class="line">    VehicleSpeedTooLow = <span class="number">137</span></span><br><span class="line">    ThrottlePedalTooHigh = <span class="number">138</span></span><br><span class="line">    ThrottlePedalTooLow = <span class="number">139</span></span><br><span class="line">    TransmissionRangeNotInNeutral = <span class="number">140</span></span><br><span class="line">    TransmissionRangeNotInGear = <span class="number">141</span></span><br><span class="line">    ISOSAEReserved = <span class="number">142</span></span><br><span class="line">    BrakeSwitchNotClosed = <span class="number">143</span></span><br><span class="line">    ShifterLeverNotInPark = <span class="number">144</span></span><br><span class="line">    TorqueConverterClutchLocked = <span class="number">145</span></span><br><span class="line">    VoltageTooHigh = <span class="number">146</span></span><br><span class="line">    VoltageTooLow = <span class="number">147</span></span><br><span class="line">    GeneralSecurityViolation = <span class="number">56</span></span><br><span class="line">    SecuredModeRequested = <span class="number">57</span></span><br><span class="line">    InsufficientProtection = <span class="number">58</span></span><br><span class="line">    TerminationWithSignatureRequested = <span class="number">59</span></span><br><span class="line">    AccessDenied = <span class="number">60</span></span><br><span class="line">    VersionNotSupported = <span class="number">61</span></span><br><span class="line">    SecuredLinkNotSupported = <span class="number">62</span></span><br><span class="line">    CertificateNotAvailable = <span class="number">63</span></span><br><span class="line">    AuditTrailInformationNotAvailable = <span class="number">64</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/udsoncan-uds-python/" rel="tag"># udsoncan uds python</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/uds/udsoncan.connections.html" rel="next" title="Source code for udsoncan.connections">
+                <i class="fa fa-chevron-left"></i> Source code for udsoncan.connections
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">song jiapo</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">52</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/songapore" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:291946540@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Request"><span class="nav-number">1.</span> <span class="nav-text">Request</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Response"><span class="nav-number">2.</span> <span class="nav-text">Response</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Response-Codes"><span class="nav-number">2.1.</span> <span class="nav-text">Response Codes</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">song jiapo</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'l1gitUPNjT1yErmRT7fmIUb3-gzGzoHsz',
+        appKey: 'cJ2gj9m4cWlnD3Yw8VBXz3pw',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>
