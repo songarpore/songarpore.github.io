@@ -89,7 +89,7 @@
 <meta property="og:site_name" content="songjiapo">
 <meta property="og:description" content="pipenv相当于pip+virtualenv,可是使得我们更加关注于项目的管理；其优势是不需要再分别使用pip和virtualenv，只需直接使用pipenv即可，pipenv会自动帮你创建虚拟环境，以及安装三方库，也会自动的记录你项目依赖的所有三方库，其使用pipfile和pipifile.lock取代了requiredments.txt 安装：1$ pip install pipenv 常用">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-28T16:47:28.062Z">
+<meta property="og:updated_time" content="2019-01-29T16:45:06.829Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="pipenv--基于项目的虚拟环境管理">
 <meta name="twitter:description" content="pipenv相当于pip+virtualenv,可是使得我们更加关注于项目的管理；其优势是不需要再分别使用pip和virtualenv，只需直接使用pipenv即可，pipenv会自动帮你创建虚拟环境，以及安装三方库，也会自动的记录你项目依赖的所有三方库，其使用pipfile和pipifile.lock取代了requiredments.txt 安装：1$ pip install pipenv 常用">
@@ -402,7 +402,7 @@
 <p>pipenv 可使用的命令参数：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Commands:</span><br><span class="line">  check      检查安全漏洞</span><br><span class="line">  graph      显示当前依赖关系图信息</span><br><span class="line">  install    安装虚拟环境或者第三方库</span><br><span class="line">  lock       锁定并生成Pipfile.lock文件</span><br><span class="line">  open       在编辑器中查看一个库</span><br><span class="line">  run        在虚拟环境中运行命令</span><br><span class="line">  shell      进入虚拟环境</span><br><span class="line">  uninstall  卸载一个库</span><br><span class="line">  update     卸载当前所有的包，并安装它们的最新版本</span><br></pre></td></tr></table></figure></p>
 <p>一些例子：<br>Usage Examples:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">Create a new project using Python 3.6, specifically:</span><br><span class="line">$ pipenv --python 3.6</span><br><span class="line"></span><br><span class="line">Install all dependencies for a project (including dev):</span><br><span class="line">$ pipenv install --dev</span><br><span class="line"></span><br><span class="line">Create a lockfile containing pre-releases:</span><br><span class="line">$ pipenv lock --pre</span><br><span class="line"></span><br><span class="line">Show a graph of your installed dependencies:</span><br><span class="line">$ pipenv graph</span><br><span class="line"></span><br><span class="line">Check your installed dependencies for security vulnerabilities:</span><br><span class="line">$ pipenv check</span><br><span class="line"></span><br><span class="line">Install a local setup.py into your virtual environment/Pipfile:</span><br><span class="line">$ pipenv install -e .</span><br><span class="line"></span><br><span class="line">Use a lower-level pip command:</span><br><span class="line">$ pipenv run pip freeze</span><br></pre></td></tr></table></figure></p>
 <h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><p>具体使用步骤如下：</p>
-<h2 id="第一步：创建虚拟环境。"><a href="#第一步：创建虚拟环境。" class="headerlink" title="第一步：创建虚拟环境。"></a>第一步：创建虚拟环境。</h2><p>命令：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> pipenv install --three</span><br></pre></td></tr></table></figure></p>
+<h2 id="第一步：创建虚拟环境。"><a href="#第一步：创建虚拟环境。" class="headerlink" title="第一步：创建虚拟环境。"></a>第一步：创建虚拟环境。</h2><p>命令：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> cd myproject</span><br><span class="line"><span class="meta">$</span> pipenv install --three</span><br></pre></td></tr></table></figure></p>
 <p>查看相关信息：</p>
 <p>项目位置：　<code>pipenv --where</code></p>
 <p>虚拟环境位置： <code>pipenv --venv</code></p>
@@ -448,8 +448,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/uds/udsoncan.Response.html" rel="next" title="udsoncan.Response源码">
-                <i class="fa fa-chevron-left"></i> udsoncan.Response源码
+              <a href="/uds/udsoncan.Request.html" rel="next" title="udsoncan.Request源码">
+                <i class="fa fa-chevron-left"></i> udsoncan.Request源码
               </a>
             
           </div>
