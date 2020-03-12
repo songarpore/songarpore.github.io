@@ -389,32 +389,6 @@
   </entry>
   
   <entry>
-    <title>Softmax 回归（Softmax regression）-吴恩达 深度学习 course2 3.8~3.9笔记</title>
-    <link href="https://songjiapo.com/DeepLearning/2018-05-16-course2-Week3-8-%E5%A4%9A%E5%88%86%E7%B1%BB%E9%97%AE%E9%A2%98.html"/>
-    <id>https://songjiapo.com/DeepLearning/2018-05-16-course2-Week3-8-%E5%A4%9A%E5%88%86%E7%B1%BB%E9%97%AE%E9%A2%98.html</id>
-    <published>2018-05-12T11:51:31.000Z</published>
-    <updated>2019-11-08T12:50:25.591Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="3-8-Softmax-回归（Softmax-regression）"><a href="#3-8-Softmax-回归（Softmax-regression）" class="headerlink" title="3.8 Softmax 回归（Softmax regression）"></a>3.8 Softmax 回归（Softmax regression）</h1><p>目前为止，介绍的分类例子都是二分类问题：神经网络输出层只有一个神经元，表示预测输出 y^是正类的概率 P(y = 1|x)，y &gt; 0.5 则判断为正类，反之判断为负类。</p><p>对于<strong>多分类问题</strong>，用 C 表示种类个数，则神经网络输出层，也就是第 L 层的单元数量 n[L]=C。每个神经元的输出依次对应属于该类的概率，即 P(y=c|x),c=0,1,..,C−1。有一种 Logistic 回归的一般形式，叫做 <strong>Softmax 回归</strong>，可以处理多分类问题。</p><p>对于 Softmax 回归模型的输出层，即第 L 层，有：</p><p>$$<br>Z^{[L]} = W^{[L]}a^{[L-1]} + b^{[L]}<br>$$</p><p>$$<br>a^{[L]}_i = \frac{e^{Z^{[L]}<em>i}}{\sum^C</em>{i=1}e^{Z^{[L]}_i}}<br>$$</p><p>为输出层每个神经元的输出，对应属于该类的概率，满足：</p><p>$$<br>\sum^C_{i=1}a^{[L]}_i = 1<br>$$<br>简单来说就是用临时变量t将它归一化，使总和为1。一个直观的计算例子如下：</p><p><img src="https://raw.githubusercontent.com/songapore/For-PicGo/master/img/softmax%20layer.png" alt="softmax layer"></p><h1 id="3-9-训练一个-Softmax-分类器（Training-a-Softmax-classifier）"><a href="#3-9-训练一个-Softmax-分类器（Training-a-Softmax-classifier）" class="headerlink" title="3.9 训练一个 Softmax 分类器（Training a Softmax classifier）"></a>3.9 训练一个 Softmax 分类器（Training a Softmax classifier）</h1><ul><li>怎样训练带有Softmax输出层的神经网络，具体而言，我们先定义训练神经网络使会用到的损失函数。</li></ul><p>$$<br>L(\hat y, y) = -\sum^C_{j=1}y_jlog\hat y_j<br>$$<br>概括来讲，损失函数所做的就是它找到你的训练集中的真实类别，然后试图使该类别相应的概率尽可能地高，如果你熟悉统计学中最大似然估计，这其实就是最大似然估计的一种形式。</p><ul><li>这是单个训练样本的损失，整个训练集的损失J又如何呢？</li></ul><p>$$<br>J = \frac{1}{m}\sum^m_{i=1}L(\hat y, y)<br>$$<br>因此你要做的就是用梯度下降法，使这里的损失最小化。</p><ul><li>最后我们来看一下，在有Softmax输出层时如何实现梯度下降法</li></ul><p>多分类的 Softmax 回归模型与二分类的 Logistic 回归模型只有输出层上有一点区别。经过不太一样的推导过程，仍有</p><p>$$<br>dZ^{[L]} = A^{[L]} - Y<br>$$<br>反向传播过程的其他步骤也和 Logistic 回归的一致。</p><p>详细可参考：<a href="http://ufldl.stanford.edu/wiki/index.php/Softmax%E5%9B%9E%E5%BD%92" target="_blank" rel="noopener">softmax 回归</a></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;3-8-Softmax-回归（Softmax-regression）&quot;&gt;&lt;a href=&quot;#3-8-Softmax-回归（Softmax-regression）&quot; class=&quot;headerlink&quot; title=&quot;3.8 Softmax 回归（Softmax r
-      
-    
-    </summary>
-    
-    
-      <category term="DeepLearning" scheme="https://songjiapo.com/categories/DeepLearning/"/>
-    
-    
-      <category term="DeepLearning 吴恩达" scheme="https://songjiapo.com/tags/DeepLearning-%E5%90%B4%E6%81%A9%E8%BE%BE/"/>
-    
-  </entry>
-  
-  <entry>
     <title>归一化网络的激活函数（Normalizing activations in a network）-吴恩达 深度学习 course2 3.4~3.7笔记</title>
     <link href="https://songjiapo.com/DeepLearning/2018-05-12-course2-Week3-4-Normalizing%20activations%20in%20a%20network.html"/>
     <id>https://songjiapo.com/DeepLearning/2018-05-12-course2-Week3-4-Normalizing%20activations%20in%20a%20network.html</id>
@@ -428,6 +402,32 @@
       
       
         &lt;h1 id=&quot;3-4-归一化网络的激活函数（Normalizing-activations-in-a-network）&quot;&gt;&lt;a href=&quot;#3-4-归一化网络的激活函数（Normalizing-activations-in-a-network）&quot; class=&quot;headerl
+      
+    
+    </summary>
+    
+    
+      <category term="DeepLearning" scheme="https://songjiapo.com/categories/DeepLearning/"/>
+    
+    
+      <category term="DeepLearning 吴恩达" scheme="https://songjiapo.com/tags/DeepLearning-%E5%90%B4%E6%81%A9%E8%BE%BE/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Softmax 回归（Softmax regression）-吴恩达 深度学习 course2 3.8~3.9笔记</title>
+    <link href="https://songjiapo.com/DeepLearning/2018-05-16-course2-Week3-8-%E5%A4%9A%E5%88%86%E7%B1%BB%E9%97%AE%E9%A2%98.html"/>
+    <id>https://songjiapo.com/DeepLearning/2018-05-16-course2-Week3-8-%E5%A4%9A%E5%88%86%E7%B1%BB%E9%97%AE%E9%A2%98.html</id>
+    <published>2018-05-12T11:51:31.000Z</published>
+    <updated>2019-11-08T12:50:25.591Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="3-8-Softmax-回归（Softmax-regression）"><a href="#3-8-Softmax-回归（Softmax-regression）" class="headerlink" title="3.8 Softmax 回归（Softmax regression）"></a>3.8 Softmax 回归（Softmax regression）</h1><p>目前为止，介绍的分类例子都是二分类问题：神经网络输出层只有一个神经元，表示预测输出 y^是正类的概率 P(y = 1|x)，y &gt; 0.5 则判断为正类，反之判断为负类。</p><p>对于<strong>多分类问题</strong>，用 C 表示种类个数，则神经网络输出层，也就是第 L 层的单元数量 n[L]=C。每个神经元的输出依次对应属于该类的概率，即 P(y=c|x),c=0,1,..,C−1。有一种 Logistic 回归的一般形式，叫做 <strong>Softmax 回归</strong>，可以处理多分类问题。</p><p>对于 Softmax 回归模型的输出层，即第 L 层，有：</p><p>$$<br>Z^{[L]} = W^{[L]}a^{[L-1]} + b^{[L]}<br>$$</p><p>$$<br>a^{[L]}_i = \frac{e^{Z^{[L]}<em>i}}{\sum^C</em>{i=1}e^{Z^{[L]}_i}}<br>$$</p><p>为输出层每个神经元的输出，对应属于该类的概率，满足：</p><p>$$<br>\sum^C_{i=1}a^{[L]}_i = 1<br>$$<br>简单来说就是用临时变量t将它归一化，使总和为1。一个直观的计算例子如下：</p><p><img src="https://raw.githubusercontent.com/songapore/For-PicGo/master/img/softmax%20layer.png" alt="softmax layer"></p><h1 id="3-9-训练一个-Softmax-分类器（Training-a-Softmax-classifier）"><a href="#3-9-训练一个-Softmax-分类器（Training-a-Softmax-classifier）" class="headerlink" title="3.9 训练一个 Softmax 分类器（Training a Softmax classifier）"></a>3.9 训练一个 Softmax 分类器（Training a Softmax classifier）</h1><ul><li>怎样训练带有Softmax输出层的神经网络，具体而言，我们先定义训练神经网络使会用到的损失函数。</li></ul><p>$$<br>L(\hat y, y) = -\sum^C_{j=1}y_jlog\hat y_j<br>$$<br>概括来讲，损失函数所做的就是它找到你的训练集中的真实类别，然后试图使该类别相应的概率尽可能地高，如果你熟悉统计学中最大似然估计，这其实就是最大似然估计的一种形式。</p><ul><li>这是单个训练样本的损失，整个训练集的损失J又如何呢？</li></ul><p>$$<br>J = \frac{1}{m}\sum^m_{i=1}L(\hat y, y)<br>$$<br>因此你要做的就是用梯度下降法，使这里的损失最小化。</p><ul><li>最后我们来看一下，在有Softmax输出层时如何实现梯度下降法</li></ul><p>多分类的 Softmax 回归模型与二分类的 Logistic 回归模型只有输出层上有一点区别。经过不太一样的推导过程，仍有</p><p>$$<br>dZ^{[L]} = A^{[L]} - Y<br>$$<br>反向传播过程的其他步骤也和 Logistic 回归的一致。</p><p>详细可参考：<a href="http://ufldl.stanford.edu/wiki/index.php/Softmax%E5%9B%9E%E5%BD%92" target="_blank" rel="noopener">softmax 回归</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;3-8-Softmax-回归（Softmax-regression）&quot;&gt;&lt;a href=&quot;#3-8-Softmax-回归（Softmax-regression）&quot; class=&quot;headerlink&quot; title=&quot;3.8 Softmax 回归（Softmax r
       
     
     </summary>
